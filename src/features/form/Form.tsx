@@ -1,21 +1,39 @@
-import React from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
+import React, {Fragment, useState} from 'react';
 
-type FormValues = {
-  cedula: string;
-  modelo: string;
-};
+const Form = () => {
+    const [datos, setDatos] = useState({
+        cedula: '',
+        modelo: ''
+    })
 
-export default function Form() {
-  const { register, handleSubmit } = useForm<FormValues>();
-  const onSubmit: SubmitHandler<FormValues> = data => console.log(data);
+    const handleInputChange = (event: any) => {
+        setDatos({
+            ...datos,
+            [event.target.name] : event.target.value
+        })
+    }
 
-  return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <input {...register("cedula", { required: true })} placeholder="Ingrese la cedula" />
-      <input {...register("modelo")} />
+    const enviarDatos = (event: any) => {
+        event.preventDefault()
+        console.log('enviando datos...' + datos.cedula + ' ' + datos.modelo)
+    }
 
-      <input type="submit" />
-    </form>
-  );
+    return (
+        <Fragment>
+            <h1>Formulario</h1>
+            <form onSubmit={enviarDatos}>
+                <div>
+                    <input type="text" placeholder="Ingrese cedula" onChange={handleInputChange} name="cedula"></input>
+                </div>
+                <br></br>
+                <div>
+                    <input type="text" placeholder="Ingrese modelo" onChange={handleInputChange} name="modelo"></input>
+                </div>
+                <button type="submit">Enviar</button>
+            </form>
+        </Fragment>
+    );
 }
+ 
+export default Form;
+
