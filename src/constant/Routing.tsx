@@ -1,6 +1,4 @@
 export const Routing = {
-    TOMAS: '/tomas',
-    PIROTTO: '/pirotto',
-    DROCCO: '/drocco',
+    SELECCIONAR_PACIENTE: '/seleccionar_paciente',
 }
   

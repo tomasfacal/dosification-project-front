@@ -1,6 +1,6 @@
 import React from 'react';
 import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
+import Form  from './features/form/Form';
 import { Routes, Route, Link } from "react-router-dom";
 
 
@@ -11,11 +11,8 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <Routes>
-          <Route path={Routing.PIROTTO} element={<Counter name="Pirotto"/>} />
-          <Route path={Routing.TOMAS} element={<Counter name="Tomas"/>} />
-          <Route path={Routing.DROCCO} element={<Counter name="Drocco"/>} />
+          <Route path={Routing.SELECCIONAR_PACIENTE} element={<Form/>} />
         </Routes>
       </header>
     </div>
