@@ -12,7 +12,8 @@ import {
 } from './counterSlice';
 import styles from './Counter.module.css';
 
-export function Counter() {
+export function Counter(props: any) {
+  const { name } = props
   const count = useAppSelector(selectCount);
   const dispatch = useAppDispatch();
   const [incrementAmount, setIncrementAmount] = useState('2');
@@ -24,6 +25,7 @@ export function Counter() {
 
   return (
     <div>
+      Soy el componente de {name}
       <div className={styles.row}>
         <button
           className={styles.button}
