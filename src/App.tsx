@@ -9,6 +9,7 @@ import SelectTreatments from './features/select-treatments/select-treatments';
 import PatientsPage from './features/patients-page/patients-page';
 import { Counter } from './features/counter/Counter';
 import Navbar from './features/navbar/navbar';
+import ObtainModelDrug from './features/obtain-model/obtain-model'
 
 function App() {
   return (
@@ -21,6 +22,8 @@ function App() {
           <Route path={Routing.SELECT_TREATMENTS} element={<SelectTreatments/>} />
           <Route path={Routing.LIST_PATIENTS} element={<PatientsPage/>} />
           <Route path={Routing.COUNTER} element={<Counter name="Pirotto"/>} />
+          {/* vamos a tener que cambiar esto */}
+          <Route path={Routing.MODEL_DRUG} element={<ObtainModelDrug model_drug={3}/>} />
         </Routes>
       </header>
     </div>
