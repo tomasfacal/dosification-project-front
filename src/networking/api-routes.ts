@@ -3,8 +3,8 @@
   they are centrally documented.
 */
 const API_ROUTES = {
-  CREATE_PATIENT: 'patients/',
   LIST_PATIENTS: 'patients/',
+  PATIENT: 'patients/',
   MODEL_DRUGS: 'modeldrugs/',
 };
 
