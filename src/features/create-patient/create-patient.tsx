@@ -4,6 +4,8 @@ import { TextField, Tooltip, Button, FormControl,
          FormLabel, FormControlLabel, RadioGroup, Radio, Grid, Typography
         } from '@material-ui/core';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import API from '../../networking/api-service';
+import { API_ROUTES } from '../../networking/api-routes';
 
 const CreatePatient = () => {
     const [datos, setData] = useState({
@@ -12,7 +14,7 @@ const CreatePatient = () => {
         sex: 'female',
         lastname: '',
         errorMessage: '',
-    }) 
+    })
 
     const handleInputChange = (event: any) => {
         setData({
@@ -27,16 +29,22 @@ const CreatePatient = () => {
 
     const handleSubmit = (event: any) => {
       event.preventDefault();
-      const bool = [true, false];
-      const random = Math.floor(Math.random() * bool.length);
-      const result = bool[random]
+      const result = true;
       console.log(result);
       if (!result) {
         setData({...datos, errorMessage: 'Error al crear paciente'})
       } else {
         setData({...datos, errorMessage: ''})
-        console.log('enviando datos...' + datos.name);
-        alert('se van a enviar datos al back');
+        const patient = {
+          name: datos.name,
+          document_number: datos.document_number,
+          sex: 'F'
+        }
+        API.post(API_ROUTES.CREATE_PATIENT, patient)
+          .then(res => {
+            console.log(res.data);
+            console.log(`Paciente ${datos.name} creado satisfactoriamente`,res.data);
+          })
       }
     }
 
