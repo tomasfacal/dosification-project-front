@@ -4,7 +4,8 @@
 */
 const API_ROUTES = {
   CREATE_PATIENT: 'patients/',
-  LIST_PATIENTS: 'patients/'
+  LIST_PATIENTS: 'patients/',
+  MODEL_DRUGS: 'modeldrugs/',
 };
 
 export { API_ROUTES };
