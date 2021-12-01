@@ -1,5 +1,37 @@
 @import '../../assets/stylesheets/generic-styles.scss';
 
-.manu {
-  color: $blue;
+.fieldContainer {
+  padding: 20px;
+}
+
+.Title {
+  color: $blue-title;
+}
+
+// I have to set margin as important due to materialUi styles was set as preference
+// TODO: Check a better practice to this (maybe set as inline style)
+.SubmitButton {
+  width: 50%;
+  margin: auto !important;
+}
+
+.FormContainer {
+  margin: 2rem auto;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	max-width: 425px;
+	background-color: #FFF;
+	border-radius: 10px;
+	box-shadow: 0 10px 20px 0 rgba(#999, .25);
+	padding: 3rem;
+}
+
+.AddClientIcon {
+  padding: 10px;
+}
+
+.error{
+  color: $red-error;
+  padding-top: 5px;
 }
