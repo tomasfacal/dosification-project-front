@@ -5,7 +5,7 @@
 }
 
 .Title {
-  color: $blue-title;
+  color: $brand;
 }
 
 // I have to set margin as important due to materialUi styles was set as preference
@@ -32,7 +32,7 @@
 }
 
 .error{
-  color: $red-error;
+  color: $danger;
   padding-top: 5px;
 }
 

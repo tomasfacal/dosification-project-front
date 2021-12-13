@@ -3,4 +3,3 @@ export const Routing = {
     CREATE_PATIENT: '/create-patient',
     SELECT_TREATMENTS: '/select-treatments',
 }
-  

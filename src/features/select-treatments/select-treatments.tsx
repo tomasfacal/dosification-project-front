@@ -12,8 +12,9 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
-interface JSON {
+interface TreatmentJSON {
   cycle_duration: number,
   number_of_repetitions: number,
   quantity: number
@@ -26,7 +27,7 @@ const SelectTreatments = () => {
         quantity: 0
     })
 
-    const [cards, setCards] = useState<JSON[]>(
+    const [cards, setCards] = useState<TreatmentJSON[]>(
       []
     )
   
@@ -38,7 +39,7 @@ const SelectTreatments = () => {
     }
 
     const deleteTreatment = (index: number) => {
-      const newstate = cards;
+      let newstate = [...cards];
       newstate.splice(index, 1);
       setCards(newstate);
     }
@@ -47,12 +48,17 @@ const SelectTreatments = () => {
       (!!cycle_duration && !!number_of_repetitions && !!quantity) && (cycle_duration > 0 && number_of_repetitions > 0 && quantity > 0)
     );
 
-    const handleSubmit = (event: any) => {
+    const createTreatment = (event: any) => {
       event.preventDefault();
       setCards([...cards, {cycle_duration: datos.cycle_duration, number_of_repetitions: datos.number_of_repetitions, quantity: datos.quantity}]);
     }
 
-    const renderCard = (treatment: JSON, index: number) => {
+    const handleSubmit = (event: any) => {
+      event.preventDefault();
+      console.log('SUBMIT');
+    }
+
+    const renderCard = (treatment: TreatmentJSON, index: number) => {
       return (
         <Grid key= {index} item xs={12} sm={4}>
           <Card sx={{ minWidth: 275 }} className={styles.CardTreatment}>
@@ -135,8 +141,8 @@ const SelectTreatments = () => {
               <Button
                 color="primary"
                 variant="contained"
-                onClick={handleSubmit}
-                className={styles.SubmitButton}
+                onClick={createTreatment}
+                className={styles.CreateTreatmentButton}
                 disabled={!validateFields(datos.cycle_duration, datos.number_of_repetitions, datos.quantity)}
               >
                 <AddCircleIcon className= {styles.AddTreatmentIcon}/>
@@ -145,11 +151,21 @@ const SelectTreatments = () => {
           </div>
           <div className= {styles.CardsContainer}>
             <Grid container spacing={2}>
-            { cards.map((treatment: JSON, index: number) =>
+            { cards.map((treatment: TreatmentJSON, index: number) =>
                 renderCard(treatment, index))
             }
             </Grid>
           </div>
+          <Button
+            color="primary"
+            variant="contained"
+            onClick={handleSubmit}
+            className={styles.SubmitButton}
+            disabled={cards.length === 0}
+          >
+            <ArrowForwardIcon className= {styles.AddTreatmentIcon}/>
+            Siguiente
+        </Button>
         </Fragment>
     );
 }

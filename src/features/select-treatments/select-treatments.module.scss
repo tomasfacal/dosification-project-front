@@ -5,13 +5,13 @@
 }
 
 .Title {
-  color: $blue-title;
+  color: $brand;
   font-size: $form-title-size;
 }
 
 // I have to set margin as important due to materialUi styles was set as preference
 // TODO: Check a better practice to this (maybe set as inline style)
-.SubmitButton {
+.CreateTreatmentButton {
   width: 50%;
   margin: auto !important;
 }
@@ -37,11 +37,13 @@
 }
 
 .tooltip {
+  background-color: $grey-background !important;
+  color: $info !important;
   font-size: 16px !important;
 }
 
 .error {
-  color: $red-error;
+  color: $danger;
   padding-top: 5px;
 }
 
@@ -63,5 +65,13 @@
 }
 
 .DeleteButton {
-  color: $red-delete-button !important;
+  color: $danger-dark !important;
+}
+
+.SubmitButton {
+  background-color: $success !important;
+}
+
+.SubmitButton[disabled]{
+  background-color: $disabled-button-grey !important;
 }
