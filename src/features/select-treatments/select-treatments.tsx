@@ -1,13 +1,9 @@
 import React, {Fragment, useState} from 'react';
 import styles from './select-treatments.module.scss';
-import { TextField, Tooltip, Button, FormControl, 
-         FormLabel, FormControlLabel, RadioGroup, Radio, Grid, Typography
+import { TextField, Tooltip, Button, Grid, Typography
         } from '@material-ui/core';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import API from '../../networking/api-service';
-import { API_ROUTES } from '../../networking/api-routes';
 import HelpIcon from '@mui/icons-material/Help';
-import Box from '@mui/material/Box';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
