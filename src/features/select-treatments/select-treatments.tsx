@@ -9,14 +9,12 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-
-interface TreatmentJSON {
-  cycle_duration: number,
-  number_of_repetitions: number,
-  quantity: number
-}
+import { setTreatments } from './treatmentSlice';
+import { useAppDispatch } from '../../app/store/hooks';
 
 const SelectTreatments = () => {
+    const dispatch = useAppDispatch();
+
     const [datos, setData] = useState({
         cycle_duration: 0,
         number_of_repetitions: 0,
@@ -51,7 +49,8 @@ const SelectTreatments = () => {
 
     const handleSubmit = (event: any) => {
       event.preventDefault();
-      console.log('SUBMIT');
+      dispatch(setTreatments(cards))
+      console.log('SUBMIT - debería ir a siguiente página');
     }
 
     const renderCard = (treatment: TreatmentJSON, index: number) => {

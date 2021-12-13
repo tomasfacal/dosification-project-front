@@ -57,7 +57,7 @@
 }
 
 .Carditem {
-  color: rgb(32, 50, 131);
+  color: $brand-dark;
 }
 
 .DeleteAction {
@@ -69,6 +69,7 @@
 }
 
 .SubmitButton {
+  margin: 20px !important;
   background-color: $success !important;
 }
 
