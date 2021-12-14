@@ -10,7 +10,7 @@ const Navbar = () => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
-        <Toolbar variant="dense">
+        <Toolbar className= {styles.NavBarContainer} variant="dense">
           <MedicalServicesIcon className= {styles.MedicalIcon}/>
           <Typography variant="h6" color="inherit" component="div">
             FINGLIX

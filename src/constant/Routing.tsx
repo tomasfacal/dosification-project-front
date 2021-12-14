@@ -4,6 +4,10 @@ export const Routing = {
     SELECT_TREATMENTS: '/select-treatments',
 <<<<<<< HEAD
     COUNTER: '/counter',
+<<<<<<< HEAD
 =======
 >>>>>>> wip
+=======
+    LIST_PATIENTS: '/list-patients'
+>>>>>>> Vista para listar pacientes
 }
