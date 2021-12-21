@@ -4,6 +4,7 @@
 */
 const API_ROUTES = {
   CREATE_PATIENT: 'patients/',
+  LIST_PATIENTS: 'patients/'
 };
 
 export { API_ROUTES };
