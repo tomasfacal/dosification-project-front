@@ -2,17 +2,17 @@ import React from 'react';
 import logo from './logo.svg';
 import Form  from './features/form/Form';
 import { Routes, Route, Link } from "react-router-dom";
-
-
 import './App.scss';
 import { Routing } from './constant/Routing';
 import CreatePatient from './features/create-patient/create-patient';
 import SelectTreatments from './features/select-treatments/select-treatments';
 import { Counter } from './features/counter/Counter';
+import Navbar from './features/navbar/navbar';
 
 function App() {
   return (
     <div className="App">
+      <Navbar />
       <header className="App-header">
         <Routes>
           <Route path={Routing.SELECCIONAR_PACIENTE} element={<Form/>} />
