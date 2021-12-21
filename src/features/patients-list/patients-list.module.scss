@@ -1,0 +1,26 @@
+@import '../../assets/stylesheets/generic-styles.scss';
+
+.TableContainer {
+  margin: 20px;
+  width: 90% !important;
+}
+
+.TableHeader {
+  background-color: $brand-extra-light;
+  .TableTitle {
+    th {
+      color: $extra-dark-grey;
+      font-weight: bold;
+      text-transform: capitalize;
+      font-size: $font-size-subtitle;
+    }
+  }
+}
+
+.FemaleIcon {
+  color: $female;
+}
+
+.MaleIcon {
+  color: $male;
+}
