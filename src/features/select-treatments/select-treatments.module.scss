@@ -1,0 +1,78 @@
+@import '../../assets/stylesheets/generic-styles.scss';
+
+.fieldContainer {
+  padding: 20px;
+}
+
+.Title {
+  color: $brand;
+  font-size: $form-title-size;
+}
+
+// I have to set margin as important due to materialUi styles was set as preference
+// TODO: Check a better practice to this (maybe set as inline style)
+.CreateTreatmentButton {
+  width: 50%;
+  margin: auto !important;
+}
+
+.FormContainer {
+  margin: 2rem auto;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	max-width: 425px;
+	background-color: #FFF;
+	border-radius: 10px;
+	box-shadow: 0 10px 20px 0 rgba(#999, .25);
+	padding: 3rem;
+}
+
+.AddTreatmentIcon, .helpIcon {
+  padding: 10px;
+}
+
+.helpIcon {
+  margin: 10px 0;
+}
+
+.tooltip {
+  background-color: $grey-background !important;
+  color: $info !important;
+  font-size: 16px !important;
+}
+
+.error {
+  color: $danger;
+  padding-top: 5px;
+}
+
+.CardsContainer {
+  width: 90%;
+}
+
+.CardTreatment {
+  max-width: 300px;
+  margin: auto;
+}
+
+.Carditem {
+  color: $brand-dark;
+}
+
+.DeleteAction {
+  display: block !important;
+}
+
+.DeleteButton {
+  color: $danger-dark !important;
+}
+
+.SubmitButton {
+  margin: 20px !important;
+  background-color: $success !important;
+}
+
+.SubmitButton[disabled]{
+  background-color: $disabled-button-grey !important;
+}

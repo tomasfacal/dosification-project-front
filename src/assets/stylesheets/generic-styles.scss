@@ -1,2 +1,6 @@
 @import './colors.scss';
 @import './variables.scss';
+
+body {
+  background-color: $brand-background;
+}

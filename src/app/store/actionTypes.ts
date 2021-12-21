@@ -1,0 +1,1 @@
+export const SAVE_TREATMENTS = "SAVE_TREATMENTS"
