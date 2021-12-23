@@ -4,7 +4,7 @@ import API from '../../networking/api-service';
 import { API_ROUTES } from '../../networking/api-routes';
 import { Grid, Button } from '@material-ui/core';
 import InputPatient from './input_patient';
-import useForceUpdate from 'use-force-update';
+
 
 const Patient = (props: any) => {
     const [datos, setData] = useState({
@@ -41,6 +41,27 @@ const Patient = (props: any) => {
         })
     }
 
+    const handlePencil = (name: string) => {
+        let new_value = false
+        if (name === 'first_name') {
+            new_value = !editable.first_name
+        }
+        if (name === 'last_name') {
+            new_value = !editable.last_name
+        }
+        if (name === 'document_number') {
+            new_value = !editable.document_number
+        }
+        if (name === 'sex') {
+            new_value = !editable.sex
+        }
+
+        setEditable({
+            ...editable,
+            [name]: new_value
+        })
+    }
+
     const handleSubmit = (event: any) => {
         let data_json = {
             'first_name': datos.first_name,
@@ -49,6 +70,14 @@ const Patient = (props: any) => {
             'last_name': datos.last_name,
         }
         API.put(API_ROUTES.PATIENT + props.patient_id + '/', data_json)
+
+        setEditable({
+            ...editable,
+            'first_name': false,
+            'last_name': false,
+            'document_number': false,
+            'sex': false,
+        })
     }
 
     return (
@@ -57,16 +86,16 @@ const Patient = (props: any) => {
                 <h1 className={styles.Title} >Paciente</h1>
                 <Grid container spacing={2}>
                     <Grid item xs={12} sm={12}>
-                        <InputPatient name='first_name' show_name='Nombre' value={datos.first_name} parentCallback={handleChangeInput} />
+                        <InputPatient name='first_name' show_name='Nombre' editableInput={editable.first_name} value={datos.first_name} parentCallback={handleChangeInput} parentCallbackEditable={handlePencil} />
                     </Grid>
                     <Grid item xs={12} sm={12}>
-                        <InputPatient name='last_name' show_name='Apellido' value={datos.last_name} parentCallback={handleChangeInput} />
+                        <InputPatient name='last_name' show_name='Apellido' editableInput={editable.last_name} value={datos.last_name} parentCallback={handleChangeInput} parentCallbackEditable={handlePencil}/>
                     </Grid>
                     <Grid item xs={12} sm={12}>
-                        <InputPatient name='document_number' show_name='Cédula' value={datos.document_number} parentCallback={handleChangeInput} />
+                        <InputPatient name='document_number' show_name='Cédula' editableInput={editable.document_number} value={datos.document_number} parentCallback={handleChangeInput} parentCallbackEditable={handlePencil} />
                     </Grid>
                     <Grid item xs={12} sm={12}>
-                        <InputPatient name='sex' show_name='Sexo' value={datos.sex} parentCallback={handleChangeInput} />
+                        <InputPatient name='sex' show_name='Sexo' value={datos.sex} editableInput={editable.sex} parentCallback={handleChangeInput} parentCallbackEditable={handlePencil} />
                     </Grid>
                 </Grid>
                 <div className={styles.DivButton}>

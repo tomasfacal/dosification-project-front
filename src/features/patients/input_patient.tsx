@@ -10,11 +10,9 @@ import InputAdornment from '@mui/material/InputAdornment';
 import { isPropertySignature } from 'typescript';
 
 const InputPatient = (props: any) => {
-    const [editable, setEditable] = useState( false )
-
 
     const handleClickPencil = (event: any) => {
-        setEditable(true)
+        props.parentCallbackEditable(props.name);
     }
 
     const handleChange = (event: any) => {
@@ -24,7 +22,7 @@ const InputPatient = (props: any) => {
     
     return (
         <div className={styles.ContainterInput}>
-            {editable && 
+            {props.editableInput && 
             <TextField
                 fullWidth
                 id={"input-with-icon-textfield"}
@@ -37,7 +35,7 @@ const InputPatient = (props: any) => {
                 onChange={handleChange}
                 />
             }
-            {!editable && 
+            {!props.editableInput && 
             <TextField
                 fullWidth
                 id="input-with-icon-textfield"
