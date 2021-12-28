@@ -3,9 +3,10 @@
   they are centrally documented.
 */
 const API_ROUTES = {
-  CREATE_PATIENT: 'patients/',
   LIST_PATIENTS: 'patients/',
+  PATIENT: 'patients/',
   MODEL_DRUGS: 'modeldrugs/',
+  CREATE_PATIENT: '/create-patient',
 };
 
 export { API_ROUTES };

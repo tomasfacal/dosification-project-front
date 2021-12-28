@@ -1,0 +1,26 @@
+@import '../../assets/stylesheets/generic-styles.scss';
+
+.Title {
+  color: $brand;
+}
+
+.FormContainer {
+    margin: 2rem auto;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      max-width: 425px;
+      background-color: #FFF;
+      border-radius: 10px;
+      box-shadow: 0 10px 20px 0 rgba(#999, .25);
+      padding: 3rem;
+}
+
+.SubmitButton {
+  margin: auto !important;
+  width: 70%;
+}
+
+.DivButton{
+  padding-top: 5%;
+}
