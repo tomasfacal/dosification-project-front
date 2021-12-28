@@ -32,6 +32,9 @@ const Patient = (props: any) => {
                     'sex': res.data.sex,
                 })
             })
+            .catch(function (error) {
+                console.log(error);
+              });
     }, [])
 
     const handleChangeInput = (name: string, value: string) => {
