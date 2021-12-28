@@ -3,5 +3,6 @@ export const Routing = {
     CREATE_PATIENT: '/create-patient',
     SELECT_TREATMENTS: '/select-treatments',
     COUNTER: '/counter',
-    LIST_PATIENTS: '/list-patients'
+    LIST_PATIENTS: '/list-patients',
+    MODEL_DRUG: '/form_model_drug'
 }
