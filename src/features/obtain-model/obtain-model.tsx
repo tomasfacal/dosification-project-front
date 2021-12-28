@@ -10,14 +10,20 @@ const ObtainModelDrug = (props: any) => {
     const [covariates, setCovariates] = useState([] as string[])
     const [outputs, setOutputs] = useState([] as string[])
 
-    useEffect(() => {
-        API.get(API_ROUTES.MODEL_DRUGS + props.model_drug+'/')
-        .then(res => {
-            setCovariates(res.data.variables);
-            setOutputs(res.data.outputs);
-        })
-    }, [])
-
+    const fetchCovariatesOutputs = async () => {
+        try {
+          const response = await API.get(API_ROUTES.MODEL_DRUGS + props.model_drug+'/');
+          setCovariates(response.data.variables);
+          setOutputs(response.data.outputs);
+        } catch (error) {
+          console.log("error", error);
+        }
+    };
+    
+    useEffect(() => { 
+           fetchCovariatesOutputs(); 
+    }, []);
+    
     return (
         <Fragment>
             <div className={styles.FormContainer} >
