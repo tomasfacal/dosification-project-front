@@ -6,7 +6,7 @@ import CreateCovariates from '../create-covariates/create-covariates';
 import ChooseOutput from '../choose-output/choose-output';
 import { Button } from '@material-ui/core';
 import { Forward } from "@mui/icons-material";
-import { setCovariates } from '../create-covariates/covariateSlice';
+import { setOutputCovariates } from './outputCovariateSlice';
 import { useAppDispatch } from '../../app/store/hooks';
 
 
@@ -15,7 +15,7 @@ const ObtainModelDrug = (props: any) => {
 
     const [covariatesList, setCovariatesList] = useState([] as string[])
     const [outputsList, setOutputsList] = useState([] as string[])
-    const [covariatesValues, setCovariatesValues] = useState({})
+    const [covariatesValues, setCovariatesValues] = useState({} as any)
     const [outputValue, setOutputValue] = useState('')
 
     const fetchCovariatesOutputs = async () => {
@@ -46,7 +46,9 @@ const ObtainModelDrug = (props: any) => {
     })
 
     const handleNext = (event: any) => {
-        dispatch(setCovariates(covariatesValues))
+        let covariates_output = covariatesValues
+        covariates_output['output'] = outputValue
+        dispatch(setOutputCovariates(covariates_output))
         
     }
 
