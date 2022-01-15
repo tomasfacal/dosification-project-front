@@ -8,6 +8,8 @@ import { Button } from '@material-ui/core';
 import { Forward } from "@mui/icons-material";
 import { setOutputCovariates } from './outputCovariateSlice';
 import { useAppDispatch } from '../../app/store/hooks';
+import { Link } from 'react-router-dom'
+import { Routing } from '../../constant/Routing';
 
 
 const ObtainModelDrug = (props: any) => {
@@ -61,15 +63,17 @@ const ObtainModelDrug = (props: any) => {
             <div className={styles.FormContainer} >
                 <CreateCovariates covariates={covariatesList} setValues={handleChangeCovariateValues}/>
                 <ChooseOutput outputs={outputsList} setValue={handleChangeOutputValue} />
-                <Button
-                    color="primary"
-                    variant="contained"
-                    onClick={handleNext}
-                    className={styles.SubmitButton}
-                >
-                    <Forward />
-                    Siguiente
-                </Button>
+                <Link to={Routing.SELECT_TREATMENTS} style={{ textDecoration: 'none' }}>
+                    <Button
+                        color="primary"
+                        variant="contained"
+                        onClick={handleNext}
+                        className={styles.SubmitButton}
+                    >
+                        <Forward />
+                        Siguiente
+                    </Button>
+                </Link>
             </div>
         </Fragment>
     );
