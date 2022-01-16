@@ -4,9 +4,10 @@ import API from '../../networking/api-service';
 import { API_ROUTES } from '../../networking/api-routes';
 import { Grid, Button } from '@material-ui/core';
 import InputPatient from './input_patient';
+import { useParams } from "react-router-dom";
 
 
-const Patient = (props: any) => {
+const Patient = () => {
     const [datos, setData] = useState({
         first_name: '',
         document_number: '',
@@ -21,8 +22,10 @@ const Patient = (props: any) => {
         last_name: false
     })
 
+    const { document_number } = useParams();
+
     useEffect(() => {
-        API.get(API_ROUTES.PATIENT + props.patient_id + '/')
+        API.get(API_ROUTES.PATIENT + document_number + '/')
             .then(res => {
                 setData({
                     ...datos,
@@ -72,7 +75,7 @@ const Patient = (props: any) => {
             'sex': datos.sex,
             'last_name': datos.last_name,
         }
-        API.put(API_ROUTES.PATIENT + props.patient_id + '/', data_json)
+        API.put(API_ROUTES.PATIENT + document_number + '/', data_json)
 
         setEditable({
             ...editable,

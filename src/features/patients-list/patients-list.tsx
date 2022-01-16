@@ -1,4 +1,5 @@
 import React, {Fragment, useState, useEffect} from 'react';
+import { Link } from "react-router-dom";
 import styles from './patients-list.module.scss';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -13,12 +14,17 @@ import FemaleIcon from '@mui/icons-material/Female';
 import MaleIcon from '@mui/icons-material/Male';
 import TableFooter from '@mui/material/TableFooter';
 import TablePagination from '@mui/material/TablePagination';
+import SearchIcon from '@mui/icons-material/Search';
+import CancelIcon from '@mui/icons-material/Cancel';
+import { TextField, Button } from '@material-ui/core';
 
 const PatientsList = () => {
   const [data, setData] = useState<PatientInfo[]>(
     []
   )
   const [page, setPage] = useState(0);
+  const [searchField, setSearchField] = useState('');
+  const [search, setSearch] = useState(''); 
   const [countPatient, setCountPatients] = useState(0);
 
   // We have to add 1 to the page due to materialUI table page 
@@ -31,12 +37,57 @@ const PatientsList = () => {
     })
   }, [page]);
 
+  useEffect(() => {
+    API.get(API_ROUTES.LIST_PATIENTS+ `?search=${search}`)
+    .then(res => {
+      setData(res.data.results);
+      setCountPatients(res.data.count);
+    })
+  }, [search]);
+
   const handleChangePage = (event: any, newPage: number) => {
     setPage(newPage);
   };
 
+  const handleInputChange = (event: any) => {
+    setSearchField(event.target.value)
+  }
+
+  const handleSubmit = (event: any) => {
+    setSearch(searchField)
+  }
+
+  const handleCancel = (event: any) => {
+    setSearch('');
+    setPage(0);
+  }
+
+
   return (
     <Fragment>
+        <div>
+          <TextField
+            label="Buscar paciente"
+            name= "search"
+            id= "searchInput"
+            onChange={handleInputChange}
+          />
+          <Button
+            color="primary"
+            variant="contained"
+            onClick={handleSubmit}
+            disabled={!searchField}
+          >
+            <SearchIcon/>
+          </Button>
+          <Button
+            color="primary"
+            variant="contained"
+            onClick={handleCancel}
+          >
+           <CancelIcon/>
+          </Button>
+        </div>
       <TableContainer className={styles.TableContainer}component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead className= {styles.TableHeader}>
@@ -53,7 +104,7 @@ const PatientsList = () => {
                 key={row.document_number}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
-                <TableCell align="center">{row.document_number}</TableCell>
+                <TableCell align="center"><Link to={`/patient/${row.document_number}`} className="btn btn-primary">{row.document_number}</Link></TableCell>
                 <TableCell align="center">{row.first_name}</TableCell>
                 <TableCell align="center">{row.last_name}</TableCell>
                 {(row.sex === 'F') ? <TableCell align="center"><FemaleIcon className= {styles.FemaleIcon}/></TableCell> : <TableCell align="center"><MaleIcon className= {styles.MaleIcon}/></TableCell> } 
