@@ -75,6 +75,7 @@ const PatientsList = () => {
           <Button
             color="primary"
             variant="contained"
+            className={styles.searchButton}
             onClick={handleSubmit}
             disabled={!searchField}
           >
@@ -83,6 +84,7 @@ const PatientsList = () => {
           <Button
             color="primary"
             variant="contained"
+            className={styles.cancelSearchButton}
             onClick={handleCancel}
           >
            <CancelIcon/>
