@@ -1,4 +1,5 @@
-import * as React from 'react';
+import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -12,6 +13,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import AuthContext from '../../app/store/authContext'
 
 function Copyright(props: any) {
   return (
@@ -29,6 +31,8 @@ function Copyright(props: any) {
 const theme = createTheme();
 
 export default function SignIn() {
+    const navigation = useNavigate()
+    const authCtx = useContext(AuthContext);
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -40,7 +44,8 @@ export default function SignIn() {
         
         API.post(API_ROUTES.SIGN_IN)
             .then(res => {
-                console.log('Logueo ok')
+                authCtx.login(res.data.token);
+                navigation('/');
             })
             .catch(function (error) {
                 console.log(error);
