@@ -1,0 +1,14 @@
+@import '../../assets/stylesheets/generic-styles.scss';
+
+.CardSimulation {
+  max-width: 300px;
+  margin: auto;
+}
+
+.Carditem {
+  color: $brand-dark;
+}
+
+.DeleteAction {
+  display: block !important;
+}
