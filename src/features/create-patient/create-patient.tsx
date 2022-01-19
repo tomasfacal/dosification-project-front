@@ -6,6 +6,8 @@ import { TextField, Tooltip, Button, FormControl,
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import API from '../../networking/api-service';
 import { API_ROUTES } from '../../networking/api-routes';
+import Error from '../error/error'
+
 
 const CreatePatient = () => {
   const [datos, setData] = useState({
@@ -122,7 +124,7 @@ const CreatePatient = () => {
             Crear Paciente
         </Button>
         {error && (
-          <Typography className={styles.error}>{error}</Typography>
+                <Error error={error}/>
         )}
         {success && (
           <Typography className={styles.success}>{success}</Typography>

@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -14,25 +14,14 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import AuthContext from '../../app/store/authContext'
-
-function Copyright(props: any) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+import Error from '../error/error'
 
 const theme = createTheme();
 
 export default function SignIn() {
     const navigation = useNavigate()
     const authCtx = useContext(AuthContext);
+    const [error, setError] = useState('');
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -48,7 +37,7 @@ export default function SignIn() {
                 navigation('/');
             })
             .catch(function (error) {
-                console.log(error);
+                setError('El usuario o la contraseña no son correctos.');
             });
     };
 
@@ -71,6 +60,9 @@ export default function SignIn() {
             <Typography component="h1" variant="h5">
                 Sign in
             </Typography>
+            {error && (
+                <Error error={error}/>
+            )}
             <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
                 <TextField
                 margin="normal"
@@ -114,7 +106,6 @@ export default function SignIn() {
                 </Grid>
             </Box>
             </Box>
-            <Copyright sx={{ mt: 8, mb: 4 }} />
         </Container>
         </ThemeProvider>
     );
