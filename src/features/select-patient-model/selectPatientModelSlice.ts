@@ -1,13 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "../../app/store/store";
 
 export interface SelectPatientModelState {
-  document_number: string;
+  document_number: number;
   model: string;
 }
 
 const initialState: SelectPatientModelState = {
-  document_number: "",
+  document_number: 0,
   model: "",
 };
 

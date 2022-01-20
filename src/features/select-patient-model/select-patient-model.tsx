@@ -17,7 +17,7 @@ const SelectPatientModel = () => {
   const dispatch = useAppDispatch();
 
   const [data, setData] = useState({
-    document_number: "",
+    document_number: 0,
     model: "",
   });
 
@@ -53,7 +53,7 @@ const SelectPatientModel = () => {
     });
   };
 
-  const validateFields = (document_number: string, model: string) =>
+  const validateFields = (document_number: number, model: string) =>
     !!document_number && !!model;
 
   const handleSubmit = (event: any) => {
@@ -86,10 +86,8 @@ const SelectPatientModel = () => {
                   name="document_number"
                   variant="outlined"
                   placeholder="Ingrese la cedula"
+                  type="number"
                   error={!validateFields(data.document_number, data.model)}
-                  inputProps={{
-                    maxLength: 8,
-                  }}
                   onChange={handleInputChange}
                 />
               </Tooltip>
