@@ -10,8 +10,12 @@ import API from "../../networking/api-service";
 import { API_ROUTES } from "../../networking/api-routes";
 import { Forward } from "@mui/icons-material";
 import ChildModal from "../modal-patient/modal";
+import { useAppDispatch } from "../../app/store/hooks";
+import { setPatientModel } from "./selectPatientModelSlice";
 
 const SelectPatientModel = () => {
+  const dispatch = useAppDispatch();
+
   const [data, setData] = useState({
     document_number: "",
     model: "",
@@ -32,7 +36,6 @@ const SelectPatientModel = () => {
   const fetchModels = async () => {
     try {
       const response = await API.get(API_ROUTES.MODEL_DRUGS);
-      console.log(response.data);
       setModels(response.data);
     } catch (error) {
       console.log("error", error);
@@ -56,10 +59,11 @@ const SelectPatientModel = () => {
   const handleSubmit = (event: any) => {
     event.preventDefault();
     API.get(API_ROUTES.PATIENT + data.document_number + "/")
-      .then((res) => {
-        window.alert("Guardar estado en Redux persist y avanzar");
+      .then(() => {
+        dispatch(setPatientModel(data));
       })
       .catch(function (error) {
+        console.log("error", error);
         handleOpen();
       });
   };
