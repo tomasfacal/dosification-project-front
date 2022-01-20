@@ -11,6 +11,7 @@ import { Counter } from './features/counter/Counter';
 import Navbar from './features/navbar/navbar';
 import ObtainModelDrug from './features/obtain-model/obtain-model'
 import Patient from './features/patients/patient'
+import Menu from './features/sidebar/menu'
 
 function App() {
   return (
