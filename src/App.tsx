@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import Form  from './features/form/Form';
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import './App.scss';
 import { Routing } from './constant/Routing';
 import CreatePatient from './features/create-patient/create-patient';
@@ -24,7 +24,7 @@ function App() {
           <Route path={Routing.LIST_PATIENTS} element={<PatientsPage/>} />
           <Route path={Routing.COUNTER} element={<Counter name="Pirotto"/>} />
           {/* vamos a tener que cambiar esto */}
-          <Route path={Routing.PATIENT} element={<Patient patient_id={48108474}/>} />
+          <Route path={Routing.PATIENT + `/:document_number`} element={<Patient/>} />
           <Route path={Routing.MODEL_DRUG} element={<ObtainModelDrug model_drug={3}/>} />
         </Routes>
       </header>
