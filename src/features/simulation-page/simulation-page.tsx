@@ -7,25 +7,30 @@ import Card from '@mui/material/Card';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 const SimulationPage = () => {
-  const [cards, setCards] = useState<SimulationJSON[]>(
-    [{ model: 'Modelo 1',
+  const [simulationInfo, setSimulationInfo] = useState<SimulationJSON>(
+    { 
+      model: 'Modelo 1',
       patient: 'Paciente 1',
-      output: 'Output',
-      treatment: {
+      output: 'Output'
+    }
+  )
+  const [cards, setCards] = useState<TreatmentJSON[]>(
+    [ {
         cycle_duration: 14,
         number_of_repetitions: 13,
         quantity: 2
+      },
+      {
+        cycle_duration: 15,
+        number_of_repetitions: 11,
+        quantity: 344
+      },
+      {
+        cycle_duration: 16,
+        number_of_repetitions: 51,
+        quantity: 3466
       }
-    },
-    { model: 'Modelo 1',
-    patient: 'Paciente 1',
-    output: 'Output',
-    treatment: {
-      cycle_duration: 15,
-      number_of_repetitions: 11,
-      quantity: 344
-    }
-  }]
+    ]
   )
   const deleteSimulation = (index: number) => {
     let newstate = [...cards];
@@ -33,19 +38,19 @@ const SimulationPage = () => {
     setCards(newstate);
   }
 
-  const renderCard = (simulation: SimulationJSON, index: number) => {
+  const renderCard = (treatment: TreatmentJSON, index: number) => {
     return (
       <Grid key= {index} item sm={12}>
         <Card sx={{ minWidth: 275 }} className={styles.CardSimulation}>
           <CardContent>
             <Typography className={styles.Carditem}>
-              Ciclo de duración: {simulation.treatment.cycle_duration}
+              Ciclo de duración: {treatment.cycle_duration}
             </Typography>
             <Typography className={styles.Carditem}>
-              Número de repeticiones: {simulation.treatment.number_of_repetitions}
+              Número de repeticiones: {treatment.number_of_repetitions}
             </Typography>
             <Typography className={styles.Carditem}>
-              Cantidad: {simulation.treatment.quantity}
+              Cantidad: {treatment.quantity}
             </Typography>
           </CardContent>
           <CardActions className= { styles.DeleteAction }>
@@ -59,16 +64,32 @@ const SimulationPage = () => {
     )
   }
   return (
-      <Fragment>
-        <h1>Hola</h1>
+    <Fragment>
+      <div className= {styles.FormContainer} >
+        <h1 className= {styles.Title} >¿Listo para simular?</h1>
+        <div className= {styles.SimulationContainer}>
+          <Typography className={styles.Carditem}>
+            Modelo: {simulationInfo.model}
+          </Typography>
+          <Typography className={styles.Carditem}>
+            Paciente: {simulationInfo.patient}
+          </Typography>
+          <Typography className={styles.Carditem}>
+            Output: {simulationInfo.output}
+          </Typography>
+        </div>
         <div className= {styles.CardsContainer}>
-            <Grid container spacing={2}>
-            { cards.map((simulation: SimulationJSON, index: number) =>
-                renderCard(simulation, index))
-            }
-            </Grid>
-          </div>
-      </Fragment>
+          <Typography className={styles.Treatmentsubtitle}>
+            Tratamientos:
+          </Typography>
+          <Grid container spacing={2}>
+          { cards.map((treatment: TreatmentJSON, index: number) =>
+              renderCard(treatment, index))
+          }
+          </Grid>
+        </div>
+      </div>
+    </Fragment>
   );
 }
  

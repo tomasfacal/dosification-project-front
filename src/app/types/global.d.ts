@@ -14,7 +14,6 @@ declare interface PatientInfo {
 declare interface SimulationJSON {
   model: string,
   patient: string,
-  output: string,
-  treatment: TreatmentJSON
+  output: string
 }
 
