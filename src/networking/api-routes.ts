@@ -8,6 +8,7 @@ const API_ROUTES = {
   MODEL_DRUGS: "modeldrugs/",
   CREATE_PATIENT: "patients/",
   SIGN_IN: "auth/login/",
+  SIGN_UP: "auth/sign-up/",
 };
 
 export { API_ROUTES };
