@@ -11,7 +11,7 @@
 	display: flex;
 	flex-direction: column;
 	width: 100%;
-	max-width: 750px;
+	max-width: 1000px;
 	background-color: #FFF;
 	border-radius: 10px;
 	box-shadow: 0 10px 20px 0 rgba(#999, .25);
@@ -24,6 +24,9 @@
 }
 
 .Carditem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: $brand-dark;
   font-size: $font-size-body-big !important;
 }
@@ -34,7 +37,7 @@
 
 .SimulationContainer {
   background-color: aliceblue;
-  width: 40%;
+  width: 30%;
   margin: 25px 0;
   border: 2px solid $brand-dark;
   padding: 10px;
@@ -50,4 +53,18 @@
 
 .DeleteButton {
   color: $danger-dark !important;
+}
+
+.SubmitButton {
+  margin: 20px !important;
+  font-size: $font-size-body-big !important;
+  background-color: $success !important;
+}
+
+.SubmitButton[disabled]{
+  background-color: $disabled-button-grey !important;
+}
+
+.SimulateButtonContainer {
+  margin: 12px;
 }

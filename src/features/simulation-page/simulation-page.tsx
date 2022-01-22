@@ -1,16 +1,20 @@
 import React, {Fragment, useState} from 'react';
 import styles from './simulation-page.module.scss';
-import { TextField, Tooltip, Button, Grid, Typography} from '@material-ui/core';
+import { Button, Grid, Typography} from '@material-ui/core';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Card from '@mui/material/Card';
 import DeleteIcon from '@mui/icons-material/Delete';
+import EqualizerIcon from '@mui/icons-material/Equalizer';
+import MedicationIcon from '@mui/icons-material/Medication';
+import PersonIcon from '@mui/icons-material/Person';
+import AnalyticsIcon from '@mui/icons-material/Analytics';
 
 const SimulationPage = () => {
   const [simulationInfo, setSimulationInfo] = useState<SimulationJSON>(
     { 
-      model: 'Modelo 1',
-      patient: 'Paciente 1',
+      model: 'Ciclosporina',
+      patient: '49305483',
       output: 'Output'
     }
   )
@@ -40,8 +44,8 @@ const SimulationPage = () => {
 
   const renderCard = (treatment: TreatmentJSON, index: number) => {
     return (
-      <Grid key= {index} item sm={12}>
-        <Card sx={{ minWidth: 275 }} className={styles.CardSimulation}>
+      <Grid key= {index} item>
+        <Card className={styles.CardSimulation}>
           <CardContent>
             <Typography className={styles.Carditem}>
               Ciclo de duración: {treatment.cycle_duration}
@@ -69,12 +73,15 @@ const SimulationPage = () => {
         <h1 className= {styles.Title} >¿Listo para simular?</h1>
         <div className= {styles.SimulationContainer}>
           <Typography className={styles.Carditem}>
+            <MedicationIcon/>
             Modelo: {simulationInfo.model}
           </Typography>
           <Typography className={styles.Carditem}>
+          <PersonIcon/>
             Paciente: {simulationInfo.patient}
           </Typography>
           <Typography className={styles.Carditem}>
+            <AnalyticsIcon/>
             Output: {simulationInfo.output}
           </Typography>
         </div>
@@ -87,6 +94,17 @@ const SimulationPage = () => {
               renderCard(treatment, index))
           }
           </Grid>
+        </div>
+        <div className= {styles.SimulateButtonContainer}>
+          <Button
+            color="primary"
+            variant="contained"
+            className={styles.SubmitButton}
+            disabled={cards.length === 0}
+          >
+            <EqualizerIcon className= {styles.AddTreatmentIcon}/>
+            Simular
+          </Button>
         </div>
       </div>
     </Fragment>
