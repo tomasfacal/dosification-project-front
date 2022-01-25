@@ -1,5 +1,6 @@
 import { Box, FormControl, InputLabel, Select, MenuItem } from '@material-ui/core';
 import React, {useState, Fragment} from 'react';
+import { setConstantValue } from 'typescript';
 import styles from './choose-output.module.scss';
 
 
@@ -8,6 +9,7 @@ const ChooseOutput = (props: any) => {
 
     const handleChange = (event: any) => {
         setChooseOutput(event.target.value);
+        props.setValue(event.target.value)
       };
     
     return (

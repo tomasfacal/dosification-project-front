@@ -11,6 +11,7 @@ import { Counter } from './features/counter/Counter';
 import Navbar from './features/navbar/navbar';
 import ObtainModelDrug from './features/obtain-model/obtain-model'
 import Patient from './features/patients/patient'
+import  SignIn from './features/sign-in/sign-in'
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path={Routing.CREATE_PATIENT} element={<CreatePatient/>} />
           <Route path={Routing.SELECT_TREATMENTS} element={<SelectTreatments/>} />
           <Route path={Routing.LIST_PATIENTS} element={<PatientsPage/>} />
+          <Route path={Routing.SIGN_IN} element={<SignIn/>} />
           <Route path={Routing.COUNTER} element={<Counter name="Pirotto"/>} />
           {/* vamos a tener que cambiar esto */}
           <Route path={Routing.PATIENT + `/:document_number`} element={<Patient/>} />

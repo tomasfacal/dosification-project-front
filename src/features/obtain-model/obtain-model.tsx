@@ -4,34 +4,79 @@ import API from '../../networking/api-service';
 import { API_ROUTES } from '../../networking/api-routes';
 import CreateCovariates from '../create-covariates/create-covariates';
 import ChooseOutput from '../choose-output/choose-output';
+import { Button } from '@material-ui/core';
+import { Forward } from "@mui/icons-material";
+import { setOutputCovariates } from './outputCovariateSlice';
+import { useAppDispatch } from '../../app/store/hooks';
+import { Link } from 'react-router-dom'
+import { Routing } from '../../constant/Routing';
 
 
 const ObtainModelDrug = (props: any) => {
-    const [covariates, setCovariates] = useState([] as string[])
-    const [outputs, setOutputs] = useState([] as string[])
+    const dispatch = useAppDispatch();
+
+    const [covariatesList, setCovariatesList] = useState([] as string[])
+    const [outputsList, setOutputsList] = useState([] as string[])
+    const [covariatesValues, setCovariatesValues] = useState({} as any)
+    const [outputValue, setOutputValue] = useState('')
 
     const fetchCovariatesOutputs = async () => {
         try {
-          const response = await API.get(API_ROUTES.MODEL_DRUGS + props.model_drug+'/');
-          setCovariates(response.data.variables);
-          setOutputs(response.data.outputs);
+            const response = await API.get(API_ROUTES.MODEL_DRUGS + props.model_drug + '/');
+            setCovariatesList(response.data.variables);
+            setOutputsList(response.data.outputs);
+
+            let covariates_list = {} as any
+            { covariatesList.map((covariate: string) => covariates_list[covariate] = '') }
+            setCovariatesValues(covariates_list)
+
+
         } catch (error) {
-          console.log("error", error);
+            console.log("error", error);
         }
     };
-    
-    useEffect(() => { 
-           fetchCovariatesOutputs(); 
+
+    const handleChangeCovariateValues = ((name: string, value: string) => {
+        setCovariatesValues({
+            ...covariatesValues,
+            [name]: value
+        })
+    })
+
+    const handleChangeOutputValue = ((value: string) => {
+        setOutputValue(value)
+    })
+
+    const handleNext = (event: any) => {
+        let covariates_output = covariatesValues
+        covariates_output['output'] = outputValue
+        dispatch(setOutputCovariates(covariates_output))
+        
+    }
+
+    useEffect(() => {
+        fetchCovariatesOutputs();
     }, []);
-    
+
     return (
         <Fragment>
             <div className={styles.FormContainer} >
-                <CreateCovariates covariates={covariates}/>
-                <ChooseOutput outputs={outputs} />
+                <CreateCovariates covariates={covariatesList} setValues={handleChangeCovariateValues}/>
+                <ChooseOutput outputs={outputsList} setValue={handleChangeOutputValue} />
+                <Link to={Routing.SELECT_TREATMENTS} style={{ textDecoration: 'none' }}>
+                    <Button
+                        color="primary"
+                        variant="contained"
+                        onClick={handleNext}
+                        className={styles.SubmitButton}
+                    >
+                        <Forward />
+                        Siguiente
+                    </Button>
+                </Link>
             </div>
         </Fragment>
     );
 }
- 
+
 export default ObtainModelDrug;

@@ -5,5 +5,6 @@ export const Routing = {
     COUNTER: '/counter',
     LIST_PATIENTS: '/list-patients',
     PATIENT: '/patient',
-    MODEL_DRUG: '/form_model_drug'
+    MODEL_DRUG: '/form_model_drug',
+    SIGN_IN: '/sign-in'
 }

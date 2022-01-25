@@ -3,19 +3,9 @@ import styles from './create-covariates.module.scss';
 import { TextField, Grid } from '@material-ui/core';
 
 const CreateCovariates = (props: any) => {
-    const [covariates, setCovariates] = useState({})
-
-    useEffect(() => {
-        let covariates_list = {} as any
-        { props.covariates.map((covariate: string) => covariates_list[covariate] = '') }
-        setCovariates(covariates_list)
-    }, [])
 
     const handleInputChange = (event: any) => {
-        setCovariates({
-            ...covariates,
-            [event.target.name]: event.target.value
-        })
+        props.setValues(event.target.name, event.target.value)
     }
 
     return (

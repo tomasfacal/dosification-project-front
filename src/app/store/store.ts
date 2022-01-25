@@ -1,11 +1,13 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import counterReducer from '../../features/counter/counterSlice';
-import tretmentReducer from '../../features/select-treatments/treatmentSlice';
+import treatmentReducer from '../../features/select-treatments/treatmentSlice';
+import outputCovariatesReducer from '../../features/obtain-model/outputCovariateSlice';
 
 export const store = configureStore({
   reducer: {
     counter: counterReducer,
-    treatments: tretmentReducer,
+    treatments: treatmentReducer,
+    outputCovariates: outputCovariatesReducer
   },
   devTools: true
 });
