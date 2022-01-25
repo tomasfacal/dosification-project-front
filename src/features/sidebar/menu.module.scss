@@ -1,3 +1,5 @@
+@import '../../assets/stylesheets/generic-styles.scss';
+
 .nav_link {
   top: 0;
   left: 0;
@@ -15,13 +17,10 @@
 }
 
 .link {
-  padding: 0 2rem;
-  font-size: 2rem;
-  color: black;
   text-decoration: none;
 
   :hover {
-    color: yellow;
+    opacity: 0.5;
     cursor: pointer;
   }
 }
@@ -29,4 +28,28 @@
 .menu_icon {
   position: relative;
   z-index: 3;
+}
+
+.nav_items {
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
+  text-decoration: None;
+  margin-left: 3%;
+}
+
+.item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.name {
+  color: #ffff
+}
+
+.icons {
+  margin: 10px;
+  color: #ffff !important;
+  pointer-events: none !important
 }
