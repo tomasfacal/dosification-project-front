@@ -19,11 +19,11 @@ const theme = createTheme();
 
 export default function SignUp() {
   const [data, setData] = useState({
-    nombre: "",
-    apellido: "",
+    name: "",
+    last_name: "",
     email: "",
-    contraseña: "",
-    celular: 0,
+    password: "",
+    phone_number: 0,
   });
 
   const handleInputChange = (event: any) => {
@@ -34,12 +34,12 @@ export default function SignUp() {
   };
 
   const validateFields = (
-    nombre: string,
-    apellido: string,
+    name: string,
+    last_name: string,
     email: string,
-    contraseña: string,
-    celular: number
-  ) => !!nombre && !!apellido && !!email && !!contraseña && !!celular;
+    password: string,
+    phone_number: number
+  ) => !!name && !!last_name && !!email && !!password && !!phone_number;
 
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword(!showPassword);
@@ -52,21 +52,18 @@ export default function SignUp() {
     event.preventDefault();
     console.log(success);
     const user = {
-      name: data.nombre,
-      last_name: data.apellido,
+      name: data.name,
+      last_name: data.last_name,
       email: data.email,
-      phone_number: data.celular,
-      password: data.contraseña,
+      phone_number: data.phone_number,
+      password: data.password,
     };
 
     API.post(API_ROUTES.SIGN_UP, user)
       .then((res) => {
         setError("");
-        console.log(
-          `Usuario ${data.nombre} creado satisfactoriamente`,
-          res.data
-        );
-        setSuccess(`Usuario ${data.nombre} creado satisfactoriamente`);
+        console.log(`Usuario ${data.name} creado satisfactoriamente`, res.data);
+        setSuccess(`Usuario ${data.name} creado satisfactoriamente`);
       })
       .catch(function (error) {
         setSuccess("");
@@ -120,10 +117,10 @@ export default function SignUp() {
               margin="normal"
               required
               fullWidth
-              id="nombre"
+              id="name"
               label="Nombre"
-              error={data.nombre === ""}
-              name="nombre"
+              error={data.name === ""}
+              name="name"
               autoFocus
               onChange={handleInputChange}
             />
@@ -131,10 +128,10 @@ export default function SignUp() {
               margin="normal"
               required
               fullWidth
-              id="apellido"
+              id="last_name"
               label="Apellido"
-              error={data.apellido === ""}
-              name="apellido"
+              error={data.last_name === ""}
+              name="last_name"
               autoFocus
               onChange={handleInputChange}
             />
@@ -142,11 +139,11 @@ export default function SignUp() {
               margin="normal"
               required
               fullWidth
-              id="celular"
+              id="phone_number"
               label="Celular"
-              error={data.celular === 0}
+              error={data.phone_number === 0}
               type="number"
-              name="celular"
+              name="phone_number"
               autoFocus
               onChange={handleInputChange}
             />
@@ -154,11 +151,11 @@ export default function SignUp() {
               margin="normal"
               required
               fullWidth
-              name="contraseña"
+              name="password"
               label="Contraseña"
-              error={data.contraseña === ""}
+              error={data.password === ""}
               type={showPassword ? "text" : "password"}
-              id="contraseña"
+              id="password"
               autoComplete="current-password"
               onChange={handleInputChange}
               InputProps={{
@@ -186,11 +183,11 @@ export default function SignUp() {
               sx={{ mt: 3, mb: 2 }}
               disabled={
                 !validateFields(
-                  data.nombre,
-                  data.apellido,
+                  data.name,
+                  data.last_name,
                   data.email,
-                  data.contraseña,
-                  data.celular
+                  data.password,
+                  data.phone_number
                 )
               }
             >
