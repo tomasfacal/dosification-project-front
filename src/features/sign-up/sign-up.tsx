@@ -11,7 +11,14 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useState } from "react";
-import { IconButton, InputAdornment } from "@mui/material";
+import {
+  FormControl,
+  IconButton,
+  InputAdornment,
+  InputLabel,
+  MenuItem,
+  Select,
+} from "@mui/material";
 import { API_ROUTES } from "../../networking/api-routes";
 import API from "../../networking/api-service";
 
@@ -24,6 +31,7 @@ export default function SignUp() {
     email: "",
     password: "",
     phone_number: 0,
+    role: "",
   });
 
   const handleInputChange = (event: any) => {
@@ -38,8 +46,10 @@ export default function SignUp() {
     last_name: string,
     email: string,
     password: string,
-    phone_number: number
-  ) => !!name && !!last_name && !!email && !!password && !!phone_number;
+    phone_number: number,
+    role: string
+  ) =>
+    !!name && !!last_name && !!email && !!password && !!phone_number && !!role;
 
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword(!showPassword);
@@ -57,6 +67,7 @@ export default function SignUp() {
       email: data.email,
       phone_number: data.phone_number,
       password: data.password,
+      role: data.role,
     };
 
     API.post(API_ROUTES.SIGN_UP, user)
@@ -93,7 +104,7 @@ export default function SignUp() {
             <PersonAddIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign up
+            Registrarse
           </Typography>
           <Box
             component="form"
@@ -176,6 +187,22 @@ export default function SignUp() {
                 ),
               }}
             />
+            <Box sx={{ minWidth: 120 }}>
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">Rol</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={data.role}
+                  label="Rol"
+                  name="role"
+                  onChange={handleInputChange}
+                >
+                  <MenuItem value={"doctor"}>Doctor</MenuItem>
+                  <MenuItem value={"pharmacist"}>Farmacéutico</MenuItem>
+                </Select>
+              </FormControl>
+            </Box>
             <Button
               fullWidth
               type="submit"
@@ -187,7 +214,8 @@ export default function SignUp() {
                   data.last_name,
                   data.email,
                   data.password,
-                  data.phone_number
+                  data.phone_number,
+                  data.role
                 )
               }
             >
