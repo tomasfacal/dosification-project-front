@@ -1,18 +1,15 @@
-import React from 'react';
-import logo from './logo.svg';
-import Form  from './features/form/Form';
 import { Routes, Route } from "react-router-dom";
-import './App.scss';
-import { Routing } from './constant/Routing';
-import CreatePatient from './features/create-patient/create-patient';
-import SelectTreatments from './features/select-treatments/select-treatments';
-import PatientsPage from './features/patients-page/patients-page';
-import { Counter } from './features/counter/Counter';
-import Navbar from './features/navbar/navbar';
-import ObtainModelDrug from './features/obtain-model/obtain-model'
-import Patient from './features/patients/patient'
-import  SignIn from './features/sign-in/sign-in'
-import SimulationPage from './features/simulation-page/simulation-page';
+import "./App.scss";
+import { Routing } from "./constant/Routing";
+import CreatePatient from "./features/create-patient/create-patient";
+import Navbar from "./features/navbar/navbar";
+import ObtainModelDrug from "./features/obtain-model/obtain-model";
+import Patient from "./features/patients/patient";
+import PatientsPage from "./features/patients-page/patients-page";
+import SelectPatientModel from "./features/select-patient-model/select-patient-model";
+import SelectTreatments from "./features/select-treatments/select-treatments";
+import SignIn from "./features/sign-in/sign-in";
+import SimulationPage from "./features/simulation-page/simulation-page";
 
 function App() {
   return (
@@ -20,16 +17,27 @@ function App() {
       <Navbar />
       <header className="App-header">
         <Routes>
-          <Route path={Routing.SELECCIONAR_PACIENTE} element={<Form/>} />
-          <Route path={Routing.CREATE_PATIENT} element={<CreatePatient/>} />
-          <Route path={Routing.SELECT_TREATMENTS} element={<SelectTreatments/>} />
-          <Route path={Routing.LIST_PATIENTS} element={<PatientsPage/>} />
-          <Route path={Routing.SIGN_IN} element={<SignIn/>} />
-          <Route path={Routing.COUNTER} element={<Counter name="Pirotto"/>} />
-          <Route path={Routing.SIMULATION_PAGE} element={<SimulationPage/>} />
-          {/* vamos a tener que cambiar esto */}
-          <Route path={Routing.PATIENT + `/:document_number`} element={<Patient/>} />
-          <Route path={Routing.MODEL_DRUG} element={<ObtainModelDrug model_drug={3}/>} />
+          <Route path={Routing.CREATE_PATIENT} element={<CreatePatient />} />
+          <Route path={Routing.LIST_PATIENTS} element={<PatientsPage />} />
+          <Route
+            path={Routing.MODEL_DRUG}
+            element={<ObtainModelDrug model_drug={3} />}
+          />
+          <Route
+            path={Routing.PATIENT + `/:document_number`}
+            element={<Patient />}
+          />
+
+          <Route
+            path={Routing.SELECT_PATIENT_MODEL}
+            element={<SelectPatientModel />}
+          />
+          <Route
+            path={Routing.SELECT_TREATMENTS}
+            element={<SelectTreatments />}
+          />
+          <Route path={Routing.SIGN_IN} element={<SignIn />} />
+          <Route path={Routing.SIMULATION_PAGE} element={<SimulationPage />} />
         </Routes>
       </header>
     </div>
