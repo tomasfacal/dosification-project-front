@@ -1,0 +1,14 @@
+@import '../../assets/stylesheets/generic-styles.scss';
+
+.breadcrumbContainer {
+  display: flex;
+  align-items: center;
+  
+  .icon {
+    height: 16px;
+    width: 16px;
+    margin-left: 6px;
+    margin-right: 6px;
+  }
+
+}

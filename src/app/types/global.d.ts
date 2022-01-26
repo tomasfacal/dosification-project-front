@@ -21,3 +21,12 @@ declare interface ModelInfo {
   id: number;
   name: string;
 }
+
+declare interface BreadcrumbsItem {
+  name: string,
+  link: string,
+}
+
+declare interface BreadcrumbsProps {
+  values: Array<BreadcrumbsItem>;
+}

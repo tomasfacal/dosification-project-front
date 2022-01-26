@@ -11,6 +11,8 @@ import CardContent from '@mui/material/CardContent';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { setTreatments } from './treatmentSlice';
 import { useAppDispatch } from '../../app/store/hooks';
+import Breadcrumbs from '../breadcrumbs/breadcrumbs';
+import { Routing } from '../../constant/Routing';
 
 const SelectTreatments = () => {
     const dispatch = useAppDispatch();
@@ -24,6 +26,25 @@ const SelectTreatments = () => {
     const [cards, setCards] = useState<TreatmentJSON[]>(
       []
     )
+
+    const breadcrumbs = [
+      {
+        name: 'Home',
+        link: '/',
+      },
+      {
+        name: 'Seleccionar modelo/paciente',
+        link: Routing.SELECCIONAR_PACIENTE,
+      },
+      {
+        name: 'ModelDrug',
+        link: Routing.MODEL_DRUG,
+      },
+      {
+        name: 'Seleccionar Tratamiento',
+        link: Routing.SELECT_TREATMENTS,
+      }
+    ];
   
     const handleInputChange = (event: any) => {
       setData({
@@ -81,6 +102,9 @@ const SelectTreatments = () => {
 
     return (
         <Fragment>
+          <div className={styles.breadcrumbContainer}>
+            <Breadcrumbs values={breadcrumbs} />
+          </div>
           <div className= {styles.FormContainer} >
             <h1 className= {styles.Title} >Crear Tratamiento</h1>
               <Grid container spacing={2}>
