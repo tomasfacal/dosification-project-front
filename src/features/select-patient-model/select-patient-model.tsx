@@ -21,7 +21,7 @@ const SelectPatientModel = () => {
     model: "",
   });
 
-  const [models, setModels] = useState([] as any);
+  const [models, setModels] = useState([] as ModelInfo[]);
 
   const [open, setOpen] = useState(false);
 
@@ -104,7 +104,7 @@ const SelectPatientModel = () => {
                     name="model"
                     onChange={handleInputChange}
                   >
-                    {models.map((model: any) => (
+                    {models.map((model: ModelInfo) => (
                       <MenuItem value={model.name}>{model.name}</MenuItem>
                     ))}
                   </Select>
