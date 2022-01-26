@@ -6,5 +6,6 @@ export const Routing = {
     LIST_PATIENTS: '/list-patients',
     PATIENT: '/patient',
     MODEL_DRUG: '/form_model_drug',
-    SIGN_IN: '/sign-in'
+    SIGN_IN: '/sign-in',
+    SIMULATION_PAGE: '/simulation' 
 }

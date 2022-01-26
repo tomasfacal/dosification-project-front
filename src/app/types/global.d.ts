@@ -11,3 +11,9 @@ declare interface PatientInfo {
   sex: string
 }
 
+declare interface SimulationJSON {
+  model: string,
+  patient: string,
+  output: string
+}
+

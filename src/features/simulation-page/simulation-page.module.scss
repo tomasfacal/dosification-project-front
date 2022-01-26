@@ -1,0 +1,70 @@
+@import '../../assets/stylesheets/generic-styles.scss';
+
+.Title {
+  color: $brand;
+  font-size: $font-size-title;
+}
+
+.FormContainer {
+  margin: 2rem auto;
+  align-items: center;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	max-width: 1000px;
+	background-color: #FFF;
+	border-radius: 10px;
+	box-shadow: 0 10px 20px 0 rgba(#999, .25);
+	padding: 3rem;
+}
+
+.CardSimulation {
+  max-width: 300px;
+  margin: auto;
+}
+
+.Carditem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $brand-dark;
+  font-size: $font-size-body-big !important;
+}
+
+.DeleteAction {
+  display: block !important;
+}
+
+.SimulationContainer {
+  background-color: aliceblue;
+  width: 30%;
+  margin: 25px 0;
+  border: 2px solid $brand-dark;
+  padding: 10px;
+  border-radius: 25px;
+}
+
+.Treatmentsubtitle {
+  font-size: $font-size-subtitle !important;
+  font-weight: bold;
+  text-decoration: underline;
+  margin-bottom: 10px;
+}
+
+.DeleteButton {
+  color: $danger-dark !important;
+}
+
+.SubmitButton {
+  margin: 20px !important;
+  font-size: $font-size-body-big !important;
+  background-color: $success !important;
+}
+
+.SubmitButton[disabled]{
+  background-color: $disabled-button-grey !important;
+}
+
+.SimulateButtonContainer {
+  margin: 12px;
+}

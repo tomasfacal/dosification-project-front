@@ -12,6 +12,7 @@ import Navbar from './features/navbar/navbar';
 import ObtainModelDrug from './features/obtain-model/obtain-model'
 import Patient from './features/patients/patient'
 import  SignIn from './features/sign-in/sign-in'
+import SimulationPage from './features/simulation-page/simulation-page';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path={Routing.LIST_PATIENTS} element={<PatientsPage/>} />
           <Route path={Routing.SIGN_IN} element={<SignIn/>} />
           <Route path={Routing.COUNTER} element={<Counter name="Pirotto"/>} />
+          <Route path={Routing.SIMULATION_PAGE} element={<SimulationPage/>} />
           {/* vamos a tener que cambiar esto */}
           <Route path={Routing.PATIENT + `/:document_number`} element={<Patient/>} />
           <Route path={Routing.MODEL_DRUG} element={<ObtainModelDrug model_drug={3}/>} />
