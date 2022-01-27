@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import "./App.scss";
 import { Routing } from "./constant/Routing";
 import CreatePatient from "./features/create-patient/create-patient";
+import ErrorPage from "./features/error_pages/error_page";
 import Navbar from "./features/navbar/navbar";
 import ObtainModelDrug from "./features/obtain-model/obtain-model";
 import Patient from "./features/patients/patient";
@@ -17,6 +18,7 @@ function App() {
       <Navbar />
       <header className="App-header">
         <Routes>
+          <Route path={Routing.HOME} element={<div>HOME</div>} />
           <Route path={Routing.CREATE_PATIENT} element={<CreatePatient />} />
           <Route path={Routing.LIST_PATIENTS} element={<PatientsPage />} />
           <Route
@@ -27,7 +29,6 @@ function App() {
             path={Routing.PATIENT + `/:document_number`}
             element={<Patient />}
           />
-
           <Route
             path={Routing.SELECT_PATIENT_MODEL}
             element={<SelectPatientModel />}
@@ -38,6 +39,15 @@ function App() {
           />
           <Route path={Routing.SIGN_IN} element={<SignIn />} />
           <Route path={Routing.SIMULATION_PAGE} element={<SimulationPage />} />
+          <Route
+            path="*"
+            element={
+              <ErrorPage
+                error_code="404"
+                error_text="La página no ha sido encontrada"
+              />
+            }
+          />
         </Routes>
       </header>
     </div>

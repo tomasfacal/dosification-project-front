@@ -1,4 +1,5 @@
 export const Routing = {
+  HOME: "/",
   COUNTER: "/counter",
   CREATE_PATIENT: "/create-patient",
   LIST_PATIENTS: "/list-patients",
