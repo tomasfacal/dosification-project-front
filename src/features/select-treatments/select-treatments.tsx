@@ -29,22 +29,36 @@ const SelectTreatments = () => {
 
     const breadcrumbs = [
       {
-        name: 'Home',
-        link: '/',
-      },
-      {
-        name: 'Seleccionar modelo/paciente',
-        link: Routing.SELECCIONAR_PACIENTE,
-      },
-      {
-        name: 'ModelDrug',
-        link: Routing.MODEL_DRUG,
-      },
-      {
-        name: 'Seleccionar Tratamiento',
-        link: Routing.SELECT_TREATMENTS,
-      }
-    ];
+          name: 'Inicio',
+          link: '/',
+          clickable: true,
+          actual: false,
+        },
+        {
+          name: 'Seleccionar modelo/paciente',
+          link: Routing.SELECCIONAR_PACIENTE,
+          clickable: true,
+          actual: false,
+        },
+        {
+          name: 'ModelDrug',
+          link: Routing.MODEL_DRUG,
+          clickable: true,
+          actual: false,
+        },
+        {
+          name: 'Seleccionar Tratamiento',
+          link: Routing.SELECT_TREATMENTS,
+          clickable: false,
+          actual: true,
+        },
+        {
+          name: 'Simulación',
+          link: Routing.SIMULATION_PAGE,
+          clickable: false,
+          actual: false,
+        }
+      ];
   
     const handleInputChange = (event: any) => {
       setData({
@@ -102,7 +116,7 @@ const SelectTreatments = () => {
 
     return (
         <Fragment>
-          <div className={styles.breadcrumbContainer}>
+          <div>
             <Breadcrumbs values={breadcrumbs} />
           </div>
           <div className= {styles.FormContainer} >

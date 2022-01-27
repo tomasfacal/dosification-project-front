@@ -5,6 +5,8 @@ import { API_ROUTES } from '../../networking/api-routes';
 import { Grid, Button } from '@material-ui/core';
 import InputPatient from './input_patient';
 import { useParams } from "react-router-dom";
+import Breadcrumbs from '../breadcrumbs/breadcrumbs';
+import { Routing } from '../../constant/Routing';
 
 
 const Patient = () => {
@@ -23,6 +25,21 @@ const Patient = () => {
     })
 
     const { document_number } = useParams();
+
+    const breadcrumbs = [
+        {
+            name: 'Inicio',
+            link: '/',
+            clickable: true,
+            actual: false,
+        },
+        {
+            name: 'Paciente',
+            link: Routing.PATIENT,
+            clickable: false,
+            actual: true,
+        }
+    ];
 
     useEffect(() => {
         API.get(API_ROUTES.PATIENT + document_number + '/')
@@ -88,6 +105,9 @@ const Patient = () => {
 
     return (
         <Fragment>
+            <div>
+                <Breadcrumbs values={breadcrumbs} />
+            </div>
             <div className={styles.FormContainer} >
                 <h1 className={styles.Title} >Paciente</h1>
                 <Grid container spacing={2}>
