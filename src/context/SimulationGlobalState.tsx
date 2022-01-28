@@ -4,10 +4,11 @@ import React, {
   useContext,
   Dispatch,
   SetStateAction,
+  useEffect,
 } from "react";
 
 export interface SimulationGlobalStateInterface {
-  document_number: string;
+  document_number: number;
   model_drug: string;
   covariates: any; // Definir tipo de covariables en global.d.ts
   treatments: TreatmentJSON[];
@@ -27,7 +28,17 @@ const SimulationGlobalStateProvider = ({
   children: React.ReactNode;
   value?: Partial<SimulationGlobalStateInterface>;
 }) => {
-  const [state, setState] = useState(value);
+  const [state, setState] = useState(
+    JSON.parse(localStorage.getItem("state")!)
+      ? JSON.parse(localStorage.getItem("state")!)
+      : value
+  ); // Cuando se hace un reload, si habia algo en el localStorage, se carga el state
+
+  useEffect(() => {
+    //Actualizo el localstorage cuando se detectan cambios
+    localStorage.setItem("state", JSON.stringify(state));
+  }, [state]);
+
   return (
     <SimulationGlobalStateContext.Provider value={{ state, setState }}>
       {children}
