@@ -7,16 +7,16 @@ import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import * as serviceWorker from "./serviceWorker";
 import { AuthContextProvider } from "./app/store/authContext";
-import { GlobalStateProvider } from "./context/GlobalState";
+import { SimulationGlobalStateProvider } from "./context/SimulationGlobalState";
 
 ReactDOM.render(
   <React.StrictMode>
     <AuthContextProvider>
       <Provider store={store}>
         <BrowserRouter>
-          <GlobalStateProvider>
+          <SimulationGlobalStateProvider>
             <App />
-          </GlobalStateProvider>
+          </SimulationGlobalStateProvider>
         </BrowserRouter>
       </Provider>
     </AuthContextProvider>

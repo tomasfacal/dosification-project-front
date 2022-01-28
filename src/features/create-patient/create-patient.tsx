@@ -16,7 +16,6 @@ import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import API from "../../networking/api-service";
 import { API_ROUTES } from "../../networking/api-routes";
 import Error from "../error/error";
-import { GlobalStateProvider, useGlobalState } from "../../context/GlobalState";
 
 const CreatePatient = () => {
   const [datos, setData] = useState({
@@ -37,8 +36,6 @@ const CreatePatient = () => {
     });
   };
 
-  const { state, setState } = useGlobalState();
-
   const validateFields = (
     name: string,
     lastname: string,
@@ -55,8 +52,6 @@ const CreatePatient = () => {
       document_number: datos.document_number,
       sex: datos.sex,
     };
-    setState((prev) => ({ ...prev, document_number: datos.document_number }));
-    console.log("CEDULA ESTADO GLOBAL ->" + state.document_number);
     API.post(API_ROUTES.CREATE_PATIENT, patient)
       .then((res) => {
         setError("");
