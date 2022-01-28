@@ -63,6 +63,7 @@ const SelectPatientModel = () => {
         setState((prev) => ({
           ...prev,
           document_number: data.document_number,
+          model_drug: data.model,
         }));
         console.log(state.document_number);
       })
