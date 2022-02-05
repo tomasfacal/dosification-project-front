@@ -41,7 +41,7 @@ const SelectTreatments = () => {
           actual: false,
         },
         {
-          name: 'ModelDrug',
+          name: 'Seleccionar covariables/output',
           link: Routing.MODEL_DRUG,
           clickable: true,
           actual: false,

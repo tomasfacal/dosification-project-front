@@ -35,7 +35,7 @@ const ObtainModelDrug = (props: any) => {
             actual: false,
           },
           {
-            name: 'ModelDrug',
+            name: 'Seleccionar covariables/output',
             link: Routing.MODEL_DRUG,
             clickable: false,
             actual: true,
