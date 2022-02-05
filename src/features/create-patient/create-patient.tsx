@@ -7,6 +7,8 @@ import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import API from '../../networking/api-service';
 import { API_ROUTES } from '../../networking/api-routes';
 import Error from '../error/error'
+import Breadcrumbs from '../breadcrumbs/breadcrumbs';
+import { Routing } from '../../constant/Routing';
 
 
 const CreatePatient = () => {
@@ -20,6 +22,21 @@ const CreatePatient = () => {
   const [success, setSuccess] = useState('');
 
   const [error, setError] = useState('');
+
+  const breadcrumbs = [
+    {
+        name: 'Inicio',
+        link: Routing.HOME,
+        clickable: true,
+        actual: false,
+      },
+      {
+        name: 'Crear Paciente',
+        link: Routing.CREATE_PATIENT,
+        clickable: false,
+        actual: true,
+      }
+  ];
 
   const handleInputChange = (event: any) => {
     setData({
@@ -60,6 +77,9 @@ const CreatePatient = () => {
 
   return (
     <Fragment>
+      <div>
+        <Breadcrumbs values={breadcrumbs} />
+      </div>
       <div className= {styles.FormContainer} >
         <h1 className= {styles.Title} >Crear Paciente</h1>
           <Grid container spacing={2}>

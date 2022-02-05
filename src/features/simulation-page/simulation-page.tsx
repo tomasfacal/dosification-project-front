@@ -9,6 +9,8 @@ import EqualizerIcon from '@mui/icons-material/Equalizer';
 import MedicationIcon from '@mui/icons-material/Medication';
 import PersonIcon from '@mui/icons-material/Person';
 import AnalyticsIcon from '@mui/icons-material/Analytics';
+import Breadcrumbs from '../breadcrumbs/breadcrumbs';
+import { Routing } from '../../constant/Routing';
 
 const SimulationPage = () => {
   const [simulationInfo, setSimulationInfo] = useState<SimulationJSON>(
@@ -36,6 +38,40 @@ const SimulationPage = () => {
       }
     ]
   )
+
+  const breadcrumbs = [
+    {
+        name: 'Inicio',
+        link: Routing.HOME,
+        clickable: true,
+        actual: false,
+      },
+      {
+        name: 'Seleccionar modelo/paciente',
+        link: Routing.SELECT_PATIENT_MODEL,
+        clickable: true,
+        actual: false,
+      },
+      {
+        name: 'Seleccionar covariables/output',
+        link: Routing.MODEL_DRUG,
+        clickable: true,
+        actual: false,
+      },
+      {
+        name: 'Seleccionar Tratamiento',
+        link: Routing.SELECT_TREATMENTS,
+        clickable: true,
+        actual: false,
+      },
+      {
+        name: 'Simulación',
+        link: Routing.SIMULATION_PAGE,
+        clickable: false,
+        actual: true,
+      }
+    ];
+
   const deleteSimulation = (index: number) => {
     let newstate = [...cards];
     newstate.splice(index, 1);
@@ -69,6 +105,9 @@ const SimulationPage = () => {
   }
   return (
     <Fragment>
+      <div>
+        <Breadcrumbs values={breadcrumbs} />
+      </div>
       <div className= {styles.FormContainer} >
         <h1 className= {styles.Title} >¿Listo para simular?</h1>
         <div className= {styles.SimulationContainer}>
