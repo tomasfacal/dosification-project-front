@@ -29,7 +29,7 @@ const Patient = () => {
     const breadcrumbs = [
         {
             name: 'Inicio',
-            link: '/',
+            link: Routing.HOME,
             clickable: true,
             actual: false,
         },

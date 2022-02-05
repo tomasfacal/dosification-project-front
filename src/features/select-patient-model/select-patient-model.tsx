@@ -12,6 +12,8 @@ import { Forward } from "@mui/icons-material";
 import ChildModal from "../modal-patient/modal";
 import { useAppDispatch } from "../../app/store/hooks";
 import { setPatientModel } from "./selectPatientModelSlice";
+import { Routing } from '../../constant/Routing';
+import Breadcrumbs from '../breadcrumbs/breadcrumbs';
 
 const SelectPatientModel = () => {
   const dispatch = useAppDispatch();
@@ -24,6 +26,39 @@ const SelectPatientModel = () => {
   const [models, setModels] = useState([] as ModelInfo[]);
 
   const [open, setOpen] = useState(false);
+
+  const breadcrumbs = [
+    {
+        name: 'Inicio',
+        link: Routing.HOME,
+        clickable: true,
+        actual: false,
+      },
+      {
+        name: 'Seleccionar modelo/paciente',
+        link: Routing.SELECT_PATIENT_MODEL,
+        clickable: false,
+        actual: true,
+      },
+      {
+        name: 'Seleccionar covariables/output',
+        link: Routing.MODEL_DRUG,
+        clickable: false,
+        actual: false,
+      },
+      {
+        name: 'Seleccionar Tratamiento',
+        link: Routing.SELECT_TREATMENTS,
+        clickable: false,
+        actual: false,
+      },
+      {
+        name: 'Simulación',
+        link: Routing.SIMULATION_PAGE,
+        clickable: false,
+        actual: false,
+      }
+    ];
 
   const handleOpen = () => {
     setOpen(true);
@@ -70,6 +105,9 @@ const SelectPatientModel = () => {
 
   return (
     <Fragment>
+      <div>
+        <Breadcrumbs values={breadcrumbs} />
+      </div>
       <div className={styles.FormContainer}>
         <h1 className={styles.Title}>Seleccionar Paciente y Modelo</h1>
         <div className={styles.fieldContainer}>

@@ -30,13 +30,13 @@ const SelectTreatments = () => {
     const breadcrumbs = [
       {
           name: 'Inicio',
-          link: '/',
+          link: Routing.HOME,
           clickable: true,
           actual: false,
         },
         {
           name: 'Seleccionar modelo/paciente',
-          link: Routing.SELECCIONAR_PACIENTE,
+          link: Routing.SELECT_PATIENT_MODEL,
           clickable: true,
           actual: false,
         },
