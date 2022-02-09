@@ -4,3 +4,20 @@
 body {
   background-color: $brand-background;
 }
+
+.breadcrumbContainer {
+  display: flex;
+  align-items: center;
+  font-size: $font-size-body;
+  padding: 10px;
+  white-space: nowrap;
+}
+
+.actualBreadcrumb {
+  font-weight: bold !important;
+  font-size: $font-size-body-big !important;
+}
+
+.futureBreadcrumb {
+  font-style: italic !important;
+}

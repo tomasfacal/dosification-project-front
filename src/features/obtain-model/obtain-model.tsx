@@ -10,6 +10,7 @@ import { setOutputCovariates } from './outputCovariateSlice';
 import { useAppDispatch } from '../../app/store/hooks';
 import { Link } from 'react-router-dom'
 import { Routing } from '../../constant/Routing';
+import Breadcrumbs from '../breadcrumbs/breadcrumbs';
 
 
 const ObtainModelDrug = (props: any) => {
@@ -19,6 +20,39 @@ const ObtainModelDrug = (props: any) => {
     const [outputsList, setOutputsList] = useState([] as string[])
     const [covariatesValues, setCovariatesValues] = useState({} as any)
     const [outputValue, setOutputValue] = useState('')
+
+    const breadcrumbs = [
+        {
+            name: 'Inicio',
+            link: Routing.HOME,
+            clickable: true,
+            actual: false,
+          },
+          {
+            name: 'Seleccionar modelo/paciente',
+            link: Routing.SELECT_PATIENT_MODEL,
+            clickable: true,
+            actual: false,
+          },
+          {
+            name: 'Seleccionar covariables/output',
+            link: Routing.MODEL_DRUG,
+            clickable: false,
+            actual: true,
+          },
+          {
+            name: 'Seleccionar Tratamiento',
+            link: Routing.SELECT_TREATMENTS,
+            clickable: false,
+            actual: false,
+          },
+          {
+            name: 'Simulación',
+            link: Routing.SIMULATION_PAGE,
+            clickable: false,
+            actual: false,
+          }
+        ];
 
     const fetchCovariatesOutputs = async () => {
         try {
@@ -60,6 +94,9 @@ const ObtainModelDrug = (props: any) => {
 
     return (
         <Fragment>
+            <div>
+                <Breadcrumbs values={breadcrumbs} />
+            </div>
             <div className={styles.FormContainer} >
                 <CreateCovariates covariates={covariatesList} setValues={handleChangeCovariateValues}/>
                 <ChooseOutput outputs={outputsList} setValue={handleChangeOutputValue} />
