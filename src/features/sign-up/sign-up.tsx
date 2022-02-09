@@ -1,4 +1,3 @@
-import styles from "./sign-up.module.scss";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -20,11 +19,15 @@ import {
   Select,
 } from "@mui/material";
 import { API_ROUTES } from "../../networking/api-routes";
+import { useNavigate } from "react-router-dom";
 import API from "../../networking/api-service";
+import { Routing } from "../../constant/Routing";
 
 const theme = createTheme();
 
 export default function SignUp() {
+  const navigation = useNavigate();
+
   const [data, setData] = useState({
     first_name: "",
     last_name: "",
@@ -32,7 +35,7 @@ export default function SignUp() {
     password: "",
     phone_number: 0,
     type: "",
-    specialty: "",
+    speciality: "",
     job: "",
   });
 
@@ -50,7 +53,7 @@ export default function SignUp() {
     email: string,
     password: string,
     type: string,
-    specialty: string,
+    speciality: string,
     job: string
   ) =>
     !!first_name &&
@@ -58,24 +61,22 @@ export default function SignUp() {
     !!email &&
     !!password &&
     !!type &&
-    (!!specialty || !!job);
+    (!!speciality || !!job);
 
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword(!showPassword);
   const handleMouseDownPassword = () => setShowPassword(!showPassword);
 
-  const [success, setSuccess] = useState("");
-  const [error, setError] = useState("");
   const [type, setType] = useState("");
 
   const renderTextField = () => (
     <TextField
       margin="normal"
       fullWidth
-      id={type == "doctor" ? "specialty" : "job"}
+      id={type == "doctor" ? "speciality" : "job"}
       label={type == "doctor" ? "Especialidad" : "Cargo"}
-      error={type == "doctor" ? data.specialty === "" : data.job === ""}
-      name={type == "doctor" ? "specialty" : "job"}
+      error={type == "doctor" ? data.speciality === "" : data.job === ""}
+      name={type == "doctor" ? "speciality" : "job"}
       autoFocus
       onChange={handleInputChange}
     />
@@ -83,7 +84,6 @@ export default function SignUp() {
 
   const handleSubmit = (event: any) => {
     event.preventDefault();
-    console.log(success);
     const user = {
       first_name: data.first_name,
       last_name: data.last_name,
@@ -91,28 +91,18 @@ export default function SignUp() {
       phone_number: data.phone_number,
       password: data.password,
       type: data.type,
-      specialty: data.specialty,
+      speciality: data.speciality,
       job: data.job,
     };
     API.post(API_ROUTES.SIGN_UP, user)
       .then((res) => {
-        setError("");
-        console.log(
-          `Usuario ${data.first_name} creado satisfactoriamente`,
-          res.data
+        alert(
+          `Usuario ${data.first_name} creado satisfactoriamente` + res.data
         );
-        setSuccess(`Usuario ${data.first_name} creado satisfactoriamente`);
+        navigation(Routing.SIGN_IN);
       })
       .catch(function (error) {
-        setSuccess("");
-        let completeError = "";
-        console.log(error);
-        for (var i in error.response.data) {
-          completeError = completeError.concat(
-            `${i}: ${error.response.data[i]}`
-          );
-        }
-        setError(completeError);
+        alert(error.response.data);
       });
   };
   return (
@@ -121,7 +111,7 @@ export default function SignUp() {
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 8,
+            marginTop: 2,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -241,17 +231,13 @@ export default function SignUp() {
                   data.email,
                   data.password,
                   data.type,
-                  data.specialty,
+                  data.speciality,
                   data.job
                 )
               }
             >
               Sign Up
             </Button>
-            {error && <Typography className={styles.error}>{error}</Typography>}
-            {success && (
-              <Typography className={styles.success}>{success}</Typography>
-            )}
           </Box>
         </Box>
       </Container>
