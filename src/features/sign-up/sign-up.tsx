@@ -26,15 +26,18 @@ const theme = createTheme();
 
 export default function SignUp() {
   const [data, setData] = useState({
-    name: "",
+    first_name: "",
     last_name: "",
     email: "",
     password: "",
     phone_number: 0,
-    role: "",
+    type: "",
+    specialty: "",
+    job: "",
   });
 
   const handleInputChange = (event: any) => {
+    if (event.target.name == "type") setType(event.target.value);
     setData({
       ...data,
       [event.target.name]: event.target.value,
@@ -42,14 +45,20 @@ export default function SignUp() {
   };
 
   const validateFields = (
-    name: string,
+    first_name: string,
     last_name: string,
     email: string,
     password: string,
-    phone_number: number,
-    role: string
+    type: string,
+    specialty: string,
+    job: string
   ) =>
-    !!name && !!last_name && !!email && !!password && !!phone_number && !!role;
+    !!first_name &&
+    !!last_name &&
+    !!email &&
+    !!password &&
+    !!type &&
+    (!!specialty || !!job);
 
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword(!showPassword);
@@ -57,24 +66,42 @@ export default function SignUp() {
 
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
+  const [type, setType] = useState("");
+
+  const renderTextField = () => (
+    <TextField
+      margin="normal"
+      fullWidth
+      id={type == "doctor" ? "specialty" : "job"}
+      label={type == "doctor" ? "Especialidad" : "Cargo"}
+      error={type == "doctor" ? data.specialty === "" : data.job === ""}
+      name={type == "doctor" ? "specialty" : "job"}
+      autoFocus
+      onChange={handleInputChange}
+    />
+  );
 
   const handleSubmit = (event: any) => {
     event.preventDefault();
     console.log(success);
     const user = {
-      name: data.name,
+      first_name: data.first_name,
       last_name: data.last_name,
       email: data.email,
       phone_number: data.phone_number,
       password: data.password,
-      role: data.role,
+      type: data.type,
+      specialty: data.specialty,
+      job: data.job,
     };
-
     API.post(API_ROUTES.SIGN_UP, user)
       .then((res) => {
         setError("");
-        console.log(`Usuario ${data.name} creado satisfactoriamente`, res.data);
-        setSuccess(`Usuario ${data.name} creado satisfactoriamente`);
+        console.log(
+          `Usuario ${data.first_name} creado satisfactoriamente`,
+          res.data
+        );
+        setSuccess(`Usuario ${data.first_name} creado satisfactoriamente`);
       })
       .catch(function (error) {
         setSuccess("");
@@ -128,10 +155,10 @@ export default function SignUp() {
               margin="normal"
               required
               fullWidth
-              id="name"
+              id="first_name"
               label="Nombre"
-              error={data.name === ""}
-              name="name"
+              error={data.first_name === ""}
+              name="first_name"
               autoFocus
               onChange={handleInputChange}
             />
@@ -148,11 +175,9 @@ export default function SignUp() {
             />
             <TextField
               margin="normal"
-              required
               fullWidth
               id="phone_number"
               label="Celular"
-              error={data.phone_number === 0}
               type="number"
               name="phone_number"
               autoFocus
@@ -193,9 +218,9 @@ export default function SignUp() {
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
-                  value={data.role}
+                  value={data.type}
                   label="Rol"
-                  name="role"
+                  name="type"
                   onChange={handleInputChange}
                 >
                   <MenuItem value={"doctor"}>Doctor</MenuItem>
@@ -203,6 +228,7 @@ export default function SignUp() {
                 </Select>
               </FormControl>
             </Box>
+            {renderTextField()}
             <Button
               fullWidth
               type="submit"
@@ -210,12 +236,13 @@ export default function SignUp() {
               sx={{ mt: 3, mb: 2 }}
               disabled={
                 !validateFields(
-                  data.name,
+                  data.first_name,
                   data.last_name,
                   data.email,
                   data.password,
-                  data.phone_number,
-                  data.role
+                  data.type,
+                  data.specialty,
+                  data.job
                 )
               }
             >
