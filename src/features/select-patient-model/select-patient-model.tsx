@@ -10,14 +10,11 @@ import API from "../../networking/api-service";
 import { API_ROUTES } from "../../networking/api-routes";
 import { Forward } from "@mui/icons-material";
 import ChildModal from "../modal-patient/modal";
-import { useAppDispatch } from "../../app/store/hooks";
-import { setPatientModel } from "./selectPatientModelSlice";
+import { useSimulationGlobalState } from "../../context/SimulationGlobalState";
 import { Routing } from '../../constant/Routing';
 import Breadcrumbs from '../breadcrumbs/breadcrumbs';
 
 const SelectPatientModel = () => {
-  const dispatch = useAppDispatch();
-
   const [data, setData] = useState({
     document_number: 0,
     model: "",
@@ -27,6 +24,7 @@ const SelectPatientModel = () => {
 
   const [open, setOpen] = useState(false);
 
+  const { state, setState } = useSimulationGlobalState();
   const breadcrumbs = [
     {
         name: 'Inicio',
@@ -79,6 +77,7 @@ const SelectPatientModel = () => {
 
   useEffect(() => {
     fetchModels();
+    console.log("Persisted state " + state?.document_number);
   }, []);
 
   const handleInputChange = (event: any) => {
@@ -95,7 +94,12 @@ const SelectPatientModel = () => {
     event.preventDefault();
     API.get(API_ROUTES.PATIENT + data.document_number + "/")
       .then(() => {
-        dispatch(setPatientModel(data));
+        setState((prev) => ({
+          ...prev,
+          document_number: data.document_number,
+          model_drug: data.model,
+        }));
+        console.log(state.document_number);
       })
       .catch(function (error) {
         console.log("error", error);
@@ -143,7 +147,9 @@ const SelectPatientModel = () => {
                     onChange={handleInputChange}
                   >
                     {models.map((model: ModelInfo) => (
-                      <MenuItem value={model.name}>{model.name}</MenuItem>
+                      <MenuItem key={model.id} value={model.name}>
+                        {model.name}
+                      </MenuItem>
                     ))}
                   </Select>
                 </FormControl>
