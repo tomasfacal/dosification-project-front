@@ -13,6 +13,7 @@ import SignIn from "./features/sign-in/sign-in";
 import SignUp from "./features/sign-up/sign-up";
 import SimulationPage from "./features/simulation-page/simulation-page";
 import ResultSimulation from "./features/result-simulation/result-simulation";
+import Home from "./features/home/home";
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
       <Navbar />
       <header className="App-header">
         <Routes>
-          <Route path={Routing.HOME} element={<div>Home</div>} />
+          <Route path={Routing.HOME} element={<Home />} />
           <Route path={Routing.CREATE_PATIENT} element={<CreatePatient />} />
           <Route path={Routing.LIST_PATIENTS} element={<PatientsPage />} />
           <Route
