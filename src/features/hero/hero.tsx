@@ -10,7 +10,8 @@ const Hero = () => {
         <div className={styles.HeroContainer}>
           <div className={styles.Heroinner}>
             <h1 className={styles.HeroTitle}>Sitio para dosificación de fármacos</h1>
-            <h2 className={styles.HeroSubTitle}>Utiliza esta herramienta para dosificar de manera mas precisa a tus pacientes</h2>
+            <h2 className={styles.HeroSubTitle}>Utiliza esta herramienta para dosificar de manera mas precisa a tus pacientes.</h2>
+            <h2 className={styles.HeroSubTitle}> Para comenzar a utilizar esta herramienta da click en Simular</h2>
             <Button
               color="primary"
               variant="contained"

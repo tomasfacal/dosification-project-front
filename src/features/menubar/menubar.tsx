@@ -22,8 +22,7 @@ const Menubar = () => {
             <LocalHospitalIcon className={styles.CardIcon}/>
             <div className={styles.CardTextContainer}>
               <Typography className={styles.CardText}>
-                Dosifica de una manera mas precisa a tus pacientes
-                con esta herramienta tan potente
+                Monitorear a los pacientes ahora es mucho mas facil
               </Typography>
             </div>
           </div>
@@ -31,8 +30,7 @@ const Menubar = () => {
             <LocalHospitalIcon className={styles.CardIcon}/>
             <div className={styles.CardTextContainer}>
               <Typography className={styles.CardText}>
-                Dosifica de una manera mas precisa a tus pacientes
-                con esta herramienta tan potente
+                Ayuda a farmaceuticos/doctores dandoles tranquilidad en esta tarea tan complicada
               </Typography>
             </div>
           </div>
