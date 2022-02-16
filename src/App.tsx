@@ -10,6 +10,7 @@ import PatientsPage from "./features/patients-page/patients-page";
 import SelectPatientModel from "./features/select-patient-model/select-patient-model";
 import SelectTreatments from "./features/select-treatments/select-treatments";
 import SignIn from "./features/sign-in/sign-in";
+import SignUp from "./features/sign-up/sign-up";
 import SimulationPage from "./features/simulation-page/simulation-page";
 import SimulationGraph from './features/result-simulation/line-chart'
 import ResultSimulation from "./features/result-simulation/result-simulation";
@@ -41,6 +42,7 @@ function App() {
             element={<SelectTreatments />}
           />
           <Route path={Routing.SIGN_IN} element={<SignIn />} />
+          <Route path={Routing.SIGN_UP} element={<SignUp />} />
           <Route path={Routing.SIMULATION_PAGE} element={<SimulationPage />} />
           <Route
             path="*"

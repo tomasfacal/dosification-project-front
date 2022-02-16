@@ -8,6 +8,7 @@ export const Routing = {
   SELECT_PATIENT_MODEL: "/select-patient-model",
   SELECT_TREATMENTS: "/select-treatments",
   SIGN_IN: "/sign-in",
+  SIGN_UP: "/sign_up",
   SIMULATION_PAGE: "/simulation",
   RESULT_PAGE: "/result_simulation"
 };
