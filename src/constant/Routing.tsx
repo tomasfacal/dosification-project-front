@@ -9,4 +9,5 @@ export const Routing = {
   SELECT_TREATMENTS: "/select-treatments",
   SIGN_IN: "/sign-in",
   SIMULATION_PAGE: "/simulation",
+  RESULT_PAGE: "/result_simulation"
 };

@@ -11,10 +11,11 @@ import { useAppDispatch } from '../../app/store/hooks';
 import { Link } from 'react-router-dom'
 import { Routing } from '../../constant/Routing';
 import Breadcrumbs from '../breadcrumbs/breadcrumbs';
+import { useSimulationGlobalState } from "../../context/SimulationGlobalState";
 
 
 const ObtainModelDrug = (props: any) => {
-    const dispatch = useAppDispatch();
+    const { state, setState } = useSimulationGlobalState();
 
     const [covariatesList, setCovariatesList] = useState([] as string[])
     const [outputsList, setOutputsList] = useState([] as string[])
@@ -82,9 +83,11 @@ const ObtainModelDrug = (props: any) => {
     })
 
     const handleNext = (event: any) => {
-        let covariates_output = covariatesValues
-        covariates_output['output'] = outputValue
-        dispatch(setOutputCovariates(covariates_output))
+        setState((prev) => ({
+            ...prev,
+            covariates: covariatesValues,
+            output: outputValue,
+          }));
         
     }
 

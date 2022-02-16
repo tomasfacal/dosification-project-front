@@ -21,3 +21,10 @@ declare interface ModelInfo {
   id: number;
   name: string;
 }
+
+declare interface ResponseResultJSON {
+  cycle_duration: number;
+  number_of_repetitions: number;
+  quantity: number;
+  values: number[][]
+}

@@ -11,6 +11,7 @@ export interface SimulationGlobalStateInterface {
   document_number: number;
   model_drug: string;
   covariates: any; // Definir tipo de covariables en global.d.ts
+  output: string;
   treatments: TreatmentJSON[];
 }
 
