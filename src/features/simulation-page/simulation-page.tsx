@@ -1,7 +1,9 @@
-import React, {Fragment, useState} from 'react';
+import React, {Fragment, useState, useContext} from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './simulation-page.module.scss';
 import { Button, Grid, Typography} from '@material-ui/core';
 import CardActions from '@mui/material/CardActions';
+import { API_ROUTES } from '../../networking/api-routes';
 import CardContent from '@mui/material/CardContent';
 import Card from '@mui/material/Card';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -11,8 +13,12 @@ import PersonIcon from '@mui/icons-material/Person';
 import AnalyticsIcon from '@mui/icons-material/Analytics';
 import Breadcrumbs from '../breadcrumbs/breadcrumbs';
 import { Routing } from '../../constant/Routing';
+import API from "../../networking/api-service";
+import AuthContext from '../../app/store/authContext'
 
 const SimulationPage = () => {
+  const navigation = useNavigate()
+  const authCtx = useContext(AuthContext);
   const [simulationInfo, setSimulationInfo] = useState<SimulationJSON>(
     { 
       model: 'Ciclosporina',
@@ -78,6 +84,10 @@ const SimulationPage = () => {
     setCards(newstate);
   }
 
+  const handleSimulate = (event: any) => {
+      navigation('/result_simulation');
+  }
+
   const renderCard = (treatment: TreatmentJSON, index: number) => {
     return (
       <Grid key= {index} item>
@@ -140,6 +150,7 @@ const SimulationPage = () => {
             variant="contained"
             className={styles.SubmitButton}
             disabled={cards.length === 0}
+            onClick={handleSimulate}
           >
             <EqualizerIcon className= {styles.AddTreatmentIcon}/>
             Simular
