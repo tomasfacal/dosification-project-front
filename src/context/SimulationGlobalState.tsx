@@ -9,7 +9,8 @@ import React, {
 
 export interface SimulationGlobalStateInterface {
   document_number: number;
-  model_drug: string;
+  model_id: number;
+  model_name: string;
   covariates: any; // Definir tipo de covariables en global.d.ts
   output: string;
   treatments: TreatmentJSON[];
