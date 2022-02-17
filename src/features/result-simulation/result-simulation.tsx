@@ -20,7 +20,7 @@ const ResultSimulation = (props: any) => {
     };
     API.defaults.headers.common["Authorization"] = "Token " + authCtx.token;
 
-    API.post(API_ROUTES.MODEL_DRUGS + "3/simulate_dosis", body).then((res) => {
+    API.post(API_ROUTES.MODEL_DRUGS + state.model_id +"/simulate_dosis", body).then((res) => {
       setResults(res.data);
     });
   }, []);
