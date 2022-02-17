@@ -12,9 +12,7 @@ import SelectTreatments from "./features/select-treatments/select-treatments";
 import SignIn from "./features/sign-in/sign-in";
 import SignUp from "./features/sign-up/sign-up";
 import SimulationPage from "./features/simulation-page/simulation-page";
-import SimulationGraph from './features/result-simulation/line-chart'
 import ResultSimulation from "./features/result-simulation/result-simulation";
-
 
 function App() {
   return (
@@ -22,7 +20,7 @@ function App() {
       <Navbar />
       <header className="App-header">
         <Routes>
-          <Route path={Routing.HOME} element={<div><SimulationGraph /></div>} />
+          <Route path={Routing.HOME} element={<div>Home</div>} />
           <Route path={Routing.CREATE_PATIENT} element={<CreatePatient />} />
           <Route path={Routing.LIST_PATIENTS} element={<PatientsPage />} />
           <Route

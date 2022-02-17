@@ -17,28 +17,7 @@ import { useSimulationGlobalState } from "../../context/SimulationGlobalState";
 const SimulationPage = () => {
   const { state, setState } = useSimulationGlobalState();
   const navigation = useNavigate();
-  const [simulationInfo, setSimulationInfo] = useState<SimulationJSON>({
-    model: "Ciclosporina",
-    patient: "49305483",
-    output: "Output",
-  });
-  const [cards, setCards] = useState<TreatmentJSON[]>([
-    {
-      cycle_duration: 14,
-      number_of_repetitions: 13,
-      quantity: 2,
-    },
-    {
-      cycle_duration: 15,
-      number_of_repetitions: 11,
-      quantity: 344,
-    },
-    {
-      cycle_duration: 16,
-      number_of_repetitions: 51,
-      quantity: 3466,
-    },
-  ]);
+  const [cards, setCards] = useState<TreatmentJSON[]>(state.treatments || []);
 
   const breadcrumbs = [
     {
@@ -81,7 +60,7 @@ const SimulationPage = () => {
 
   const handleSimulate = (event: any) => {
     console.log(state);
-    navigation("/result_simulation");
+    navigation(Routing.RESULT_PAGE);
   };
 
   const renderCard = (treatment: TreatmentJSON, index: number) => {
@@ -123,15 +102,15 @@ const SimulationPage = () => {
         <div className={styles.SimulationContainer}>
           <Typography className={styles.Carditem}>
             <MedicationIcon />
-            Modelo: {simulationInfo.model}
+            Modelo: {state.model_name}
           </Typography>
           <Typography className={styles.Carditem}>
             <PersonIcon />
-            Paciente: {simulationInfo.patient}
+            Paciente: {state.document_number}
           </Typography>
           <Typography className={styles.Carditem}>
             <AnalyticsIcon />
-            Output: {simulationInfo.output}
+            Output: {state.output}
           </Typography>
         </div>
         <div className={styles.CardsContainer}>

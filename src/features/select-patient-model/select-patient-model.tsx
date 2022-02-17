@@ -19,7 +19,8 @@ const SelectPatientModel = () => {
   const navigation = useNavigate();
   const [data, setData] = useState({
     document_number: 0,
-    model: "",
+    model_id: 0,
+    model_name: "" as any,
   });
 
   const [models, setModels] = useState([] as ModelInfo[]);
@@ -82,14 +83,25 @@ const SelectPatientModel = () => {
   }, []);
 
   const handleInputChange = (event: any) => {
-    setData({
-      ...data,
-      [event.target.name]: event.target.value,
-    });
+    if (event.target.name === "model_id") {
+      let model = models.find(
+        (model: ModelInfo) => model.id === event.target.value
+      );
+      setData({
+        ...data,
+        [event.target.name]: event.target.value,
+        model_name: model?.name,
+      });
+    } else {
+      setData({
+        ...data,
+        [event.target.name]: event.target.value,
+      });
+    }
   };
 
-  const validateFields = (document_number: number, model: string) =>
-    !!document_number && !!model;
+  const validateFields = (document_number: number, model_id: number) =>
+    !!document_number && !!model_id;
 
   const handleSubmit = (event: any) => {
     event.preventDefault();
@@ -98,7 +110,8 @@ const SelectPatientModel = () => {
         setState((prev) => ({
           ...prev,
           document_number: data.document_number,
-          model_drug: data.model,
+          model_id: data.model_id,
+          model_name: data.model_name,
         }));
         navigation(Routing.MODEL_DRUG);
       })
@@ -130,7 +143,7 @@ const SelectPatientModel = () => {
                   variant="outlined"
                   placeholder="Ingrese la cedula"
                   type="number"
-                  error={!validateFields(data.document_number, data.model)}
+                  error={!validateFields(data.document_number, data.model_id)}
                   onChange={handleInputChange}
                 />
               </Tooltip>
@@ -142,13 +155,13 @@ const SelectPatientModel = () => {
                   <Select
                     labelId="model-select-label"
                     id="model-select"
-                    value={data.model}
+                    value={data.model_id}
                     label="Model"
-                    name="model"
+                    name="model_id"
                     onChange={handleInputChange}
                   >
                     {models.map((model: ModelInfo) => (
-                      <MenuItem key={model.id} value={model.name}>
+                      <MenuItem key={model.id} value={model.id}>
                         {model.name}
                       </MenuItem>
                     ))}
@@ -162,7 +175,7 @@ const SelectPatientModel = () => {
                 variant="contained"
                 onClick={handleSubmit}
                 className={styles.SubmitButton}
-                disabled={!validateFields(data.document_number, data.model)}
+                disabled={!validateFields(data.document_number, data.model_id)}
               >
                 <Forward className={styles.Forward} />
                 Siguiente
