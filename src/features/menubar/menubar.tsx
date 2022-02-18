@@ -4,36 +4,16 @@ import { Routing } from '../../constant/Routing';
 import { Link } from "react-router-dom";
 import { Button, Typography } from "@material-ui/core";
 import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
+import MenuHomeCard from '../menu-home-card/menu-home-card';
 
 const Menubar = () => {
   return (
       <Fragment>
         <div className={styles.CardContainer}>
-          <div className={styles.Card1}>
-            <LocalHospitalIcon className={styles.CardIcon}/>
-            <div className={styles.CardTextContainer}>
-              <Typography className={styles.CardText}>
-                Dosifica de una manera mas precisa a tus pacientes
-                con esta herramienta tan potente
-              </Typography>
-            </div>
-          </div>
-          <div className={styles.Card2}>
-            <LocalHospitalIcon className={styles.CardIcon}/>
-            <div className={styles.CardTextContainer}>
-              <Typography className={styles.CardText}>
-                Monitorear a los pacientes ahora es mucho mas facil
-              </Typography>
-            </div>
-          </div>
-          <div className={styles.Card3}>
-            <LocalHospitalIcon className={styles.CardIcon}/>
-            <div className={styles.CardTextContainer}>
-              <Typography className={styles.CardText}>
-                Ayuda a farmaceuticos/doctores dandoles tranquilidad en esta tarea tan complicada
-              </Typography>
-            </div>
-          </div>
+          <MenuHomeCard text="Dosifica de una manera mas precisa a tus pacientes
+                con esta herramienta tan potente" class="Card1"/>
+          <MenuHomeCard text="Monitorear a los pacientes ahora es mucho mas facil" class="Card2"/>
+          <MenuHomeCard text="Ayuda a farmaceuticos/doctores dandoles tranquilidad en esta tarea tan complicada" class="Card3"/>
         </div>
       </Fragment>
   );

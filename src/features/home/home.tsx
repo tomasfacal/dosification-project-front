@@ -1,4 +1,4 @@
-import React, {Fragment, useState, useEffect} from 'react';
+import React, {Fragment} from 'react';
 import styles from './home.module.scss';
 import Hero from '../hero/hero';
 import Menubar from '../menubar/menubar';
@@ -9,7 +9,16 @@ const Home = () => {
       <Fragment>
         <Hero/>
         <Menubar/>
-        <PersonCard/>
+        <div className={styles.TeamContainer}>
+          <div className={styles.TeamTitle}>
+            Equipo de desarrollo
+          </div>
+          <div className={styles.CardContainer}>
+            <PersonCard name="Agustina Drocco" image="droccoPhoto"/>
+            <PersonCard name="Tomás Facal" image="facalPhoto"/>
+            <PersonCard name="Agustín Pirotto" image="pirottoPhoto"/>
+          </div>
+        </div>
       </Fragment>
   );
 }

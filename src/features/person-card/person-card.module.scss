@@ -1,14 +1,19 @@
 @import '../../assets/stylesheets/generic-styles.scss';
 
 .card {
-    max-height: 300px;
-    margin: 50px;
+  width: 180px;
+  height: 200px;
+  margin: 20px 35px;
 }
 .avatarContainer {
-    margin: -45px;
-    height: 100%;
+  height: 100%;
+}
+
+.name {
+  font-size: $font-size-body-big !important;
 }
 
 .avatar {
-    margin: auto;
+  margin-top: -45px !important;
+  margin: auto;
 }
