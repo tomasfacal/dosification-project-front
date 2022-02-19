@@ -1,0 +1,17 @@
+@import '../../assets/stylesheets/generic-styles.scss';
+
+.FooterContainer{
+  height: 50px;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.logoFing {
+  height: 40px;
+  margin: 0 10px;
+}
+
+.legalContainer {
+  display: flex;
+  width: 70%;
+}
