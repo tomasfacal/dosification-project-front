@@ -18,7 +18,7 @@ const Footer = () => {
             <img src={logoFing} alt="Logo FING" className={styles.logoFing}/>
             <div className={styles.legalContainer}>
               <Typography variant="h6" color="inherit" component="div">
-                Terminos y Condiciones
+                Términos y Condiciones
               </Typography>
             </div>
           </Toolbar>
