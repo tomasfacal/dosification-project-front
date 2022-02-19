@@ -58,4 +58,4 @@ const useSimulationGlobalState = () => {
   return context;
 };
 
-export { SimulationGlobalStateProvider, useSimulationGlobalState };
+export { SimulationGlobalStateProvider, useSimulationGlobalState, SimulationGlobalStateContext };

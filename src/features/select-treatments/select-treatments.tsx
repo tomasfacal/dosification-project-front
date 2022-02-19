@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useContext} from "react";
 import styles from "./select-treatments.module.scss";
 import {
   TextField,
@@ -19,11 +19,12 @@ import { useAppDispatch } from "../../app/store/hooks";
 import Breadcrumbs from "../breadcrumbs/breadcrumbs";
 import { Routing } from "../../constant/Routing";
 import { useNavigate } from "react-router-dom";
-import { useSimulationGlobalState } from "../../context/SimulationGlobalState";
+import { useSimulationGlobalState, SimulationGlobalStateContext } from "../../context/SimulationGlobalState";
 
 const SelectTreatments = () => {
   const navigation = useNavigate();
   const dispatch = useAppDispatch();
+  const globalState = useContext(SimulationGlobalStateContext);
 
   const [datos, setData] = useState({
     cycle_duration: 0,
@@ -31,7 +32,14 @@ const SelectTreatments = () => {
     quantity: 0,
   });
 
-  const [cards, setCards] = useState<TreatmentJSON[]>([]);
+  const setCardsFromContext = () => {
+    if (globalState.state.treatments)
+      return globalState.state.treatments
+    else
+      return [] as TreatmentJSON[]
+  }
+
+  const [cards, setCards] = useState<TreatmentJSON[]>(setCardsFromContext());
   const { state, setState } = useSimulationGlobalState();
 
   const breadcrumbs = [
