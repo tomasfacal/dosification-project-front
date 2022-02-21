@@ -1,0 +1,12 @@
+@import '../../assets/stylesheets/generic-styles.scss';
+
+.CardContainer {
+  display: flex;
+  flex-direction: row;
+  flex: 1 1 0px;
+  width: 50%;
+  max-height: 250px;
+  background-color: aliceblue;
+  margin-top: -70px;
+}
+

@@ -1,0 +1,37 @@
+@import '../../assets/stylesheets/generic-styles.scss';
+
+.HeroContainer {
+  background-image: url('../../assets/images/homeImage.jpg');
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 600px;
+}
+
+.Heroinner {
+  width: 50%;
+  font-family: "Trebuchet MS", sans-serif;
+  margin: 30px;
+
+  .HeroTitle {
+    font-size: 50px;
+    text-transform: uppercase;
+    letter-spacing: -2px;
+  }
+
+  .HeroSubTitle {
+    font-size: 20px;
+    font-weight: 100;
+  }
+
+  .Button {
+    background-color: grey;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    margin: 20px;
+  }
+}

@@ -1,0 +1,15 @@
+@import '../../assets/stylesheets/generic-styles.scss';
+
+.TeamTitle {
+    font-size: $font-size-subtitle;
+    margin: 10px;
+}
+
+.TeamContainer {
+    background-image: url('../../assets/images/backgroundTeam.jpg');
+    margin: 30px;
+}
+
+.CardContainer {
+    display: flex;
+}

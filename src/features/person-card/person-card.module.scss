@@ -1,0 +1,19 @@
+@import '../../assets/stylesheets/generic-styles.scss';
+
+.card {
+  width: 180px;
+  height: 200px;
+  margin: 20px 35px;
+}
+.avatarContainer {
+  height: 100%;
+}
+
+.name {
+  font-size: $font-size-body-big !important;
+}
+
+.avatar {
+  margin-top: -45px !important;
+  margin: auto;
+}
