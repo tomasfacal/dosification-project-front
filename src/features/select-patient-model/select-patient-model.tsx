@@ -1,4 +1,4 @@
-import { Fragment, useState, useEffect, useContext } from "react";
+import { Fragment, useState, useEffect } from "react";
 import styles from "./select-patient-model.module.scss";
 import { TextField, Tooltip, Button, Grid } from "@material-ui/core";
 import Box from "@mui/material/Box";
@@ -10,25 +10,24 @@ import API from "../../networking/api-service";
 import { API_ROUTES } from "../../networking/api-routes";
 import { Forward } from "@mui/icons-material";
 import ChildModal from "../modal-patient/modal";
-import { useSimulationGlobalState, SimulationGlobalStateContext } from "../../context/SimulationGlobalState";
+import { useSimulationGlobalState } from "../../context/SimulationGlobalState";
 import { Routing } from "../../constant/Routing";
 import Breadcrumbs from "../breadcrumbs/breadcrumbs";
 import { useNavigate } from "react-router-dom";
 
 const SelectPatientModel = () => {
   const navigation = useNavigate();
-  const globalState = useContext(SimulationGlobalStateContext);
+  const { state, setState } = useSimulationGlobalState();
   const [data, setData] = useState({
-    document_number: globalState.state.document_number ? globalState.state.document_number : 0,
-    model_id: globalState.state.model_id ? globalState.state.model_id : 0,
-    model_name: globalState.state.model_name ? globalState.state.model_name : "" as any,
+    document_number: state.document_number ? state.document_number : 0,
+    model_id: state.model_id ? state.model_id : 0,
+    model_name: state.model_name ? state.model_name : "" as any,
   });
 
   const [models, setModels] = useState([] as ModelInfo[]);
 
   const [open, setOpen] = useState(false);
 
-  const { state, setState } = useSimulationGlobalState();
   const breadcrumbs = [
     {
       name: "Inicio",
