@@ -17,17 +17,17 @@ import { useNavigate } from "react-router-dom";
 
 const SelectPatientModel = () => {
   const navigation = useNavigate();
+  const { state, setState } = useSimulationGlobalState();
   const [data, setData] = useState({
-    document_number: 0,
-    model_id: 0,
-    model_name: "" as any,
+    document_number: state.document_number ? state.document_number : 0,
+    model_id: state.model_id ? state.model_id : 0,
+    model_name: state.model_name ? state.model_name : "" as any,
   });
 
   const [models, setModels] = useState([] as ModelInfo[]);
 
   const [open, setOpen] = useState(false);
 
-  const { state, setState } = useSimulationGlobalState();
   const breadcrumbs = [
     {
       name: "Inicio",
@@ -143,6 +143,7 @@ const SelectPatientModel = () => {
                   variant="outlined"
                   placeholder="Ingrese la cedula"
                   type="number"
+                  value={data.document_number}
                   error={!validateFields(data.document_number, data.model_id)}
                   onChange={handleInputChange}
                 />
