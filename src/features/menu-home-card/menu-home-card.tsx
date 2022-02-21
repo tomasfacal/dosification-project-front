@@ -1,16 +1,6 @@
-import React, {Fragment, useState, useEffect} from 'react';
+import React, {Fragment} from 'react';
 import styles from './menu-home-card.module.scss';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { Button, CardActionArea, CardActions } from '@mui/material';
-import cardBackground from '../../assets/images/backgroundCard.jpg';
-import pirottoPhoto from '../../assets/images/agus.png';
-import facalPhoto from '../../assets/images/facal.png';
-import droccoPhoto from '../../assets/images/drocco.png';
-import Avatar from '@mui/material/Avatar';
-import { Person } from '@mui/icons-material';
 import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
 
 interface CardMenu {
