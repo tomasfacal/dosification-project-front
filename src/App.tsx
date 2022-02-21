@@ -4,6 +4,7 @@ import { Routing } from "./constant/Routing";
 import CreatePatient from "./features/create-patient/create-patient";
 import ErrorPage from "./features/error_pages/error_page";
 import Navbar from "./features/navbar/navbar";
+import Footer from "./features/footer/footer";
 import ObtainModelDrug from "./features/obtain-model/obtain-model";
 import Patient from "./features/patients/patient";
 import PatientsPage from "./features/patients-page/patients-page";
@@ -55,6 +56,7 @@ function App() {
           <Route path={Routing.RESULT_PAGE} element={<ResultSimulation />} />
         </Routes>
       </header>
+      <Footer/>
     </div>
   );
 }
