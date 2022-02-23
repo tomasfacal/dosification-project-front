@@ -1,0 +1,22 @@
+@import '../../assets/stylesheets/generic-styles.scss';
+
+.CardsContainer {
+  width: 90%;
+}
+
+.CardTreatment {
+  max-width: 300px;
+  margin: auto;
+}
+
+.Carditem {
+  color: $brand-dark;
+}
+
+.DeleteAction {
+  display: block !important;
+}
+
+.DeleteButton {
+  color: $danger-dark !important;
+}
