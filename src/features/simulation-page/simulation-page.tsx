@@ -50,6 +50,12 @@ const SimulationPage = () => {
       clickable: false,
       actual: true,
     },
+    {
+      name: "Resultados",
+      link: Routing.RESULT_PAGE,
+      clickable: false,
+      actual: false,
+    }
   ];
 
   const deleteSimulation = (index: number) => {

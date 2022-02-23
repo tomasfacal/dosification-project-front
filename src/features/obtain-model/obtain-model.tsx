@@ -51,6 +51,12 @@ const ObtainModelDrug = (props: any) => {
       clickable: false,
       actual: false,
     },
+    {
+      name: "Resultados",
+      link: Routing.RESULT_PAGE,
+      clickable: false,
+      actual: false,
+    }
   ];
 
   const fetchCovariatesOutputs = async () => {

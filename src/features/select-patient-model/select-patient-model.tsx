@@ -59,6 +59,12 @@ const SelectPatientModel = () => {
       clickable: false,
       actual: false,
     },
+    {
+      name: "Resultados",
+      link: Routing.RESULT_PAGE,
+      clickable: false,
+      actual: false,
+    }
   ];
 
   const handleOpen = () => {
