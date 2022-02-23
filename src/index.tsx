@@ -2,23 +2,19 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.scss";
 import App from "./App";
-import { store } from "./app/store/store";
-import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import * as serviceWorker from "./serviceWorker";
-import { AuthContextProvider } from "./app/store/authContext";
+import { AuthContextProvider } from "./context/authContext";
 import { SimulationGlobalStateProvider } from "./context/SimulationGlobalState";
 
 ReactDOM.render(
   <React.StrictMode>
     <AuthContextProvider>
-      <Provider store={store}>
-        <BrowserRouter>
-          <SimulationGlobalStateProvider>
-            <App />
-          </SimulationGlobalStateProvider>
-        </BrowserRouter>
-      </Provider>
+      <BrowserRouter>
+        <SimulationGlobalStateProvider>
+          <App />
+        </SimulationGlobalStateProvider>
+      </BrowserRouter>
     </AuthContextProvider>
   </React.StrictMode>,
   document.getElementById("root")

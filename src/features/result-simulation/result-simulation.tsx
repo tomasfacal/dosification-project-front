@@ -3,7 +3,7 @@ import styles from "./result-simulation.module.scss";
 import API from "../../networking/api-service";
 import { API_ROUTES } from "../../networking/api-routes";
 import { useSimulationGlobalState } from "../../context/SimulationGlobalState";
-import AuthContext from "../../app/store/authContext";
+import AuthContext from "../../context/authContext";
 import SimulationGraph from "./line-chart";
 
 const ResultSimulation = (props: any) => {
@@ -20,7 +20,10 @@ const ResultSimulation = (props: any) => {
     };
     API.defaults.headers.common["Authorization"] = "Token " + authCtx.token;
 
-    API.post(API_ROUTES.MODEL_DRUGS + state.model_id +"/simulate_dosis", body).then((res) => {
+    API.post(
+      API_ROUTES.MODEL_DRUGS + state.model_id + "/simulate_dosis",
+      body
+    ).then((res) => {
       setResults(res.data);
     });
   }, []);
