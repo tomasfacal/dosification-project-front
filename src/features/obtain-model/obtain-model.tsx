@@ -6,7 +6,6 @@ import CreateCovariates from "../create-covariates/create-covariates";
 import ChooseOutput from "../choose-output/choose-output";
 import { Button } from "@material-ui/core";
 import { Forward } from "@mui/icons-material";
-import { useAppDispatch } from "../../app/store/hooks";
 import { Link, useNavigate } from "react-router-dom";
 import { Routing } from "../../constant/Routing";
 import Breadcrumbs from "../breadcrumbs/breadcrumbs";
