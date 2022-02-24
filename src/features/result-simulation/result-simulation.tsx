@@ -7,11 +7,14 @@ import AuthContext from "../../context/authContext";
 import SimulationGraph from "./line-chart";
 import { Routing } from "../../constant/Routing";
 import Breadcrumbs from "../breadcrumbs/breadcrumbs";
+import CircularIndeterminate from "../loading/circular_indeterminate"
+import Typography from '@mui/material/Typography';
 
 const ResultSimulation = (props: any) => {
   const { state, setState } = useSimulationGlobalState();
   const [results, setResults] = useState<ResponseResultJSON[]>([]);
   const authCtx = useContext(AuthContext);
+  const [error, setError] = useState<Boolean>(false)
 
   const breadcrumbs = [
     {
@@ -66,6 +69,9 @@ const ResultSimulation = (props: any) => {
       body
     ).then((res) => {
       setResults(res.data);
+    })
+    .catch(function (error) {
+      setError(true);
     });
   }, []);
 
@@ -74,11 +80,23 @@ const ResultSimulation = (props: any) => {
       <div>
         <Breadcrumbs values={breadcrumbs} />
       </div>
-      <div className={styles.FormContainer}>
+      <div>
+       {results.length === 0 && !error && ( 
+        <div className={styles.Loading}>
+           {CircularIndeterminate()}
+        </div>)
+        }
+        {results.length === 0 && error && ( 
+          <div className={styles.FormContainer}>
+            <Typography>Hubo un error en la simulación, pruebe cambiar los parámetros</Typography>
+          </div>)
+        }
         {results.length > 0 && (
-          <SimulationGraph results={results}></SimulationGraph>
+           <div className={styles.FormContainer}>
+            <SimulationGraph results={results}></SimulationGraph>
+          </div>
         )}
-      </div>
+        </div>
     </Fragment>
   );
 };

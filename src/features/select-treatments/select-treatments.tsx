@@ -9,15 +9,12 @@ import {
 } from "@material-ui/core";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import HelpIcon from "@mui/icons-material/Help";
-import DeleteIcon from "@mui/icons-material/Delete";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import Breadcrumbs from "../breadcrumbs/breadcrumbs";
 import { Routing } from "../../constant/Routing";
 import { useNavigate } from "react-router-dom";
 import { useSimulationGlobalState } from "../../context/SimulationGlobalState";
+import TreatmentCard from "../treatment-card/treatment-card";
 
 const SelectTreatments = () => {
   const navigation = useNavigate();
@@ -98,7 +95,8 @@ const SelectTreatments = () => {
     !!quantity &&
     cycle_duration > 0 &&
     number_of_repetitions > 0 &&
-    quantity > 0;
+    quantity > 0 &&
+    cards.length < 3;
 
   const createTreatment = (event: any) => {
     event.preventDefault();
@@ -119,36 +117,6 @@ const SelectTreatments = () => {
       treatments: cards,
     }));
     navigation(Routing.SIMULATION_PAGE);
-  };
-
-  const renderCard = (treatment: TreatmentJSON, index: number) => {
-    return (
-      <Grid key={index} item xs={12} sm={4}>
-        <Card sx={{ minWidth: 275 }} className={styles.CardTreatment}>
-          <CardContent>
-            <Typography className={styles.Carditem}>
-              Ciclo de duración: {treatment.cycle_duration}
-            </Typography>
-            <Typography className={styles.Carditem}>
-              Número de repeticiones: {treatment.number_of_repetitions}
-            </Typography>
-            <Typography className={styles.Carditem}>
-              Cantidad: {treatment.quantity}
-            </Typography>
-          </CardContent>
-          <CardActions className={styles.DeleteAction}>
-            <Button
-              size="small"
-              className={styles.DeleteButton}
-              onClick={() => deleteTreatment(index)}
-            >
-              <DeleteIcon />
-              Eliminar
-            </Button>
-          </CardActions>
-        </Card>
-      </Grid>
-    );
   };
 
   return (
@@ -247,14 +215,15 @@ const SelectTreatments = () => {
           <AddCircleIcon className={styles.AddTreatmentIcon} />
           Crear Tratamiento
         </Button>
+        <Typography className={styles.warningTreatments}>
+            Máximo 3 tratamientos
+          </Typography>
       </div>
-      <div className={styles.CardsContainer}>
-        <Grid container spacing={2}>
-          {cards.map((treatment: TreatmentJSON, index: number) =>
-            renderCard(treatment, index)
-          )}
-        </Grid>
-      </div>
+      <Grid container className={styles.CardsContainer}>
+        {cards.map((treatment: TreatmentJSON, index: number) =>
+          <TreatmentCard treatment= {treatment} index={index} delete_treatment={deleteTreatment}/>
+        )}
+      </Grid>
       <Button
         color="primary"
         variant="contained"

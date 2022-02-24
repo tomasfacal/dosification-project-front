@@ -2,10 +2,6 @@ import { Fragment, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./simulation-page.module.scss";
 import { Button, Grid, Typography } from "@material-ui/core";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import Card from "@mui/material/Card";
-import DeleteIcon from "@mui/icons-material/Delete";
 import EqualizerIcon from "@mui/icons-material/Equalizer";
 import MedicationIcon from "@mui/icons-material/Medication";
 import PersonIcon from "@mui/icons-material/Person";
@@ -13,6 +9,7 @@ import AnalyticsIcon from "@mui/icons-material/Analytics";
 import Breadcrumbs from "../breadcrumbs/breadcrumbs";
 import { Routing } from "../../constant/Routing";
 import { useSimulationGlobalState } from "../../context/SimulationGlobalState";
+import TreatmentCard from "../treatment-card/treatment-card";
 
 const SimulationPage = () => {
   const { state, setState } = useSimulationGlobalState();
@@ -69,35 +66,6 @@ const SimulationPage = () => {
     navigation(Routing.RESULT_PAGE);
   };
 
-  const renderCard = (treatment: TreatmentJSON, index: number) => {
-    return (
-      <Grid key={index} item>
-        <Card className={styles.CardSimulation}>
-          <CardContent>
-            <Typography className={styles.Carditem}>
-              Ciclo de duración: {treatment.cycle_duration}
-            </Typography>
-            <Typography className={styles.Carditem}>
-              Número de repeticiones: {treatment.number_of_repetitions}
-            </Typography>
-            <Typography className={styles.Carditem}>
-              Cantidad: {treatment.quantity}
-            </Typography>
-          </CardContent>
-          <CardActions className={styles.DeleteAction}>
-            <Button
-              size="small"
-              className={styles.DeleteButton}
-              onClick={() => deleteSimulation(index)}
-            >
-              <DeleteIcon />
-              Eliminar
-            </Button>
-          </CardActions>
-        </Card>
-      </Grid>
-    );
-  };
   return (
     <Fragment>
       <div>
@@ -125,7 +93,7 @@ const SimulationPage = () => {
           </Typography>
           <Grid container spacing={2}>
             {cards.map((treatment: TreatmentJSON, index: number) =>
-              renderCard(treatment, index)
+              <TreatmentCard treatment= {treatment} index={index} delete_treatment={deleteSimulation}/>
             )}
           </Grid>
         </div>

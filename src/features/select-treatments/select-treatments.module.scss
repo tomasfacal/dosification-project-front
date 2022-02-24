@@ -48,24 +48,12 @@
 }
 
 .CardsContainer {
-  width: 90%;
+  width: 80% !important;
+  justify-content: space-around;
 }
 
-.CardTreatment {
-  max-width: 300px;
-  margin: auto;
-}
-
-.Carditem {
-  color: $brand-dark;
-}
-
-.DeleteAction {
-  display: block !important;
-}
-
-.DeleteButton {
-  color: $danger-dark !important;
+.warningTreatments {
+  font-size: $font-size-body-big;
 }
 
 .SubmitButton {
