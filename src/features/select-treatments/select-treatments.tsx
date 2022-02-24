@@ -64,6 +64,12 @@ const SelectTreatments = () => {
       clickable: false,
       actual: false,
     },
+    {
+      name: "Resultados",
+      link: Routing.RESULT_PAGE,
+      clickable: false,
+      actual: false,
+    }
   ];
 
   const handleInputChange = (event: any) => {

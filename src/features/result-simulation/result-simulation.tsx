@@ -5,6 +5,8 @@ import { API_ROUTES } from "../../networking/api-routes";
 import { useSimulationGlobalState } from "../../context/SimulationGlobalState";
 import AuthContext from "../../context/authContext";
 import SimulationGraph from "./line-chart";
+import { Routing } from "../../constant/Routing";
+import Breadcrumbs from "../breadcrumbs/breadcrumbs";
 import CircularIndeterminate from "../loading/circular_indeterminate"
 import Typography from '@mui/material/Typography';
 
@@ -13,6 +15,45 @@ const ResultSimulation = (props: any) => {
   const [results, setResults] = useState<ResponseResultJSON[]>([]);
   const authCtx = useContext(AuthContext);
   const [error, setError] = useState<Boolean>(false)
+
+  const breadcrumbs = [
+    {
+      name: "Inicio",
+      link: Routing.HOME,
+      clickable: true,
+      actual: false,
+    },
+    {
+      name: "Seleccionar modelo/paciente",
+      link: Routing.SELECT_PATIENT_MODEL,
+      clickable: true,
+      actual: false,
+    },
+    {
+      name: "Seleccionar covariables/output",
+      link: Routing.MODEL_DRUG,
+      clickable: true,
+      actual: false,
+    },
+    {
+      name: "Seleccionar Tratamiento",
+      link: Routing.SELECT_TREATMENTS,
+      clickable: true,
+      actual: true,
+    },
+    {
+      name: "Simulación",
+      link: Routing.SIMULATION_PAGE,
+      clickable: true,
+      actual: false,
+    },
+    {
+      name: "Resultados",
+      link: Routing.RESULT_PAGE,
+      clickable: false,
+      actual: true,
+    }
+  ];
 
   useEffect(() => {
     const body = {
@@ -36,6 +77,10 @@ const ResultSimulation = (props: any) => {
 
   return (
     <Fragment>
+      <div>
+        <Breadcrumbs values={breadcrumbs} />
+      </div>
+      <div>
        {results.length === 0 && !error && ( 
         <div className={styles.Loading}>
            {CircularIndeterminate()}
@@ -51,6 +96,7 @@ const ResultSimulation = (props: any) => {
             <SimulationGraph results={results}></SimulationGraph>
           </div>
         )}
+        </div>
     </Fragment>
   );
 };
