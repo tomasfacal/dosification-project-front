@@ -184,7 +184,7 @@ const SelectPatientModel = () => {
                 className={styles.SubmitButton}
                 disabled={!validateFields(data.document_number, data.model_id)}
               >
-                <Forward className={styles.Forward} />
+                <Forward />
                 Siguiente
               </Button>
               <ChildModal

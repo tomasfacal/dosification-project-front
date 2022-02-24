@@ -9,7 +9,7 @@ import {
 } from "@material-ui/core";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import HelpIcon from "@mui/icons-material/Help";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { Forward } from "@mui/icons-material";
 import Breadcrumbs from "../breadcrumbs/breadcrumbs";
 import { Routing } from "../../constant/Routing";
 import { useNavigate } from "react-router-dom";
@@ -231,7 +231,7 @@ const SelectTreatments = () => {
         className={styles.SubmitButton}
         disabled={cards.length === 0}
       >
-        <ArrowForwardIcon className={styles.AddTreatmentIcon} />
+        <Forward className={styles.AddTreatmentIcon} />
         Siguiente
       </Button>
     </Fragment>
