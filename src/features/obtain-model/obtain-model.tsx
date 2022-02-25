@@ -118,7 +118,7 @@ const ObtainModelDrug = (props: any) => {
           outputs={outputsList}
           setValue={handleChangeOutputValue}
         />
-        <Link to={Routing.SELECT_TREATMENTS} style={{ textDecoration: "none" }}>
+        <div className={styles.ButonContainer}>
           <Button
             color="primary"
             variant="contained"
@@ -128,7 +128,7 @@ const ObtainModelDrug = (props: any) => {
             <Forward />
             Siguiente
           </Button>
-        </Link>
+        </div>
       </div>
     </Fragment>
   );

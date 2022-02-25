@@ -177,16 +177,18 @@ const SelectPatientModel = () => {
               </Box>
             </Grid>
             <Grid item xs={12} sm={12}>
-              <Button
-                color="primary"
-                variant="contained"
-                onClick={handleSubmit}
-                className={styles.SubmitButton}
-                disabled={!validateFields(data.document_number, data.model_id)}
-              >
-                <Forward />
-                Siguiente
-              </Button>
+              <div className={styles.ButonContainer}>
+                <Button
+                  color="primary"
+                  variant="contained"
+                  onClick={handleSubmit}
+                  className={styles.SubmitButton}
+                  disabled={!validateFields(data.document_number, data.model_id)}
+                >
+                  <Forward />
+                  Siguiente
+                </Button>
+              </div>
               <ChildModal
                 open={open}
                 onClose={handleClose}
