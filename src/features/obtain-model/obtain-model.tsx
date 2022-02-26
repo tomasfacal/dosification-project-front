@@ -109,6 +109,7 @@ const ObtainModelDrug = (props: any) => {
         <Breadcrumbs values={breadcrumbs} />
       </div>
       <div className={styles.FormContainer}>
+       <h1 className={styles.Title}>Seleccionar covariables y outputs</h1>
         <CreateCovariates
           covariates={covariatesList}
           setValues={handleChangeCovariateValues}
@@ -117,7 +118,7 @@ const ObtainModelDrug = (props: any) => {
           outputs={outputsList}
           setValue={handleChangeOutputValue}
         />
-        <Link to={Routing.SELECT_TREATMENTS} style={{ textDecoration: "none" }}>
+        <div className={styles.ButonContainer}>
           <Button
             color="primary"
             variant="contained"
@@ -127,7 +128,7 @@ const ObtainModelDrug = (props: any) => {
             <Forward />
             Siguiente
           </Button>
-        </Link>
+        </div>
       </div>
     </Fragment>
   );

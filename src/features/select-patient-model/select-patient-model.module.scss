@@ -6,6 +6,7 @@
 
 .Title {
   color: $brand;
+  font-size: $font-size-title;
 }
 
 // I have to set margin as important due to materialUi styles was set as preference
@@ -13,6 +14,7 @@
 .SubmitButton {
   width: 50%;
   margin: auto !important;
+  background-color: $success !important;
 }
 
 .FormContainer {
@@ -25,4 +27,9 @@
   border-radius: 10px;
   box-shadow: 0 10px 20px 0 rgba(#999, 0.25);
   padding: 3rem;
+  height: 450px;
+}
+
+.ButonContainer {
+  margin: 50px;
 }
