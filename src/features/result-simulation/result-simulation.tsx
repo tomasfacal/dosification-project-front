@@ -5,10 +5,16 @@ import { API_ROUTES } from "../../networking/api-routes";
 import { useSimulationGlobalState } from "../../context/SimulationGlobalState";
 import AuthContext from "../../context/authContext";
 import SimulationGraph from "./line-chart";
+import TreatmentCardResult from "./TreatmentCardResult/treatment_result"
 import { Routing } from "../../constant/Routing";
 import Breadcrumbs from "../breadcrumbs/breadcrumbs";
 import CircularIndeterminate from "../loading/circular_indeterminate"
 import Typography from '@mui/material/Typography';
+import { Grid} from '@material-ui/core';
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardActions from "@mui/material/CardActions";
+
 
 const ResultSimulation = (props: any) => {
   const { state, setState } = useSimulationGlobalState();
@@ -92,8 +98,15 @@ const ResultSimulation = (props: any) => {
           </div>)
         }
         {results.length > 0 && (
-           <div className={styles.FormContainer}>
-            <SimulationGraph results={results}></SimulationGraph>
+          <div>
+            <div className={styles.FormContainer}>
+              <SimulationGraph results={results}></SimulationGraph>
+            </div>
+            <Grid container spacing={2}>
+              {results.map((result: any, index: number) => (
+                <TreatmentCardResult cycle_duration={result.cycle_duration} number_of_repetitions={result.number_of_repetitions} amount={result.amount} index={index} name={"Treatment " + (index+1)}></TreatmentCardResult>
+              ))}
+            </Grid>
           </div>
         )}
         </div>
