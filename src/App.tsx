@@ -15,6 +15,7 @@ import SignUp from "./features/sign-up/sign-up";
 import SimulationPage from "./features/simulation-page/simulation-page";
 import ResultSimulation from "./features/result-simulation/result-simulation";
 import Home from "./features/home/home";
+import { DoctorPrivateRoute } from "./features/private-routes/DoctorPrivateRoute";
 
 function App() {
   return (
@@ -24,7 +25,10 @@ function App() {
         <Routes>
           <Route path={Routing.HOME} element={<Home />} />
           <Route path={Routing.CREATE_PATIENT} element={<CreatePatient />} />
-          <Route path={Routing.LIST_PATIENTS} element={<PatientsPage />} />
+          <Route
+            path={Routing.LIST_PATIENTS}
+            element={<DoctorPrivateRoute component={PatientsPage} />}
+          />
           <Route
             path={Routing.MODEL_DRUG}
             element={<ObtainModelDrug model_drug={3} />}
@@ -56,7 +60,7 @@ function App() {
           <Route path={Routing.RESULT_PAGE} element={<ResultSimulation />} />
         </Routes>
       </header>
-      <Footer/>
+      <Footer />
     </div>
   );
 }
