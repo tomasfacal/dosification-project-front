@@ -14,9 +14,10 @@ const SimulationGraph = (props: any) => {
 
     useEffect(() => {
         const seriesAux = [] as any
-        props.results.map((result: any) => {
+        props.results.map((result: any, index: any) => {
+            const number_treatment = index + 1
             const serie = {
-                name: "Treatment" ,
+                name: "Treatment " + number_treatment,
                 type: "line",
                 data: result.values,
             }
@@ -46,10 +47,6 @@ const SimulationGraph = (props: any) => {
       },
       markers: {
         size: 0,
-      },
-      title: {
-        text: 'Resultado simulación',
-        align: 'left'
       },
       xaxis: {
         type: 'numeric',

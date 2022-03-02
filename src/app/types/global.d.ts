@@ -25,6 +25,6 @@ declare interface ModelInfo {
 declare interface ResponseResultJSON {
   cycle_duration: number;
   number_of_repetitions: number;
-  quantity: number;
+  amount: number;
   values: number[][]
 }
