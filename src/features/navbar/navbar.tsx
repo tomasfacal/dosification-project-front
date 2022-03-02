@@ -4,7 +4,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import MedicalServicesIcon from "@mui/icons-material/MedicalServices";
 import styles from "./navbar.module.scss";
-import { FormControl } from "@material-ui/core";
+import { FormControl, Link } from "@material-ui/core";
 
 const Navbar = () => {
   return (
@@ -14,7 +14,9 @@ const Navbar = () => {
           <Toolbar className={styles.NavBarContainer} variant="dense">
             <MedicalServicesIcon className={styles.MedicalIcon} />
             <Typography variant="h6" color="inherit" component="div">
-              FINGLIX
+              <Link href="/" underline="none" color="inherit">
+                {"FINGLIX"}
+              </Link>
             </Typography>
           </Toolbar>
         </AppBar>
