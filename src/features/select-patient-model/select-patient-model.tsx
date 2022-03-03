@@ -21,7 +21,7 @@ const SelectPatientModel = () => {
   const [data, setData] = useState({
     document_number: state.document_number ? state.document_number : 0,
     model_id: state.model_id ? state.model_id : 0,
-    model_name: state.model_name ? state.model_name : "" as any,
+    model_name: state.model_name ? state.model_name : ("" as any),
   });
 
   const [models, setModels] = useState([] as ModelInfo[]);
@@ -64,7 +64,7 @@ const SelectPatientModel = () => {
       link: Routing.RESULT_PAGE,
       clickable: false,
       actual: false,
-    }
+    },
   ];
 
   const handleOpen = () => {
@@ -183,7 +183,9 @@ const SelectPatientModel = () => {
                   variant="contained"
                   onClick={handleSubmit}
                   className={styles.SubmitButton}
-                  disabled={!validateFields(data.document_number, data.model_id)}
+                  disabled={
+                    !validateFields(data.document_number, data.model_id)
+                  }
                 >
                   <Forward />
                   Siguiente

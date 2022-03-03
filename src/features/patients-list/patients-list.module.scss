@@ -1,4 +1,4 @@
-@import '../../assets/stylesheets/generic-styles.scss';
+@import "../../assets/stylesheets/generic-styles.scss";
 
 .TableContainer {
   margin: 20px;
@@ -17,7 +17,8 @@
   }
 }
 
-.searchButton, .cancelSearchButton {
+.searchButton,
+.cancelSearchButton {
   margin: 10px !important;
 }
 

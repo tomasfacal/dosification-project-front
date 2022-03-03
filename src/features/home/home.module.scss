@@ -1,55 +1,55 @@
-@import '../../assets/stylesheets/generic-styles.scss';
+@import "../../assets/stylesheets/generic-styles.scss";
 
 .PatientsContainer {
-    padding: 10px;
-    margin-top: 30px;
-    background-color: white;
+  padding: 10px;
+  margin-top: 30px;
+  background-color: white;
 }
 
 .ButtonsContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: auto;
-    justify-content: center;
-    a {
-        margin: 5px;
-    }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  justify-content: center;
+  a {
+    margin: 5px;
+  }
 }
 
 .PatientImage {
-    width: 175px;
+  width: 175px;
 }
 
 .ImageContainer {
-    display: flex;
+  display: flex;
 }
 
 .CreatePatientButton {
-    background-color: grey;
+  background-color: grey;
 }
 
 .PatientsInfo {
-    padding: 0 10px;
-    h2 {
-        font-size: $font-size-body-big;
-        font-weight: 400;
-    }
-    h3 {
-        font-size: $font-size-body-big;
-    }   
+  padding: 0 10px;
+  h2 {
+    font-size: $font-size-body-big;
+    font-weight: 400;
+  }
+  h3 {
+    font-size: $font-size-body-big;
+  }
 }
 
 .HomeSectionTitle {
-    font-size: $font-size-subtitle;
-    margin: 10px;
+  font-size: $font-size-subtitle;
+  margin: 10px;
 }
 
 .TeamContainer {
-    background-image: url('../../assets/images/backgroundTeam.jpg');
-    margin: 30px;
+  background-image: url("../../assets/images/backgroundTeam.jpg");
+  margin: 30px;
 }
 
 .CardContainer {
-    display: flex;
+  display: flex;
 }

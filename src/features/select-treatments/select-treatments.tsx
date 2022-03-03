@@ -69,7 +69,7 @@ const SelectTreatments = () => {
       link: Routing.RESULT_PAGE,
       clickable: false,
       actual: false,
-    }
+    },
   ];
 
   const handleInputChange = (event: any) => {
@@ -216,13 +216,17 @@ const SelectTreatments = () => {
           Crear Tratamiento
         </Button>
         <Typography className={styles.warningTreatments}>
-            Máximo 3 tratamientos
-          </Typography>
+          Máximo 3 tratamientos
+        </Typography>
       </div>
       <Grid container className={styles.CardsContainer}>
-        {cards.map((treatment: TreatmentJSON, index: number) =>
-          <TreatmentCard treatment= {treatment} index={index} delete_treatment={deleteTreatment}/>
-        )}
+        {cards.map((treatment: TreatmentJSON, index: number) => (
+          <TreatmentCard
+            treatment={treatment}
+            index={index}
+            delete_treatment={deleteTreatment}
+          />
+        ))}
       </Grid>
       <Button
         color="primary"

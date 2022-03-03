@@ -10,5 +10,5 @@ export const Routing = {
   SIGN_IN: "/sign-in",
   SIGN_UP: "/sign_up",
   SIMULATION_PAGE: "/simulation",
-  RESULT_PAGE: "/result_simulation"
+  RESULT_PAGE: "/result_simulation",
 };

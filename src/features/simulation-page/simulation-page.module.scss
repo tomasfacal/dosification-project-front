@@ -1,4 +1,4 @@
-@import '../../assets/stylesheets/generic-styles.scss';
+@import "../../assets/stylesheets/generic-styles.scss";
 
 .Title {
   color: $brand;
@@ -8,14 +8,14 @@
 .FormContainer {
   margin: 2rem auto;
   align-items: center;
-	display: flex;
-	flex-direction: column;
-	width: 100%;
-	max-width: 1000px;
-	background-color: #FFF;
-	border-radius: 10px;
-	box-shadow: 0 10px 20px 0 rgba(#999, .25);
-	padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1000px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px 0 rgba(#999, 0.25);
+  padding: 3rem;
 }
 
 .CardSimulation {
@@ -61,7 +61,7 @@
   background-color: $success !important;
 }
 
-.SubmitButton[disabled]{
+.SubmitButton[disabled] {
   background-color: $disabled-button-grey !important;
 }
 

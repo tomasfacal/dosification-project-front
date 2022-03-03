@@ -26,5 +26,5 @@ declare interface ResponseResultJSON {
   cycle_duration: number;
   number_of_repetitions: number;
   amount: number;
-  values: number[][]
+  values: number[][];
 }

@@ -1,26 +1,22 @@
-import React, { Fragment, useState, useEffect, useContext } from "react";
+import { Fragment, useState, useEffect, useContext } from "react";
 import styles from "./result-simulation.module.scss";
 import API from "../../networking/api-service";
 import { API_ROUTES } from "../../networking/api-routes";
 import { useSimulationGlobalState } from "../../context/SimulationGlobalState";
 import AuthContext from "../../context/authContext";
 import SimulationGraph from "./line-chart";
-import TreatmentCardResult from "./TreatmentCardResult/treatment_result"
+import TreatmentCardResult from "./TreatmentCardResult/treatment_result";
 import { Routing } from "../../constant/Routing";
 import Breadcrumbs from "../breadcrumbs/breadcrumbs";
-import CircularIndeterminate from "../loading/circular_indeterminate"
-import Typography from '@mui/material/Typography';
-import { Grid} from '@material-ui/core';
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardActions from "@mui/material/CardActions";
-
+import CircularIndeterminate from "../loading/circular_indeterminate";
+import Typography from "@mui/material/Typography";
+import { Grid } from "@material-ui/core";
 
 const ResultSimulation = (props: any) => {
   const { state, setState } = useSimulationGlobalState();
   const [results, setResults] = useState<ResponseResultJSON[]>([]);
   const authCtx = useContext(AuthContext);
-  const [error, setError] = useState<Boolean>(false)
+  const [error, setError] = useState<Boolean>(false);
 
   const breadcrumbs = [
     {
@@ -58,7 +54,7 @@ const ResultSimulation = (props: any) => {
       link: Routing.RESULT_PAGE,
       clickable: false,
       actual: true,
-    }
+    },
   ];
 
   useEffect(() => {
@@ -70,15 +66,13 @@ const ResultSimulation = (props: any) => {
     };
     API.defaults.headers.common["Authorization"] = "Token " + authCtx.token;
 
-    API.post(
-      API_ROUTES.MODEL_DRUGS + state.model_id + "/simulate_dosis",
-      body
-    ).then((res) => {
-      setResults(res.data);
-    })
-    .catch(function (error) {
-      setError(true);
-    });
+    API.post(API_ROUTES.MODEL_DRUGS + state.model_id + "/simulate_dosis", body)
+      .then((res) => {
+        setResults(res.data);
+      })
+      .catch(function (error) {
+        setError(true);
+      });
   }, []);
 
   return (
@@ -87,16 +81,16 @@ const ResultSimulation = (props: any) => {
         <Breadcrumbs values={breadcrumbs} />
       </div>
       <div>
-       {results.length === 0 && !error && ( 
-        <div className={styles.Loading}>
-           {CircularIndeterminate()}
-        </div>)
-        }
-        {results.length === 0 && error && ( 
+        {results.length === 0 && !error && (
+          <div className={styles.Loading}>{CircularIndeterminate()}</div>
+        )}
+        {results.length === 0 && error && (
           <div className={styles.FormContainer}>
-            <Typography>Hubo un error en la simulación, pruebe cambiar los parámetros</Typography>
-          </div>)
-        }
+            <Typography>
+              Hubo un error en la simulación, pruebe cambiar los parámetros
+            </Typography>
+          </div>
+        )}
         {results.length > 0 && (
           <div>
             <div className={styles.FormContainer}>
@@ -104,12 +98,18 @@ const ResultSimulation = (props: any) => {
             </div>
             <Grid container spacing={2}>
               {results.map((result: any, index: number) => (
-                <TreatmentCardResult cycle_duration={result.cycle_duration} number_of_repetitions={result.number_of_repetitions} amount={result.amount} index={index} name={"Treatment " + (index+1)}></TreatmentCardResult>
+                <TreatmentCardResult
+                  cycle_duration={result.cycle_duration}
+                  number_of_repetitions={result.number_of_repetitions}
+                  amount={result.amount}
+                  index={index}
+                  name={"Treatment " + (index + 1)}
+                ></TreatmentCardResult>
               ))}
             </Grid>
           </div>
         )}
-        </div>
+      </div>
     </Fragment>
   );
 };
