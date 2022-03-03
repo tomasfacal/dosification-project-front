@@ -10,47 +10,53 @@ import droccoPhoto from "../../assets/images/drocco.png";
 import { Routing } from "../../constant/Routing";
 import { Button } from "@material-ui/core";
 import patientImage from "../../assets/images/patients.jpg";
+import { useContext } from "react";
+import AuthContext from "../../context/authContext";
 
 const Home = () => {
+  const authCtx = useContext(AuthContext);
+  const isDoctor = authCtx.role === "doctor";
   return (
     <Fragment>
       <Hero />
       <Menubar />
-      <div className={styles.PatientsContainer}>
-        <div className={styles.HomeSectionTitle}>Gestión de Pacientes</div>
-        <div className={styles.PatientsInfo}>
-          <h2>
-            {" "}
-            Finglix provee la gestión de pacientes de una manera sencilla.
-          </h2>
-          <div className={styles.ImageContainer}>
-            <img
-              src={patientImage}
-              alt="ilustracion paciente"
-              className={styles.PatientImage}
-            />
-            <div className={styles.ButtonsContainer}>
-              <Button
-                color="primary"
-                variant="text"
-                component={Link}
-                to={Routing.LIST_PATIENTS}
-              >
-                Ver los pacientes del sistema
-              </Button>
-              <Button
-                color="primary"
-                variant="contained"
-                className={styles.CreatePatientButton}
-                component={Link}
-                to={Routing.CREATE_PATIENT}
-              >
-                Registrar paciente
-              </Button>
+      {isDoctor && (
+        <div className={styles.PatientsContainer}>
+          <div className={styles.HomeSectionTitle}>Gestión de Pacientes</div>
+          <div className={styles.PatientsInfo}>
+            <h2>
+              {" "}
+              Finglix provee la gestión de pacientes de una manera sencilla.
+            </h2>
+            <div className={styles.ImageContainer}>
+              <img
+                src={patientImage}
+                alt="ilustracion paciente"
+                className={styles.PatientImage}
+              />
+              <div className={styles.ButtonsContainer}>
+                <Button
+                  color="primary"
+                  variant="text"
+                  component={Link}
+                  to={Routing.LIST_PATIENTS}
+                >
+                  Ver los pacientes del sistema
+                </Button>
+                <Button
+                  color="primary"
+                  variant="contained"
+                  className={styles.CreatePatientButton}
+                  component={Link}
+                  to={Routing.CREATE_PATIENT}
+                >
+                  Registrar paciente
+                </Button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
       <div className={styles.TeamContainer}>
         <div className={styles.HomeSectionTitle}>Equipo de desarrollo</div>
         <div className={styles.CardContainer}>
