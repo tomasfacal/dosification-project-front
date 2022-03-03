@@ -6,7 +6,7 @@ import CreateCovariates from "../create-covariates/create-covariates";
 import ChooseOutput from "../choose-output/choose-output";
 import { Button } from "@material-ui/core";
 import { Forward } from "@mui/icons-material";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Routing } from "../../constant/Routing";
 import Breadcrumbs from "../breadcrumbs/breadcrumbs";
 import { useSimulationGlobalState } from "../../context/SimulationGlobalState";
@@ -56,7 +56,7 @@ const ObtainModelDrug = (props: any) => {
       link: Routing.RESULT_PAGE,
       clickable: false,
       actual: false,
-    }
+    },
   ];
 
   const fetchCovariatesOutputs = async () => {
@@ -109,7 +109,7 @@ const ObtainModelDrug = (props: any) => {
         <Breadcrumbs values={breadcrumbs} />
       </div>
       <div className={styles.FormContainer}>
-       <h1 className={styles.Title}>Seleccionar covariables y outputs</h1>
+        <h1 className={styles.Title}>Seleccionar covariables y outputs</h1>
         <CreateCovariates
           covariates={covariatesList}
           setValues={handleChangeCovariateValues}

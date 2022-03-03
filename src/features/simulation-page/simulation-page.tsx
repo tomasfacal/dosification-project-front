@@ -52,7 +52,7 @@ const SimulationPage = () => {
       link: Routing.RESULT_PAGE,
       clickable: false,
       actual: false,
-    }
+    },
   ];
 
   const deleteSimulation = (index: number) => {
@@ -92,9 +92,13 @@ const SimulationPage = () => {
             Tratamientos:
           </Typography>
           <Grid container spacing={2}>
-            {cards.map((treatment: TreatmentJSON, index: number) =>
-              <TreatmentCard treatment= {treatment} index={index} delete_treatment={deleteSimulation}/>
-            )}
+            {cards.map((treatment: TreatmentJSON, index: number) => (
+              <TreatmentCard
+                treatment={treatment}
+                index={index}
+                delete_treatment={deleteSimulation}
+              />
+            ))}
           </Grid>
         </div>
         <div className={styles.SimulateButtonContainer}>

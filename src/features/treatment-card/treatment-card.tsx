@@ -1,4 +1,3 @@
-import { Fragment } from "react";
 import styles from "./treatment-card.module.scss";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";

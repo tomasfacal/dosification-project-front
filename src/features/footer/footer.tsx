@@ -15,7 +15,7 @@ const Footer = () => {
             <Typography variant="h6" color="inherit" component="div">
               Proyecto de grado - Facultad de Ingeniería UdelaR
             </Typography>
-            <img src={logoFing} alt="Logo FING" className={styles.logoFing}/>
+            <img src={logoFing} alt="Logo FING" className={styles.logoFing} />
             <div className={styles.legalContainer}>
               <Typography variant="h6" color="inherit" component="div">
                 Términos y Condiciones

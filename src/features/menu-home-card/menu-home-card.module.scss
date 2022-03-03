@@ -1,33 +1,33 @@
-@import '../../assets/stylesheets/generic-styles.scss';
+@import "../../assets/stylesheets/generic-styles.scss";
 
 .CardTextContainer {
-    padding: 10px;
-    color: #e2e9f7;
-    p {
-      font-size: 18px;
-    }
+  padding: 10px;
+  color: #e2e9f7;
+  p {
+    font-size: 18px;
   }
-  
-  .CardIcon {
-    color: #e2e9f7;
-    height: 50px !important;
-    width: 100% !important;
-  }
-  
-  .Card1 {
-    padding: 20px;
-    flex: 1;
-    background-color: #afbddb;
-  }
-  
-  .Card2 {
-    padding: 20px;
-    flex: 1;
-    background-color: #8892ac;
-  }
-  
-  .Card3 {
-    padding: 20px;
-    flex: 1;
-    background-color: #656d80;
-  }
+}
+
+.CardIcon {
+  color: #e2e9f7;
+  height: 50px !important;
+  width: 100% !important;
+}
+
+.Card1 {
+  padding: 20px;
+  flex: 1;
+  background-color: #afbddb;
+}
+
+.Card2 {
+  padding: 20px;
+  flex: 1;
+  background-color: #8892ac;
+}
+
+.Card3 {
+  padding: 20px;
+  flex: 1;
+  background-color: #656d80;
+}
