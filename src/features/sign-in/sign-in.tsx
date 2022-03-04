@@ -34,7 +34,7 @@ export default function SignIn() {
 
     API.post(API_ROUTES.SIGN_IN)
       .then((res) => {
-        authCtx.login(res.data.token, res.data.role);
+        authCtx.login(res.data.token, res.data.role, res.data.name);
         navigation("/");
       })
       .catch(function (error) {
