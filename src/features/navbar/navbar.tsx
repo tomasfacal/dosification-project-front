@@ -7,7 +7,7 @@ import styles from "./navbar.module.scss";
 import { FormControl, Link } from "@material-ui/core";
 import NavbarMenu from "./navmenu/nav-menu"
 import AuthContext from "../../context/authContext";
-import React, { useContext } from "react";
+import { useContext } from "react";
 import NavbarLogin from "./navmenu/navbar-login"
 
 const Navbar = () => {
@@ -20,7 +20,9 @@ const Navbar = () => {
             <div className={styles.Icon}>
               <MedicalServicesIcon className={styles.MedicalIcon} />
               <Typography variant="h6" color="inherit" component="div">
-                FINGLIX
+                <Link href="/" underline="none" color="inherit">
+                  {"FINGLIX"}
+                </Link>
               </Typography>
             </div>
             <div>
