@@ -17,8 +17,12 @@ const ObtainModelDrug = (props: any) => {
 
   const [covariatesList, setCovariatesList] = useState([] as string[]);
   const [outputsList, setOutputsList] = useState([] as string[]);
-  const [covariatesValues, setCovariatesValues] = useState(state.covariates ? state.covariates : {});
-  const [outputValue, setOutputValue] = useState(state.output ? state.output : "");
+  const [covariatesValues, setCovariatesValues] = useState(
+    state.covariates ? state.covariates : {}
+  );
+  const [outputValue, setOutputValue] = useState(
+    state.output ? state.output : ""
+  );
 
   const breadcrumbs = [
     {
@@ -67,13 +71,15 @@ const ObtainModelDrug = (props: any) => {
       setCovariatesList(response.data.variables);
       setOutputsList(response.data.outputs);
 
-      let covariates_list = {} as any;
-      {
-        covariatesList.map(
-          (covariate: string) => (covariates_list[covariate] = "")
-        );
+      if (covariatesValues === {}) {
+        let covariates_list = {} as any;
+        {
+          covariatesList.map(
+            (covariate: string) => (covariates_list[covariate] = "")
+          );
+        }
+        setCovariatesValues(covariates_list);
       }
-      setCovariatesValues(covariates_list);
     } catch (error) {
       console.log("error", error);
     }
