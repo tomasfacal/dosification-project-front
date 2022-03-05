@@ -18,7 +18,7 @@ const TreatmentCardResult = (props: any) => {
             Número de repeticiones: {props.number_of_repetitions}
           </Typography>
           <Typography className={styles.Carditem}>
-            Cantidad: {props.amount}
+            Cantidad: {props.quantity}
           </Typography>
         </CardContent>
       </Card>

@@ -68,6 +68,7 @@ const ResultSimulation = (props: any) => {
     API.post(API_ROUTES.MODEL_DRUGS + state.model_id + "/simulate_dosis", body)
       .then((res) => {
         setResults(res.data);
+        setState({})
       })
       .catch(function (error) {
         setError(true);
@@ -100,7 +101,7 @@ const ResultSimulation = (props: any) => {
                 <TreatmentCardResult
                   cycle_duration={result.cycle_duration}
                   number_of_repetitions={result.number_of_repetitions}
-                  amount={result.amount}
+                  quantity={result.quantity}
                   index={index}
                   name={"Treatment " + (index + 1)}
                 ></TreatmentCardResult>

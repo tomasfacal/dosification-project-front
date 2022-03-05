@@ -7,9 +7,11 @@ import {
 } from "@material-ui/core";
 import { useState, Fragment } from "react";
 import styles from "./choose-output.module.scss";
+import { useSimulationGlobalState } from "../../context/SimulationGlobalState";
 
 const ChooseOutput = (props: any) => {
-  const [chooseOutput, setChooseOutput] = useState("");
+  const { state, setState } = useSimulationGlobalState();
+  const [chooseOutput, setChooseOutput] = useState(state.output ? state.output : "");
 
   const handleChange = (event: any) => {
     setChooseOutput(event.target.value);

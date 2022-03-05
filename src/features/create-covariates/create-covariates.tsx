@@ -1,8 +1,10 @@
 import { Fragment } from "react";
 import styles from "./create-covariates.module.scss";
 import { TextField, Grid } from "@material-ui/core";
+import { useSimulationGlobalState } from "../../context/SimulationGlobalState";
 
 const CreateCovariates = (props: any) => {
+  const { state, setState } = useSimulationGlobalState();
   const handleInputChange = (event: any) => {
     props.setValues(event.target.name, event.target.value);
   };
@@ -19,6 +21,7 @@ const CreateCovariates = (props: any) => {
                   label={covariate}
                   name={covariate}
                   error={covariate === ""}
+                  defaultValue = {(state.covariates && state.covariates[covariate]) ? state.covariates[covariate] : "" }
                   helperText={
                     covariate === "" ? { covariate } + "requerido" : " "
                   }

@@ -17,8 +17,8 @@ const ObtainModelDrug = (props: any) => {
 
   const [covariatesList, setCovariatesList] = useState([] as string[]);
   const [outputsList, setOutputsList] = useState([] as string[]);
-  const [covariatesValues, setCovariatesValues] = useState({} as any);
-  const [outputValue, setOutputValue] = useState("");
+  const [covariatesValues, setCovariatesValues] = useState(state.covariates ? state.covariates : {});
+  const [outputValue, setOutputValue] = useState(state.output ? state.output : "");
 
   const breadcrumbs = [
     {
