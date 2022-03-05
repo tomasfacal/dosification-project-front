@@ -20,7 +20,7 @@ const Home = () => {
     <Fragment>
       <Hero />
       <Menubar />
-      {isDoctor && (
+      {isDoctor && authCtx.isLoggedIn && (
         <div className={styles.PatientsContainer}>
           <div className={styles.HomeSectionTitle}>Gestión de Pacientes</div>
           <div className={styles.PatientsInfo}>
