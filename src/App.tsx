@@ -24,7 +24,10 @@ function App() {
       <header className="App-header">
         <Routes>
           <Route path={Routing.HOME} element={<Home />} />
-          <Route path={Routing.CREATE_PATIENT} element={<CreatePatient />} />
+          <Route
+            path={Routing.CREATE_PATIENT}
+            element={<DoctorPrivateRoute component={CreatePatient} />}
+          />
           <Route
             path={Routing.LIST_PATIENTS}
             element={<DoctorPrivateRoute component={PatientsPage} />}
@@ -35,7 +38,7 @@ function App() {
           />
           <Route
             path={Routing.PATIENT + `/:document_number`}
-            element={<Patient />}
+            element={<DoctorPrivateRoute component={Patient} />}
           />
           <Route
             path={Routing.SELECT_PATIENT_MODEL}
