@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
@@ -15,7 +15,7 @@ import { API_ROUTES } from "../../../networking/api-routes";
 const NavbarMenu = () => {
   const authCtx = useContext(AuthContext);
   const navigation = useNavigate();
-  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
+  const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
