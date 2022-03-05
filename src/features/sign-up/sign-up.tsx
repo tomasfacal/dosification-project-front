@@ -20,8 +20,8 @@ import {
 } from "@mui/material";
 import { API_ROUTES } from "../../networking/api-routes";
 import { useNavigate } from "react-router-dom";
-import API from "../../networking/api-service";
 import { Routing } from "../../constant/Routing";
+import axios from "axios";
 
 const theme = createTheme();
 
@@ -94,6 +94,11 @@ export default function SignUp() {
       speciality: data.speciality,
       job: data.job,
     };
+
+    const API = axios.create({
+      baseURL: `http://localhost:8000/api/`,
+    });
+
     API.post(API_ROUTES.SIGN_UP, user)
       .then((res) => {
         alert(
