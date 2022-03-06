@@ -7,11 +7,12 @@ const customAxios = axios.create({
 
 const requestHandler = ((request:any) => {
     const token = window.localStorage.getItem('token')
-    if (token === undefined) {
+    if (window.location.pathname === '/sign-in' || window.location.pathname === '/sign-up') {
+      return request;
+    } else {
+      request.headers.Authorization = "Token " + token;
       return request;
     }
-    request.headers.Authorization = "Token " + token;
-    return request;
 });
 
 const responseHandler = ((response:any) => {
