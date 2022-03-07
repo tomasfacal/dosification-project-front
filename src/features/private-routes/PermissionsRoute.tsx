@@ -1,16 +1,23 @@
 import ErrorPage from "../error_pages/error_page";
 import AuthContext from "../../context/authContext";
 import { useContext } from "react";
+import { Navigate } from "react-router-dom";
+import { Routing } from "../../constant/Routing";
 
 interface Props {
   component: React.ComponentType;
+  genericPage: boolean;
 }
 
-export const DoctorPrivateRoute: React.FC<Props> = ({
+export const PermissionsRoute: React.FC<Props> = ({
   component: RouteComponent,
+  genericPage
 }) => {
   const authCtx = useContext(AuthContext);
-  if (authCtx.role === "doctor") {
+  if (!authCtx.isLoggedIn) {
+    return <Navigate to={Routing.SIGN_IN} replace={true} />;
+  }
+  if (genericPage || authCtx.role === "doctor") {
     return <RouteComponent />;
   } else {
     return (

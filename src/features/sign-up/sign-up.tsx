@@ -40,7 +40,7 @@ export default function SignUp() {
   });
 
   const handleInputChange = (event: any) => {
-    if (event.target.name == "type") setType(event.target.value);
+    if (event.target.name === "type") setType(event.target.value);
     setData({
       ...data,
       [event.target.name]: event.target.value,
@@ -73,10 +73,10 @@ export default function SignUp() {
     <TextField
       margin="normal"
       fullWidth
-      id={type == "doctor" ? "speciality" : "job"}
-      label={type == "doctor" ? "Especialidad" : "Cargo"}
-      error={type == "doctor" ? data.speciality === "" : data.job === ""}
-      name={type == "doctor" ? "speciality" : "job"}
+      id={type === "doctor" ? "speciality" : "job"}
+      label={type === "doctor" ? "Especialidad" : "Cargo"}
+      error={type === "doctor" ? data.speciality === "" : data.job === ""}
+      name={type === "doctor" ? "speciality" : "job"}
       autoFocus
       onChange={handleInputChange}
     />

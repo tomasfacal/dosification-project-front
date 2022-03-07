@@ -15,7 +15,7 @@ import SignUp from "./features/sign-up/sign-up";
 import SimulationPage from "./features/simulation-page/simulation-page";
 import ResultSimulation from "./features/result-simulation/result-simulation";
 import Home from "./features/home/home";
-import { DoctorPrivateRoute } from "./features/private-routes/DoctorPrivateRoute";
+import { PermissionsRoute } from "./features/private-routes/PermissionsRoute";
 
 function App() {
   return (
@@ -24,33 +24,68 @@ function App() {
       <header className="App-header">
         <Routes>
           <Route path={Routing.HOME} element={<Home />} />
+          <Route path={Routing.SIGN_IN} element={<SignIn />} />
+          <Route path={Routing.SIGN_UP} element={<SignUp />} />
           <Route
             path={Routing.CREATE_PATIENT}
-            element={<DoctorPrivateRoute component={CreatePatient} />}
+            element={
+              <PermissionsRoute component={CreatePatient} genericPage={false} />
+            }
           />
           <Route
             path={Routing.LIST_PATIENTS}
-            element={<DoctorPrivateRoute component={PatientsPage} />}
-          />
-          <Route
-            path={Routing.MODEL_DRUG}
-            element={<ObtainModelDrug model_drug={3} />}
+            element={
+              <PermissionsRoute component={PatientsPage} genericPage={false} />
+            }
           />
           <Route
             path={Routing.PATIENT + `/:document_number`}
-            element={<DoctorPrivateRoute component={Patient} />}
+            element={
+              <PermissionsRoute component={Patient} genericPage={false} />
+            }
+          />
+          <Route
+            path={Routing.MODEL_DRUG}
+            element={
+              <PermissionsRoute
+                component={ObtainModelDrug}
+                genericPage={true}
+              />
+            }
           />
           <Route
             path={Routing.SELECT_PATIENT_MODEL}
-            element={<SelectPatientModel />}
+            element={
+              <PermissionsRoute
+                component={SelectPatientModel}
+                genericPage={true}
+              />
+            }
           />
           <Route
             path={Routing.SELECT_TREATMENTS}
-            element={<SelectTreatments />}
+            element={
+              <PermissionsRoute
+                component={SelectTreatments}
+                genericPage={true}
+              />
+            }
           />
-          <Route path={Routing.SIGN_IN} element={<SignIn />} />
-          <Route path={Routing.SIGN_UP} element={<SignUp />} />
-          <Route path={Routing.SIMULATION_PAGE} element={<SimulationPage />} />
+          <Route
+            path={Routing.SIMULATION_PAGE}
+            element={
+              <PermissionsRoute component={SimulationPage} genericPage={true} />
+            }
+          />
+          <Route
+            path={Routing.RESULT_PAGE}
+            element={
+              <PermissionsRoute
+                component={ResultSimulation}
+                genericPage={true}
+              />
+            }
+          />
           <Route
             path="*"
             element={
@@ -60,7 +95,6 @@ function App() {
               />
             }
           />
-          <Route path={Routing.RESULT_PAGE} element={<ResultSimulation />} />
         </Routes>
       </header>
       <Footer />
