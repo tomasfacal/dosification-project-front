@@ -66,7 +66,7 @@ const ObtainModelDrug = (props: any) => {
   const fetchCovariatesOutputs = async () => {
     try {
       const response = await API.get(
-        API_ROUTES.MODEL_DRUGS + props.model_drug + "/"
+        API_ROUTES.MODEL_DRUGS + state.model_id + "/"
       );
       setCovariatesList(response.data.variables);
       setOutputsList(response.data.outputs);

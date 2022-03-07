@@ -11,4 +11,6 @@ export const Routing = {
   SIGN_UP: "/sign_up",
   SIMULATION_PAGE: "/simulation",
   RESULT_PAGE: "/result_simulation",
+  UPLOAD_OBSERVATION_STEP_1: "/upload-observation-step1",
+  UPLOAD_OBSERVATION_STEP_2: "/upload-observation-step2",
 };
