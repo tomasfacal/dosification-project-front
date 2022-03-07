@@ -9,7 +9,7 @@ const API_ROUTES = {
   CREATE_PATIENT: "patients/",
   SIGN_IN: "auth/login/",
   SIGN_UP: "users/",
-  SIGN_OUT: "auth/logout"
+  SIGN_OUT: "auth/logout/"
 };
 
 export { API_ROUTES };

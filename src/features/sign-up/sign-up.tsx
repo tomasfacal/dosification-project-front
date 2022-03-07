@@ -20,8 +20,8 @@ import {
 } from "@mui/material";
 import { API_ROUTES } from "../../networking/api-routes";
 import { useNavigate } from "react-router-dom";
-import API from "../../networking/api-service";
 import { Routing } from "../../constant/Routing";
+import API from "../../networking/api-service";
 
 const theme = createTheme();
 
@@ -94,6 +94,7 @@ export default function SignUp() {
       speciality: data.speciality,
       job: data.job,
     };
+
     API.post(API_ROUTES.SIGN_UP, user)
       .then((res) => {
         alert(
