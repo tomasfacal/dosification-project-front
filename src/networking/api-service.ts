@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Routing } from "../constant/Routing";
 
 
 const customAxios = axios.create({
@@ -7,11 +8,12 @@ const customAxios = axios.create({
 
 const requestHandler = ((request:any) => {
     const token = window.localStorage.getItem('token')
-    if (token === undefined) {
+    if (window.location.pathname === Routing.SIGN_IN  || window.location.pathname === Routing.SIGN_UP) {
+      return request;
+    } else {
+      request.headers.Authorization = "Token " + token;
       return request;
     }
-    request.headers.Authorization = "Token " + token;
-    return request;
 });
 
 const responseHandler = ((response:any) => {

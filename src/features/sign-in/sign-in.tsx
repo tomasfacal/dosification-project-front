@@ -15,7 +15,6 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import AuthContext from "../../context/authContext";
 import Error from "../error/error";
-import axios from "axios";
 
 const theme = createTheme();
 
@@ -29,10 +28,6 @@ export default function SignIn() {
     const data = new FormData(event.currentTarget);
 
     const base64 = require("base-64");
-
-    const API = axios.create({
-      baseURL: `http://localhost:8000/api/`,
-    });
 
     API.defaults.headers.common["Authorization"] =
       "Basic " + base64.encode(data.get("email") + ":" + data.get("password"));
