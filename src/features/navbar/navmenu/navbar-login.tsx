@@ -8,9 +8,15 @@ const NavbarLogin = () => {
     const redirectLogin = () => {
         navigation(Routing.SIGN_IN);
     };
+    const redirectSignUp = () => {
+        navigation(Routing.SIGN_UP);
+    };
     
     return (
+        <>
+        <Button onClick={redirectSignUp} color="inherit">Registrarse</Button>
         <Button onClick={redirectLogin} color="inherit">Login</Button>
+        </>
     )
 }
 
