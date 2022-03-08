@@ -6,13 +6,16 @@ import { BrowserRouter } from "react-router-dom";
 import * as serviceWorker from "./serviceWorker";
 import { AuthContextProvider } from "./context/authContext";
 import { SimulationGlobalStateProvider } from "./context/SimulationGlobalState";
+import { ObservationsGlobalStateProvider } from "./context/ObservationsGlobalState";
 
 ReactDOM.render(
   <React.StrictMode>
     <AuthContextProvider>
       <BrowserRouter>
         <SimulationGlobalStateProvider>
-          <App />
+          <ObservationsGlobalStateProvider>
+            <App />
+          </ObservationsGlobalStateProvider>
         </SimulationGlobalStateProvider>
       </BrowserRouter>
     </AuthContextProvider>

@@ -16,6 +16,8 @@ import SimulationPage from "./features/simulation-page/simulation-page";
 import ResultSimulation from "./features/result-simulation/result-simulation";
 import Home from "./features/home/home";
 import { PermissionsRoute } from "./features/private-routes/PermissionsRoute";
+import UploadObservationStep1 from "./features/upload-observation-step1/upload-observation-step1";
+import UploadObservationStep2 from "./features/upload-observation-step2/upload-observation-step2";
 
 function App() {
   return (
@@ -32,11 +34,20 @@ function App() {
               <PermissionsRoute component={CreatePatient} genericPage={false} />
             }
           />
+          <Route path={Routing.MODEL_DRUG} element={<ObtainModelDrug />} />
           <Route
             path={Routing.LIST_PATIENTS}
             element={
               <PermissionsRoute component={PatientsPage} genericPage={false} />
             }
+          />
+          <Route
+            path={Routing.UPLOAD_OBSERVATION_STEP_1}
+            element={<UploadObservationStep1 />}
+          />
+          <Route
+            path={Routing.UPLOAD_OBSERVATION_STEP_2}
+            element={<UploadObservationStep2 />}
           />
           <Route
             path={Routing.PATIENT + `/:document_number`}

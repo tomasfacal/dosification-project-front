@@ -37,11 +37,11 @@ const Home = () => {
               <div className={styles.ButtonsContainer}>
                 <Button
                   color="primary"
-                  variant="text"
+                  variant="contained"
                   component={Link}
-                  to={Routing.LIST_PATIENTS}
+                  to={Routing.UPLOAD_OBSERVATION_STEP_1}
                 >
-                  Ver los pacientes del sistema
+                  Agregar nueva observación
                 </Button>
                 <Button
                   color="primary"
@@ -51,6 +51,14 @@ const Home = () => {
                   to={Routing.CREATE_PATIENT}
                 >
                   Registrar paciente
+                </Button>
+                <Button
+                  color="primary"
+                  variant="text"
+                  component={Link}
+                  to={Routing.LIST_PATIENTS}
+                >
+                  Ver los pacientes del sistema
                 </Button>
               </div>
             </div>
