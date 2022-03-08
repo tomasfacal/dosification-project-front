@@ -7,16 +7,17 @@ const Menubar = () => {
     <Fragment>
       <div className={styles.CardContainer}>
         <MenuHomeCard
-          text="Dosifica de una manera mas precisa a tus pacientes
-                con esta herramienta tan potente"
+          text="Dosifica de una manera más precisa a tus pacientes
+                en tiempo real"
           class="Card1"
         />
         <MenuHomeCard
-          text="Monitorear a los pacientes ahora es mucho mas facil"
+          text="La monitorización de los pacientes es más sencilla"
           class="Card2"
         />
         <MenuHomeCard
-          text="Ayuda a farmaceuticos/doctores dandoles tranquilidad en esta tarea tan complicada"
+          text="Ayuda a farmaceuticos/doctores a encontrar las dosis
+                correctas según cada paciente"
           class="Card3"
         />
       </div>
