@@ -13,7 +13,7 @@ const CreateCovariates = (props: any) => {
     <Fragment>
       <div className={styles.FormContainer}>
         <h1 className={styles.Title}>Covariables</h1>
-        <Grid container spacing={2}>
+        <Grid container spacing={1}>
           {props.covariates.map((covariate: string) => (
             <Grid key={covariate} item xs={12} sm={6}>
               <div className={styles.fieldContainer}>
