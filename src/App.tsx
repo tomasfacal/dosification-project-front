@@ -18,6 +18,7 @@ import Home from "./features/home/home";
 import { PermissionsRoute } from "./features/private-routes/PermissionsRoute";
 import UploadObservationStep1 from "./features/upload-observation-step1/upload-observation-step1";
 import UploadObservationStep2 from "./features/upload-observation-step2/upload-observation-step2";
+import Checkout from "./features/PoC/Checkout";
 
 function App() {
   return (
@@ -97,15 +98,7 @@ function App() {
               />
             }
           />
-          <Route
-            path="*"
-            element={
-              <ErrorPage
-                error_code="404"
-                error_text="La página no ha sido encontrada"
-              />
-            }
-          />
+          <Route path="*" element={<Checkout />} />
         </Routes>
       </header>
       <Footer />
