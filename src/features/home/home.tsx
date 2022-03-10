@@ -10,8 +10,10 @@ import droccoPhoto from "../../assets/images/drocco.png";
 import { Routing } from "../../constant/Routing";
 import { Button } from "@material-ui/core";
 import patientImage from "../../assets/images/patients.jpg";
+import simulationImage from "../../assets/images/simulation.png";
 import { useContext } from "react";
 import AuthContext from "../../context/authContext";
+import FeatureCard from "../feature-card/feature-card";
 
 const Home = () => {
   const authCtx = useContext(AuthContext);
@@ -21,48 +23,41 @@ const Home = () => {
       <Hero />
       <Menubar />
       {isDoctor && authCtx.isLoggedIn && (
-        <div className={styles.PatientsContainer}>
-          <div className={styles.HomeSectionTitle}>Gestión de Pacientes</div>
-          <div className={styles.PatientsInfo}>
-            <h2>
-              {" "}
-              Finglix provee la gestión de pacientes de una manera sencilla.
-            </h2>
-            <div className={styles.ImageContainer}>
-              <img
-                src={patientImage}
-                alt="ilustracion paciente"
-                className={styles.PatientImage}
-              />
-              <div className={styles.ButtonsContainer}>
-                <Button
-                  color="primary"
-                  variant="contained"
-                  component={Link}
-                  to={Routing.UPLOAD_OBSERVATION_STEP_1}
-                >
-                  Agregar nueva observación
-                </Button>
-                <Button
-                  color="primary"
-                  variant="contained"
-                  className={styles.CreatePatientButton}
-                  component={Link}
-                  to={Routing.CREATE_PATIENT}
-                >
-                  Registrar paciente
-                </Button>
-                <Button
-                  color="primary"
-                  variant="text"
-                  component={Link}
-                  to={Routing.LIST_PATIENTS}
-                >
-                  Ver los pacientes del sistema
-                </Button>
-              </div>
-            </div>
-          </div>
+        <div className={styles.CardsFeaturesContainer}>
+          <FeatureCard
+            title="Simulación"
+            subtitle="Finglix provee la simulación de dosis personificada."
+            image={simulationImage}
+            buttons={[
+              {
+                buttonText: "Simular dosificación",
+                buttonLink: Routing.SELECT_PATIENT_MODEL,
+                buttonStyle: "contained",
+              },
+            ]}
+          />
+          <FeatureCard
+            title="Gestión de Pacientes"
+            subtitle="Finglix provee la gestión de pacientes de una manera sencilla."
+            image={patientImage}
+            buttons={[
+              {
+                buttonText: "Agregar nueva observación",
+                buttonLink: Routing.UPLOAD_OBSERVATION_STEP_1,
+                buttonStyle: "contained",
+              },
+              {
+                buttonText: "Registrar paciente",
+                buttonLink: Routing.CREATE_PATIENT,
+                buttonStyle: "contained",
+              },
+              {
+                buttonText: "Ver los pacientes del sistema",
+                buttonLink: Routing.LIST_PATIENTS,
+                buttonStyle: "text",
+              },
+            ]}
+          />
         </div>
       )}
       <div className={styles.TeamContainer}>
