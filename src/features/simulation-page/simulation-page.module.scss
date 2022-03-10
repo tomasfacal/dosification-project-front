@@ -49,6 +49,8 @@
   font-weight: bold;
   text-decoration: underline;
   margin-bottom: 10px;
+  color: $brand-dark;
+  padding-bottom: 3%;
 }
 
 .DeleteButton {
@@ -67,4 +69,17 @@
 
 .SimulateButtonContainer {
   margin: 12px;
+}
+
+.CardCovariates{
+  width: 250px;
+  margin: auto;
+}
+
+.covariateStyle {
+    color: $brand-dark;
+}
+
+.CardsContainer {
+  margin-top:5%;
 }

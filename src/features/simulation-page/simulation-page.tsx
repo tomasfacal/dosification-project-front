@@ -1,5 +1,7 @@
 import { Fragment, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
 import styles from "./simulation-page.module.scss";
 import { Button, Grid, Typography } from "@material-ui/core";
 import EqualizerIcon from "@mui/icons-material/Equalizer";
@@ -86,6 +88,22 @@ const SimulationPage = () => {
             <AnalyticsIcon />
             Output: {state.output}
           </Typography>
+        </div>
+        <div>
+          <Typography className={styles.Treatmentsubtitle}>
+            Covariables:
+          </Typography>
+          <Grid container spacing={2}>
+            <Card className={styles.CardCovariates}>
+              <CardContent>
+                {Object.keys(state.covariates).map((innerAttr, index) => {
+                  return (
+                    <Typography className={styles.covariateStyle}>{innerAttr}:  {state.covariates[innerAttr]}</Typography>
+                  )})
+                }
+              </CardContent>
+            </Card>
+          </Grid>
         </div>
         <div className={styles.CardsContainer}>
           <Typography className={styles.Treatmentsubtitle}>

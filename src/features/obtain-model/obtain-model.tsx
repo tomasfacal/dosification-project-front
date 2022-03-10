@@ -115,23 +115,24 @@ const ObtainModelDrug = (props: any) => {
         <Breadcrumbs values={breadcrumbs} />
       </div>
       <div className={styles.FormContainer}>
-        <h1 className={styles.Title}>Seleccionar covariables y outputs</h1>
-        <CreateCovariates
-          covariates={covariatesList}
-          setValues={handleChangeCovariateValues}
-        />
-        <ChooseOutput
-          outputs={outputsList}
-          setValue={handleChangeOutputValue}
-        />
+        <div>
+          <CreateCovariates
+            covariates={covariatesList}
+            setValues={handleChangeCovariateValues}
+          />
+          <ChooseOutput
+            outputs={outputsList}
+            setValue={handleChangeOutputValue}
+          />
+        </div>
         <div className={styles.ButonContainer}>
-          <Button
-            color="primary"
-            variant="contained"
-            onClick={handleNext}
-            className={styles.SubmitButton}
-          >
-            <Forward />
+            <Button
+              color="primary"
+              variant="contained"
+              onClick={handleNext}
+              className={styles.SubmitButton}
+            >
+              <Forward />
             Siguiente
           </Button>
         </div>

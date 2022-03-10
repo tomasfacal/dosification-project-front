@@ -199,24 +199,37 @@ const SelectTreatments = () => {
             </div>
           </Grid>
         </Grid>
-        <Button
-          color="primary"
-          variant="contained"
-          onClick={createTreatment}
-          className={styles.CreateTreatmentButton}
-          disabled={
-            !validateFields(
-              datos.cycle_duration,
-              datos.number_of_repetitions,
-              datos.quantity
-            )
-          }
-        >
-          <AddCircleIcon className={styles.AddTreatmentIcon} />
-          Crear Tratamiento
-        </Button>
+        <div className={styles.ButtonContainer}>
+          <Button
+            color="primary"
+            variant="contained"
+            onClick={createTreatment}
+            className={styles.CreateTreatmentButton}
+            disabled={
+              !validateFields(
+                datos.cycle_duration,
+                datos.number_of_repetitions,
+                datos.quantity
+              )
+            }
+          >
+            <AddCircleIcon className={styles.AddTreatmentIcon} />
+            <div className={styles.TextButton}>Crear Tratamiento</div>
+          </Button>
+          <Button
+              color="primary"
+              variant="contained"
+              onClick={handleSubmit}
+              className={styles.SubmitButton}
+              disabled={cards.length === 0}
+            >
+              <Forward className={styles.AddTreatmentIcon} />
+              <div className={styles.TextButton}>Siguiente</div>
+          </Button>
+
+        </div>
         <Typography className={styles.warningTreatments}>
-          Máximo 3 tratamientos
+          * Máximo 3 tratamientos
         </Typography>
       </div>
       <Grid container className={styles.CardsContainer}>
@@ -228,16 +241,6 @@ const SelectTreatments = () => {
           />
         ))}
       </Grid>
-      <Button
-        color="primary"
-        variant="contained"
-        onClick={handleSubmit}
-        className={styles.SubmitButton}
-        disabled={cards.length === 0}
-      >
-        <Forward className={styles.AddTreatmentIcon} />
-        Siguiente
-      </Button>
     </Fragment>
   );
 };

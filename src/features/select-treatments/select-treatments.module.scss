@@ -8,8 +8,7 @@
 // I have to set margin as important due to materialUi styles was set as preference
 // TODO: Check a better practice to this (maybe set as inline style)
 .CreateTreatmentButton {
-  width: 50%;
-  margin: auto !important;
+  width:45%;
 }
 
 .FormContainer {
@@ -51,14 +50,27 @@
 }
 
 .warningTreatments {
-  font-size: $font-size-body-big;
+  font-size: 14px !important;
+  color: $brand;
+  text-align: left;
 }
-
+.TextButton{
+  font-size: 12px !important;
+}
 .SubmitButton {
-  margin: 20px !important;
   background-color: $success !important;
+  width:45%
 }
 
 .SubmitButton[disabled] {
   background-color: $disabled-button-grey !important;
+  font-size: 15px !important;
+}
+
+.ButtonContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 18%;
+  height: 11%;
 }
