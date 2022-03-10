@@ -1,0 +1,11 @@
+@import "../../assets/stylesheets/generic-styles.scss";
+
+.error {
+  color: $danger;
+  padding-top: 5px;
+}
+
+.success {
+  color: $success;
+  padding-top: 5px;
+}

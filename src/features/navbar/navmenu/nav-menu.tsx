@@ -41,7 +41,7 @@ const NavbarMenu = () => {
 
   return (
     <Box sx={{ flexGrow: 0 }}>
-      <Tooltip title="Open settings">
+      <Tooltip title={"Ver opciones"}>
         <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
           <Avatar alt={authCtx.name} src="/static/images/avatar/2.jpg" />
         </IconButton>
