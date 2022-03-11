@@ -18,6 +18,7 @@ import { API_ROUTES } from "../../networking/api-routes";
 import Error from "../error/error";
 import Breadcrumbs from "../breadcrumbs/breadcrumbs";
 import { Routing } from "../../constant/Routing";
+import patient from "../../assets/images/patient.png";
 
 const CreatePatient = () => {
   const [datos, setData] = useState({
@@ -97,7 +98,11 @@ const CreatePatient = () => {
         <Breadcrumbs values={breadcrumbs} />
       </div>
       <div className={styles.FormContainer}>
-        <h1 className={styles.Title}>Crear Paciente</h1>
+        <img
+            src={patient}
+            alt="ilustracion paciente"
+            className={styles.PatientImage}
+          />
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6}>
             <div className={styles.fieldContainer}>
