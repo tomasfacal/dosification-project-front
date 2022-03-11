@@ -7,6 +7,10 @@ import InputPatient from "./input_patient";
 import { useParams } from "react-router-dom";
 import Breadcrumbs from "../breadcrumbs/breadcrumbs";
 import { Routing } from "../../constant/Routing";
+import { useNavigate } from "react-router-dom";
+import { useObservationsGlobalState } from "../../context/ObservationsGlobalState";
+import male from "../../assets/images/male.png";
+import female from "../../assets/images/female.png";
 
 const Patient = () => {
   const [datos, setData] = useState({
@@ -23,6 +27,8 @@ const Patient = () => {
   });
 
   const { document_number } = useParams();
+  const navigation = useNavigate();
+  const { state, setState } = useObservationsGlobalState();
 
   const breadcrumbs = [
     {
@@ -101,13 +107,28 @@ const Patient = () => {
     });
   };
 
+  const redirectObservation = () => {
+    setState((prev) => ({
+      ...prev,
+      document_number: parseInt(datos.document_number),
+      model_id: 0,
+      model_name: "",
+    }));
+    navigation(Routing.UPLOAD_OBSERVATION_STEP_1);
+};
+
   return (
     <Fragment>
       <div>
         <Breadcrumbs values={breadcrumbs} />
       </div>
       <div className={styles.FormContainer}>
-        <h1 className={styles.Title}>Paciente</h1>
+        <img
+          src={datos.sex === "F" ? female : male}
+          alt="ilustracion paciente"
+          className={styles.PatientImage}
+        />
+        <h1 className={styles.Title}>{datos.first_name} {datos.last_name}</h1>
         <Grid container spacing={2}>
           <Grid item xs={12} sm={12}>
             <InputPatient
@@ -158,6 +179,14 @@ const Patient = () => {
             className={styles.SubmitButton}
           >
             Guardar
+          </Button>
+          <Button
+            color="primary"
+            variant="outlined"
+            onClick={redirectObservation}
+            className={styles.SubmitButton}
+          >
+            Agregar observación
           </Button>
         </div>
       </div>

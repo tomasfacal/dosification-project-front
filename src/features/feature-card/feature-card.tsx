@@ -1,6 +1,5 @@
 import { Fragment } from "react";
 import styles from "./feature-card.module.scss";
-import { Routing } from "../../constant/Routing";
 import { Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
 
