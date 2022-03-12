@@ -13,6 +13,8 @@ import { useNavigate } from "react-router-dom";
 import { Routing } from "../../constant/Routing";
 import API from "../../networking/api-service";
 import AuthContext from "../../context/authContext";
+import { Stack } from "@mui/material";
+import styles from "./edit-user-info.module.scss";
 
 const theme = createTheme();
 
@@ -30,16 +32,6 @@ export default function EditUserInfo() {
     job: authCtx.job,
   });
 
-  const [editable, setEditable] = useState({
-    first_name: false,
-    last_name: false,
-    email: false,
-    phone_number: false,
-    type: false,
-    speciality: false,
-    job: false,
-  });
-
   const handleInputChange = (event: any) => {
     setData({
       ...data,
@@ -50,25 +42,32 @@ export default function EditUserInfo() {
   const handleSubmit = (event: any) => {
     event.preventDefault();
     const user = {
-      first_name: data.first_name,
-      last_name: data.last_name,
-      email: data.email,
-      phone_number: data.phone_number,
-      type: data.type,
-      speciality: data.speciality,
-      job: data.job,
+      first_name: data.first_name || "",
+      last_name: data.last_name || "",
+      phone_number: data.phone_number || "",
+      speciality: data.speciality || "",
+      job: data.job || "",
     };
 
-    // API.post(API_ROUTES.EDIT_USER, user)
-    //   .then((res) => {
-    //     alert(
-    //       `Usuario ${data.first_name} actualizado satisfactoriamente`
-    //     );
-    //     navigation(Routing.HOME);
-    //   })
-    //   .catch(function (error) {
-    //     alert(error.response.data);
-    //   });
+    API.post(API_ROUTES.EDIT_USER, user)
+      .then((res) => {
+        authCtx.setUserInfo(
+          data.first_name,
+          data.last_name,
+          data.phone_number,
+          data.speciality,
+          data.job
+        );
+        alert(`Usuario ${data.first_name} actualizado satisfactoriamente`);
+        navigation(Routing.HOME);
+      })
+      .catch(function (error) {
+        alert(error.response.data);
+      });
+  };
+  const handleCancel = (event: any) => {
+    event.preventDefault();
+    navigation(Routing.HOME);
   };
 
   return (
@@ -87,7 +86,7 @@ export default function EditUserInfo() {
             <AccountCircleIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Ver Información
+            Editar mi perfil
           </Typography>
           <Box
             component="form"
@@ -102,6 +101,7 @@ export default function EditUserInfo() {
               label="Nombre"
               name="first_name"
               defaultValue={data.first_name}
+              onChange={handleInputChange}
             />
             <TextField
               margin="normal"
@@ -110,6 +110,7 @@ export default function EditUserInfo() {
               label="Apellido"
               name="last_name"
               defaultValue={data.last_name}
+              onChange={handleInputChange}
             />
             <TextField
               margin="normal"
@@ -118,16 +119,16 @@ export default function EditUserInfo() {
               label="Email"
               name="email"
               defaultValue={data.email}
-              disabled={!editable.email}
+              disabled
             />
             <TextField
               margin="normal"
               fullWidth
               id="phone_number"
               label="Celular"
-              type="number"
               name="phone_number"
               defaultValue={data.phone_number}
+              onChange={handleInputChange}
             />
             <TextField
               margin="normal"
@@ -136,15 +137,16 @@ export default function EditUserInfo() {
               label={data.type === "doctor" ? "Especialidad" : "Cargo"}
               name={data.type === "doctor" ? "speciality" : "job"}
               defaultValue={data.type === "doctor" ? data.speciality : data.job}
+              onChange={handleInputChange}
             />
-            <Button
-              fullWidth
-              type="submit"
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Guardar Información Actualizada
-            </Button>
+            <Stack className={styles.Stack} direction="row" spacing={2}>
+              <Button type="submit" variant="contained" color="success">
+                Guardar
+              </Button>
+              <Button onClick={handleCancel} variant="contained">
+                Cancelar
+              </Button>
+            </Stack>
           </Box>
         </Box>
       </Container>

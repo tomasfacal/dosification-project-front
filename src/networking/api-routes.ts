@@ -10,7 +10,7 @@ const API_ROUTES = {
   SIGN_IN: "auth/login/",
   SIGN_UP: "users/",
   SIGN_OUT: "auth/logout/",
-  EDIT_USER: "users/update"
+  EDIT_USER: "users/update/",
 };
 
 export { API_ROUTES };

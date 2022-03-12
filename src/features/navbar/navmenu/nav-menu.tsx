@@ -10,6 +10,7 @@ import MenuItem from "@mui/material/MenuItem";
 import API from "../../../networking/api-service";
 import AuthContext from "../../../context/authContext";
 import { API_ROUTES } from "../../../networking/api-routes";
+import { Routing } from "../../../constant/Routing";
 
 const NavbarMenu = () => {
   const authCtx = useContext(AuthContext);
@@ -22,6 +23,11 @@ const NavbarMenu = () => {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+
+  const handlePerfil = () => {
+    setAnchorElUser(null);
+    navigation(Routing.EDIT_USER_INFO);
   };
 
   const handleLogout = () => {
@@ -62,7 +68,7 @@ const NavbarMenu = () => {
         open={Boolean(anchorElUser)}
         onClose={handleCloseUserMenu}
       >
-        <MenuItem key="Perfil" onClick={handleCloseUserMenu}>
+        <MenuItem key="Perfil" onClick={handlePerfil}>
           <Typography textAlign="center">Perfil</Typography>
         </MenuItem>
         <MenuItem key="Cerrar Sesión" onClick={handleLogout}>
