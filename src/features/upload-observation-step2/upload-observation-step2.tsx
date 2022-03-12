@@ -27,12 +27,12 @@ const UploadObservationStep2 = (props: any) => {
       name: "Seleccionar paciente y modelo",
       link: Routing.UPLOAD_OBSERVATION_STEP_1,
       clickable: true,
-      actual: true,
+      actual: false,
     },
     {
       name: "Cargar observaciones",
       link: Routing.UPLOAD_OBSERVATION_STEP_2,
-      clickable: false,
+      clickable: true,
       actual: true,
     },
   ];

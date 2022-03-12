@@ -41,7 +41,7 @@ const ResultSimulation = (props: any) => {
       name: "Seleccionar Tratamiento",
       link: Routing.SELECT_TREATMENTS,
       clickable: true,
-      actual: true,
+      actual: false,
     },
     {
       name: "Simulación",

@@ -46,7 +46,7 @@ const SimulationPage = () => {
     {
       name: "Simulación",
       link: Routing.SIMULATION_PAGE,
-      clickable: false,
+      clickable: true,
       actual: true,
     },
     {
@@ -98,9 +98,11 @@ const SimulationPage = () => {
               <CardContent>
                 {Object.keys(state.covariates).map((innerAttr, index) => {
                   return (
-                    <Typography className={styles.covariateStyle}>{innerAttr}:  {state.covariates[innerAttr]}</Typography>
-                  )})
-                }
+                    <Typography className={styles.covariateStyle}>
+                      {innerAttr}: {state.covariates[innerAttr]}
+                    </Typography>
+                  );
+                })}
               </CardContent>
             </Card>
           </Grid>

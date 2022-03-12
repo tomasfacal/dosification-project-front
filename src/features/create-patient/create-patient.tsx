@@ -42,7 +42,7 @@ const CreatePatient = () => {
     {
       name: "Crear Paciente",
       link: Routing.CREATE_PATIENT,
-      clickable: false,
+      clickable: true,
       actual: true,
     },
   ];
