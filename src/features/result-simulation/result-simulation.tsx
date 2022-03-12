@@ -68,7 +68,6 @@ const ResultSimulation = (props: any) => {
     API.post(API_ROUTES.MODEL_DRUGS + state.model_id + "/simulate_dosis", body)
       .then((res) => {
         setResults(res.data);
-        setState({})
       })
       .catch(function (error) {
         setError(true);
