@@ -19,7 +19,7 @@ const UploadObservationStep1 = (props: any) => {
   const navigation = useNavigate();
   const { state, setState } = useObservationsGlobalState();
   const [data, setData] = useState({
-    document_number: state.document_number ? state.document_number : 0,
+    document_number: state.document_number ? String(state.document_number) : "",
     model_id: state.model_id ? state.model_id : 0,
     model_name: state.model_name ? state.model_name : ("" as any),
   });
@@ -82,7 +82,7 @@ const UploadObservationStep1 = (props: any) => {
     }
   };
 
-  const validateFields = (document_number: number, model_id: number) =>
+  const validateFields = (document_number: string, model_id: number) =>
     !!document_number && !!model_id;
 
   const handleSubmit = (event: any) => {
@@ -91,7 +91,7 @@ const UploadObservationStep1 = (props: any) => {
       .then(() => {
         setState((prev) => ({
           ...prev,
-          document_number: data.document_number,
+          document_number: Number(data.document_number),
           model_id: data.model_id,
           model_name: data.model_name,
         }));
