@@ -105,6 +105,10 @@ const ObtainModelDrug = (props: any) => {
     navigation(Routing.SIMULATION_FLOW + Routing.SELECT_TREATMENTS);
   };
 
+  const validateFields = (outputValue: string, covariatesValues: Object) => {
+    return !!outputValue && !!covariatesValues;
+  };
+
   useEffect(() => {
     fetchCovariatesOutputs();
   }, []);
@@ -131,6 +135,7 @@ const ObtainModelDrug = (props: any) => {
             variant="contained"
             onClick={handleNext}
             className={styles.SubmitButton}
+            disabled={!validateFields(outputValue, covariatesValues)}
           >
             <Forward />
             Siguiente

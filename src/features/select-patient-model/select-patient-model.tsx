@@ -23,6 +23,10 @@ const SelectPatientModel = () => {
     model_id: state.model_id ? state.model_id : 0,
     model_name: state.model_name ? state.model_name : ("" as any),
   });
+  const [errors, setErrors] = useState({
+    document_number: false,
+    model_id: false,
+  });
 
   const [models, setModels] = useState([] as ModelInfo[]);
 
@@ -104,6 +108,17 @@ const SelectPatientModel = () => {
         [event.target.name]: event.target.value,
       });
     }
+    if (event.target.value === "") {
+      setErrors({
+        ...errors,
+        [event.target.name]: true,
+      });
+    } else {
+      setErrors({
+        ...errors,
+        [event.target.name]: false,
+      });
+    }
   };
 
   const validateFields = (document_number: string, model_id: number) =>
@@ -150,7 +165,7 @@ const SelectPatientModel = () => {
                   placeholder="Ingrese la cedula"
                   type="number"
                   value={data.document_number}
-                  error={!validateFields(data.document_number, data.model_id)}
+                  error={errors.document_number}
                   onChange={handleInputChange}
                 />
               </Tooltip>
@@ -166,6 +181,7 @@ const SelectPatientModel = () => {
                     label="Model"
                     name="model_id"
                     onChange={handleInputChange}
+                    error={errors.model_id}
                   >
                     {models.map((model: ModelInfo) => (
                       <MenuItem key={model.id} value={model.id}>
