@@ -38,7 +38,7 @@ const SelectPatientModel = () => {
     {
       name: "Seleccionar modelo/paciente",
       link: Routing.SELECT_PATIENT_MODEL,
-      clickable: false,
+      clickable: true,
       actual: true,
     },
     {

@@ -40,7 +40,7 @@ const Patient = () => {
     {
       name: "Paciente",
       link: Routing.PATIENT,
-      clickable: false,
+      clickable: true,
       actual: true,
     },
   ];

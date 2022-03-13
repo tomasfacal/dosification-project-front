@@ -38,7 +38,7 @@ const UploadObservationStep1 = (props: any) => {
     {
       name: "Cargar observaciones",
       link: Routing.UPLOAD_OBSERVATION_STEP_1,
-      clickable: false,
+      clickable: true,
       actual: true,
     },
   ];

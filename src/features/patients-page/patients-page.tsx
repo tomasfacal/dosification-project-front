@@ -17,7 +17,7 @@ const PatientsPage = () => {
     {
       name: "Pacientes",
       link: Routing.LIST_PATIENTS,
-      clickable: false,
+      clickable: true,
       actual: true,
     },
   ];

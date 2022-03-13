@@ -55,7 +55,7 @@ const SelectTreatments = () => {
     {
       name: "Seleccionar Tratamiento",
       link: Routing.SELECT_TREATMENTS,
-      clickable: false,
+      clickable: true,
       actual: true,
     },
     {
