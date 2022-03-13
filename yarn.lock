@@ -4102,6 +4102,11 @@
   "resolved" "https://registry.npmjs.org/cookie/-/cookie-0.4.0.tgz"
   "version" "0.4.0"
 
+"cookied@^1.0.1":
+  "integrity" "sha512-dVNuExRnodNczcshiWp/hAKZkKj2v5BgxbZpRS45jG/2OXa9a53p6l6UJBJJxAO7VKCtHeKKVbdhtEZvvxW1ZQ=="
+  "resolved" "https://registry.npmjs.org/cookied/-/cookied-1.0.1.tgz"
+  "version" "1.0.1"
+
 "copy-concurrently@^1.0.0":
   "integrity" "sha512-f2domd9fsVDFtaFcbaRZuYXwtdmnzqbADSwhSWYxYB/Q8zsdUUFMXVRwXGDMWmbEzAn1kdRrtI1T/KTFOL4X2A=="
   "resolved" "https://registry.npmjs.org/copy-concurrently/-/copy-concurrently-1.0.5.tgz"
