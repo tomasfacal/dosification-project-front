@@ -55,48 +55,53 @@ function App() {
               <PermissionsRoute component={Patient} genericPage={false} />
             }
           />
-          <Route
-            path={Routing.MODEL_DRUG}
-            element={
-              <PermissionsRoute
-                component={ObtainModelDrug}
-                genericPage={true}
-              />
-            }
-          />
-          <Route
-            path={Routing.SELECT_PATIENT_MODEL}
-            element={
-              <PermissionsRoute
-                component={SelectPatientModel}
-                genericPage={true}
-              />
-            }
-          />
-          <Route
-            path={Routing.SELECT_TREATMENTS}
-            element={
-              <PermissionsRoute
-                component={SelectTreatments}
-                genericPage={true}
-              />
-            }
-          />
-          <Route
-            path={Routing.SIMULATION_PAGE}
-            element={
-              <PermissionsRoute component={SimulationPage} genericPage={true} />
-            }
-          />
-          <Route
-            path={Routing.RESULT_PAGE}
-            element={
-              <PermissionsRoute
-                component={ResultSimulation}
-                genericPage={true}
-              />
-            }
-          />
+          <Route path={Routing.SIMULATION_FLOW}>
+            <Route
+              path={Routing.SELECT_PATIENT_MODEL}
+              element={
+                <PermissionsRoute
+                  component={SelectPatientModel}
+                  genericPage={true}
+                />
+              }
+            />
+            <Route
+              path={Routing.MODEL_DRUG}
+              element={
+                <PermissionsRoute
+                  component={ObtainModelDrug}
+                  genericPage={true}
+                />
+              }
+            />
+            <Route
+              path={Routing.SELECT_TREATMENTS}
+              element={
+                <PermissionsRoute
+                  component={SelectTreatments}
+                  genericPage={true}
+                />
+              }
+            />
+            <Route
+              path={Routing.SIMULATION_PAGE}
+              element={
+                <PermissionsRoute
+                  component={SimulationPage}
+                  genericPage={true}
+                />
+              }
+            />
+            <Route
+              path={Routing.RESULT_PAGE}
+              element={
+                <PermissionsRoute
+                  component={ResultSimulation}
+                  genericPage={true}
+                />
+              }
+            />
+          </Route>
           <Route
             path="*"
             element={

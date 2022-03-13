@@ -30,7 +30,7 @@ const Hero = () => {
                 variant="contained"
                 className={styles.Button}
                 component={Link}
-                to={Routing.SELECT_PATIENT_MODEL}
+                to={Routing.SIMULATION_FLOW + Routing.SELECT_PATIENT_MODEL}
               >
                 SIMULAR
               </Button>
