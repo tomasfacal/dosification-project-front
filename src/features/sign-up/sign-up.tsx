@@ -39,12 +39,34 @@ export default function SignUp() {
     job: "",
   });
 
+  const [errors, setErrors] = useState({
+    first_name: false,
+    last_name: false,
+    email: false,
+    password: false,
+    phone_number: false,
+    type: false,
+    speciality: false,
+    job: false,
+  });
+
   const handleInputChange = (event: any) => {
     if (event.target.name === "type") setType(event.target.value);
     setData({
       ...data,
       [event.target.name]: event.target.value,
     });
+    if (event.target.value === "") {
+      setErrors({
+        ...errors,
+        [event.target.name]: true,
+      });
+    } else {
+      setErrors({
+        ...errors,
+        [event.target.name]: false,
+      });
+    }
   };
 
   const validateFields = (
@@ -75,7 +97,7 @@ export default function SignUp() {
       fullWidth
       id={type === "doctor" ? "speciality" : "job"}
       label={type === "doctor" ? "Especialidad" : "Cargo"}
-      error={type === "doctor" ? data.speciality === "" : data.job === ""}
+      error={type === "doctor" ? errors.speciality : errors.job}
       name={type === "doctor" ? "speciality" : "job"}
       autoFocus
       onChange={handleInputChange}
@@ -138,7 +160,7 @@ export default function SignUp() {
               id="email"
               label="Email"
               name="email"
-              error={data.email === ""}
+              error={errors.email}
               autoComplete="email"
               autoFocus
               onChange={handleInputChange}
@@ -149,7 +171,7 @@ export default function SignUp() {
               fullWidth
               id="first_name"
               label="Nombre"
-              error={data.first_name === ""}
+              error={errors.first_name}
               name="first_name"
               autoFocus
               onChange={handleInputChange}
@@ -160,7 +182,7 @@ export default function SignUp() {
               fullWidth
               id="last_name"
               label="Apellido"
-              error={data.last_name === ""}
+              error={errors.last_name}
               name="last_name"
               autoFocus
               onChange={handleInputChange}
@@ -180,7 +202,7 @@ export default function SignUp() {
               fullWidth
               name="password"
               label="Contraseña"
-              error={data.password === ""}
+              error={errors.password}
               type={showPassword ? "text" : "password"}
               id="password"
               autoComplete="current-password"
