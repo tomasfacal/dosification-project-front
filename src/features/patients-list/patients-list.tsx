@@ -29,22 +29,36 @@ const PatientsList = () => {
 
   // We have to add 1 to the page due to materialUI table page
   // beginning in 0 and there is not way to change it
-  useEffect(() => {
-    API.get(API_ROUTES.LIST_PATIENTS + `?page=${page + 1}`).then((res) => {
+  const getPatientsPage = async () => {
+    try {
+      const res = await API.get(API_ROUTES.LIST_PATIENTS + `?page=${page + 1}`);
       setData(res.data.results);
       setCountPatients(res.data.count);
-    });
-  }, [page]);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  useEffect(() => {
-    API.get(API_ROUTES.LIST_PATIENTS + `?search=${search}`).then((res) => {
+  const getPatientsSearch = async () => {
+    try {
+      const res = await API.get(API_ROUTES.LIST_PATIENTS + `?search=${search}`);
       if (res.data.results.length === 0) {
         handleOpen();
       } else {
         setData(res.data.results);
         setCountPatients(res.data.count);
       }
-    });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getPatientsPage();
+  }, [page]);
+
+  useEffect(() => {
+    getPatientsSearch();
   }, [search]);
 
   const handleChangePage = (event: any, newPage: number) => {

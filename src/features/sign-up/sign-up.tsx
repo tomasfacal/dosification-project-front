@@ -82,8 +82,7 @@ export default function SignUp() {
     />
   );
 
-  const handleSubmit = (event: any) => {
-    event.preventDefault();
+  const createUser = async () => {
     const user = {
       first_name: data.first_name,
       last_name: data.last_name,
@@ -94,18 +93,20 @@ export default function SignUp() {
       speciality: data.speciality,
       job: data.job,
     };
-
-    API.post(API_ROUTES.SIGN_UP, user)
-      .then((res) => {
-        alert(
-          `Usuario ${data.first_name} creado satisfactoriamente` + res.data
-        );
-        navigation(Routing.SIGN_IN);
-      })
-      .catch(function (error) {
-        alert(error.response.data);
-      });
+    try {
+      const res = await API.post(API_ROUTES.SIGN_UP, user);
+      alert(`Usuario ${data.first_name} creado satisfactoriamente` + res.data);
+      navigation(Routing.SIGN_IN);
+    } catch (error: any) {
+      alert(error.response.data);
+    }
   };
+
+  const handleSubmit = async (event: any) => {
+    event.preventDefault();
+    await createUser();
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">

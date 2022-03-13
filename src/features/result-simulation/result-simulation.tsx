@@ -57,7 +57,7 @@ const ResultSimulation = (props: any) => {
     },
   ];
 
-  useEffect(() => {
+  const postSimulate = async () => {
     const body = {
       treatments: state.treatments,
       covariates: state.covariates,
@@ -65,13 +65,19 @@ const ResultSimulation = (props: any) => {
       document: state.document_number,
     };
 
-    API.post(API_ROUTES.MODEL_DRUGS + state.model_id + "/simulate_dosis", body)
-      .then((res) => {
-        setResults(res.data);
-      })
-      .catch(function (error) {
-        setError(true);
-      });
+    try {
+      const res = await API.post(
+        API_ROUTES.MODEL_DRUGS + state.model_id + "/simulate_dosis",
+        body
+      );
+      setResults(res.data);
+    } catch (error) {
+      setError(true);
+    }
+  };
+
+  useEffect(() => {
+    postSimulate();
   }, []);
 
   return (

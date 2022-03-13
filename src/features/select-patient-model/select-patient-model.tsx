@@ -124,22 +124,25 @@ const SelectPatientModel = () => {
   const validateFields = (document_number: string, model_id: number) =>
     !!document_number && !!model_id;
 
-  const handleSubmit = (event: any) => {
+  const setPatientModel = async () => {
+    try {
+      await API.get(API_ROUTES.PATIENT + data.document_number + "/");
+      setState((prev) => ({
+        ...prev,
+        document_number: Number(data.document_number),
+        model_id: data.model_id,
+        model_name: data.model_name,
+      }));
+      navigation(Routing.MODEL_DRUG);
+    } catch (error) {
+      console.log("error", error);
+      handleOpen();
+    }
+  };
+
+  const handleSubmit = async (event: any) => {
     event.preventDefault();
-    API.get(API_ROUTES.PATIENT + data.document_number + "/")
-      .then(() => {
-        setState((prev) => ({
-          ...prev,
-          document_number: Number(data.document_number),
-          model_id: data.model_id,
-          model_name: data.model_name,
-        }));
-        navigation(Routing.SIMULATION_FLOW + Routing.MODEL_DRUG);
-      })
-      .catch(function (error) {
-        console.log("error", error);
-        handleOpen();
-      });
+    setPatientModel();
   };
 
   return (
