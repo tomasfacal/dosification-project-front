@@ -9,9 +9,14 @@ interface Props {
   genericPage: boolean;
 }
 
+const validateRole = () => {
+  // Pegarle al back para validar el rol del usuario & token, por si cambian la cookie desde el front
+  return true;
+};
+
 export const PermissionsRoute: React.FC<Props> = ({
   component: RouteComponent,
-  genericPage
+  genericPage,
 }) => {
   const authCtx = useContext(AuthContext);
   if (!authCtx.isLoggedIn) {
