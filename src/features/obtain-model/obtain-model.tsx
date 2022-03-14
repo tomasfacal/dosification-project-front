@@ -33,31 +33,31 @@ const ObtainModelDrug = (props: any) => {
     },
     {
       name: "Seleccionar modelo/paciente",
-      link: Routing.SELECT_PATIENT_MODEL,
+      link: Routing.SIMULATION_FLOW + Routing.SELECT_PATIENT_MODEL,
       clickable: true,
       actual: false,
     },
     {
       name: "Seleccionar covariables/output",
-      link: Routing.MODEL_DRUG,
+      link: Routing.SIMULATION_FLOW + Routing.MODEL_DRUG,
       clickable: true,
       actual: true,
     },
     {
       name: "Seleccionar Tratamiento",
-      link: Routing.SELECT_TREATMENTS,
+      link: Routing.SIMULATION_FLOW + Routing.SELECT_TREATMENTS,
       clickable: false,
       actual: false,
     },
     {
       name: "Simulación",
-      link: Routing.SIMULATION_PAGE,
+      link: Routing.SIMULATION_FLOW + Routing.SIMULATION_PAGE,
       clickable: false,
       actual: false,
     },
     {
       name: "Resultados",
-      link: Routing.RESULT_PAGE,
+      link: Routing.SIMULATION_FLOW + Routing.RESULT_PAGE,
       clickable: false,
       actual: false,
     },
@@ -102,7 +102,7 @@ const ObtainModelDrug = (props: any) => {
       covariates: covariatesValues,
       output: outputValue,
     }));
-    navigation(Routing.SELECT_TREATMENTS);
+    navigation(Routing.SIMULATION_FLOW + Routing.SELECT_TREATMENTS);
   };
 
   useEffect(() => {
@@ -126,13 +126,13 @@ const ObtainModelDrug = (props: any) => {
           />
         </div>
         <div className={styles.ButonContainer}>
-            <Button
-              color="primary"
-              variant="contained"
-              onClick={handleNext}
-              className={styles.SubmitButton}
-            >
-              <Forward />
+          <Button
+            color="primary"
+            variant="contained"
+            onClick={handleNext}
+            className={styles.SubmitButton}
+          >
+            <Forward />
             Siguiente
           </Button>
         </div>

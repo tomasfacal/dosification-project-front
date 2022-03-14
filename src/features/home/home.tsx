@@ -29,7 +29,8 @@ const Home = () => {
             buttons={[
               {
                 buttonText: "Simular dosificación",
-                buttonLink: Routing.SELECT_PATIENT_MODEL,
+                buttonLink:
+                  Routing.SIMULATION_FLOW + Routing.SELECT_PATIENT_MODEL,
                 buttonStyle: "contained",
               },
             ]}

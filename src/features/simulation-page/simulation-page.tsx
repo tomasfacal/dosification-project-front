@@ -27,31 +27,31 @@ const SimulationPage = () => {
     },
     {
       name: "Seleccionar modelo/paciente",
-      link: Routing.SELECT_PATIENT_MODEL,
+      link: Routing.SIMULATION_FLOW + Routing.SELECT_PATIENT_MODEL,
       clickable: true,
       actual: false,
     },
     {
       name: "Seleccionar covariables/output",
-      link: Routing.MODEL_DRUG,
+      link: Routing.SIMULATION_FLOW + Routing.MODEL_DRUG,
       clickable: true,
       actual: false,
     },
     {
       name: "Seleccionar Tratamiento",
-      link: Routing.SELECT_TREATMENTS,
+      link: Routing.SIMULATION_FLOW + Routing.SELECT_TREATMENTS,
       clickable: true,
       actual: false,
     },
     {
       name: "Simulación",
-      link: Routing.SIMULATION_PAGE,
+      link: Routing.SIMULATION_FLOW + Routing.SIMULATION_PAGE,
       clickable: true,
       actual: true,
     },
     {
       name: "Resultados",
-      link: Routing.RESULT_PAGE,
+      link: Routing.SIMULATION_FLOW + Routing.RESULT_PAGE,
       clickable: false,
       actual: false,
     },
@@ -65,7 +65,7 @@ const SimulationPage = () => {
 
   const handleSimulate = (event: any) => {
     console.log(state);
-    navigation(Routing.RESULT_PAGE);
+    navigation(Routing.SIMULATION_FLOW + Routing.RESULT_PAGE);
   };
 
   return (
