@@ -22,6 +22,13 @@ const AuthContext = React.createContext({
     _job: string
   ) => {},
   logout: () => {},
+  setUserInfo: (
+    _name: string,
+    _lastname: string,
+    _phonenumber: string,
+    _speciality: string,
+    _job: string
+  ) => {},
 });
 
 export const AuthContextProvider = (props: any) => {
@@ -107,6 +114,25 @@ export const AuthContextProvider = (props: any) => {
     localStorage.removeItem("job");
   };
 
+  const setUserInfo = (
+    name: string,
+    lastname: string,
+    phonenumber: string,
+    speciality: string,
+    job: string
+  ) => {
+    setName(name);
+    setLastName(lastname);
+    setPhoneNumber(phonenumber);
+    setSpeciality(speciality);
+    setJob(job);
+    localStorage.setItem("name", name);
+    localStorage.setItem("lastname", lastname);
+    localStorage.setItem("phonenumber", phonenumber);
+    localStorage.setItem("speciality", speciality);
+    localStorage.setItem("job", job);
+  };
+
   const contextValue = {
     token: token,
     isLoggedIn: userIsLoggedIn,
@@ -119,6 +145,7 @@ export const AuthContextProvider = (props: any) => {
     job: job,
     login: loginHandler,
     logout: logoutHandler,
+    setUserInfo: setUserInfo,
   };
 
   return (

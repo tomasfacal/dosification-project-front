@@ -3,6 +3,7 @@ export const Routing = {
   SIGN_IN: "/sign-in",
   SIGN_UP: "/sign_up",
   CREATE_PATIENT: "/create-patient",
+  EDIT_USER_INFO: "/edit-user",
   LIST_PATIENTS: "/list-patients",
   PATIENT: "/patient",
   // Simulation flow routes

@@ -33,7 +33,7 @@ export default function SignUp() {
     last_name: "",
     email: "",
     password: "",
-    phone_number: 0,
+    phone_number: "",
     type: "",
     speciality: "",
     job: "",
@@ -88,7 +88,7 @@ export default function SignUp() {
       first_name: data.first_name,
       last_name: data.last_name,
       email: data.email,
-      phone_number: data.phone_number,
+      phone_number: data.phone_number || "",
       password: data.password,
       type: data.type,
       speciality: data.speciality,
@@ -169,7 +169,6 @@ export default function SignUp() {
               fullWidth
               id="phone_number"
               label="Celular"
-              type="number"
               name="phone_number"
               autoFocus
               onChange={handleInputChange}
@@ -221,6 +220,7 @@ export default function SignUp() {
             </Box>
             {renderTextField()}
             <Button
+              color="success"
               fullWidth
               type="submit"
               variant="contained"
