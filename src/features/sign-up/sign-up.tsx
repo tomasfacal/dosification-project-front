@@ -52,7 +52,6 @@ export default function SignUp() {
     last_name: string,
     email: string,
     password: string,
-    phone_number: string,
     type: string,
     speciality: string,
     job: string
@@ -61,7 +60,6 @@ export default function SignUp() {
     !!last_name &&
     !!email &&
     !!password &&
-    !!phone_number &&
     !!type &&
     (!!speciality || !!job);
 
@@ -90,7 +88,7 @@ export default function SignUp() {
       first_name: data.first_name,
       last_name: data.last_name,
       email: data.email,
-      phone_number: data.phone_number,
+      phone_number: data.phone_number || "",
       password: data.password,
       type: data.type,
       speciality: data.speciality,
@@ -168,11 +166,9 @@ export default function SignUp() {
             />
             <TextField
               margin="normal"
-              required
               fullWidth
               id="phone_number"
               label="Celular"
-              error={data.phone_number === ""}
               name="phone_number"
               autoFocus
               onChange={handleInputChange}
@@ -235,7 +231,6 @@ export default function SignUp() {
                   data.last_name,
                   data.email,
                   data.password,
-                  data.phone_number,
                   data.type,
                   data.speciality,
                   data.job
