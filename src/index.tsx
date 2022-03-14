@@ -7,16 +7,19 @@ import * as serviceWorker from "./serviceWorker";
 import { AuthContextProvider } from "./context/authContext";
 import { SimulationGlobalStateProvider } from "./context/SimulationGlobalState";
 import { ObservationsGlobalStateProvider } from "./context/ObservationsGlobalState";
+import { CookiesProvider } from "react-cookie";
 
 ReactDOM.render(
   <React.StrictMode>
     <AuthContextProvider>
       <BrowserRouter>
-        <SimulationGlobalStateProvider>
-          <ObservationsGlobalStateProvider>
-            <App />
-          </ObservationsGlobalStateProvider>
-        </SimulationGlobalStateProvider>
+        <CookiesProvider>
+          <SimulationGlobalStateProvider>
+            <ObservationsGlobalStateProvider>
+              <App />
+            </ObservationsGlobalStateProvider>
+          </SimulationGlobalStateProvider>
+        </CookiesProvider>
       </BrowserRouter>
     </AuthContextProvider>
   </React.StrictMode>,

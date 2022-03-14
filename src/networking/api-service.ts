@@ -1,12 +1,14 @@
 import axios from "axios";
 import { Routing } from "../constant/Routing";
+import { getCookie } from "cookied";
 
 const customAxios = axios.create({
   baseURL: `http://localhost:8000/api/`,
 });
 
 const requestHandler = (request: any) => {
-  const token = window.localStorage.getItem("token");
+  const token = getCookie("token");
+
   if (
     window.location.pathname === Routing.SIGN_IN ||
     window.location.pathname === Routing.SIGN_UP

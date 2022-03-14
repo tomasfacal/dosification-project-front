@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from "react";
+import { Fragment } from "react";
 import styles from "./create-observation.module.scss";
 import { TextField, Grid } from "@material-ui/core";
 

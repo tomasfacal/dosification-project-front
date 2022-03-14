@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useCookies } from "react-cookie";
 
 const AuthContext = React.createContext({
   token: "",
@@ -24,12 +25,10 @@ const AuthContext = React.createContext({
 });
 
 export const AuthContextProvider = (props: any) => {
-  const [token, setToken] = useState(
-    localStorage.getItem("token")! ? localStorage.getItem("token")! : ""
-  );
-  const [role, setRole] = useState(
-    localStorage.getItem("role")! ? localStorage.getItem("role")! : ""
-  );
+  const [cookies, setCookie, removeCookie] = useCookies(["token", "role"]);
+
+  const [token, setToken] = useState(cookies.token! ? cookies.token! : "");
+  const [role, setRole] = useState(cookies.role! ? cookies.role! : "");
 
   const [name, setName] = useState(
     localStorage.getItem("name")! ? localStorage.getItem("name")! : ""
@@ -79,8 +78,8 @@ export const AuthContextProvider = (props: any) => {
     setPhoneNumber(phonenumber);
     setSpeciality(speciality);
     setJob(job);
-    localStorage.setItem("token", token);
-    localStorage.setItem("role", role);
+    setCookie("token", token, { path: "/" });
+    setCookie("role", role, { path: "/" });
     localStorage.setItem("name", name);
     localStorage.setItem("lastname", lastname);
     localStorage.setItem("email", email);
@@ -98,8 +97,8 @@ export const AuthContextProvider = (props: any) => {
     setPhoneNumber("");
     setSpeciality("");
     setJob("");
-    localStorage.removeItem("token");
-    localStorage.removeItem("role");
+    removeCookie("token");
+    removeCookie("role");
     localStorage.removeItem("name");
     localStorage.removeItem("lastname");
     localStorage.removeItem("email");
