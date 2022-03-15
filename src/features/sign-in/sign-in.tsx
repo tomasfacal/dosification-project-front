@@ -37,7 +37,7 @@ export default function SignIn() {
         res.data.speciality,
         res.data.job
       );
-      navigation("/");
+      navigation(Routing.HOME);
     } catch (error) {
       setError("El usuario o la contraseña no son correctos.");
     }

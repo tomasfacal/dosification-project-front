@@ -133,7 +133,7 @@ const SelectPatientModel = () => {
         model_id: data.model_id,
         model_name: data.model_name,
       }));
-      navigation(Routing.MODEL_DRUG);
+      navigation(Routing.SIMULATION_FLOW + Routing.MODEL_DRUG);
     } catch (error) {
       console.log("error", error);
       handleOpen();
