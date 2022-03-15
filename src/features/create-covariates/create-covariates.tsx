@@ -21,7 +21,11 @@ const CreateCovariates = (props: any) => {
                   label={covariate}
                   name={covariate}
                   error={covariate === ""}
-                  defaultValue = {(state.covariates && state.covariates[covariate]) ? state.covariates[covariate] : "" }
+                  defaultValue={
+                    state.covariates && state.covariates[covariate]
+                      ? state.covariates[covariate]
+                      : ""
+                  }
                   helperText={
                     covariate === "" ? { covariate } + "requerido" : " "
                   }

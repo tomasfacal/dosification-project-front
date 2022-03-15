@@ -15,6 +15,7 @@ import { Routing } from "../../constant/Routing";
 import { useNavigate } from "react-router-dom";
 import { useSimulationGlobalState } from "../../context/SimulationGlobalState";
 import TreatmentCard from "../treatment-card/treatment-card";
+import treatment from "../../assets/images/treatment.png";
 
 const SelectTreatments = () => {
   const navigation = useNavigate();
@@ -125,6 +126,11 @@ const SelectTreatments = () => {
         <Breadcrumbs values={breadcrumbs} />
       </div>
       <div className={styles.FormContainer}>
+        <img
+          src={treatment}
+          alt="ilustracion treatment"
+          className={styles.TreatmentImage}
+        />
         <h1 className={styles.Title}>Crear Tratamiento</h1>
         <Grid container spacing={2}>
           <Grid item xs={12} sm={12}>

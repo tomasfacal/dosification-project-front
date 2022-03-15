@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { Routing } from "../../constant/Routing";
 import Breadcrumbs from "../breadcrumbs/breadcrumbs";
 import { useSimulationGlobalState } from "../../context/SimulationGlobalState";
+import settings from "../../assets/images/settings.gif";
 
 const ObtainModelDrug = (props: any) => {
   const { state, setState } = useSimulationGlobalState();
@@ -115,6 +116,11 @@ const ObtainModelDrug = (props: any) => {
         <Breadcrumbs values={breadcrumbs} />
       </div>
       <div className={styles.FormContainer}>
+        <img
+          src={settings}
+          alt="ilustracion ajustes"
+          className={styles.SettingsImage}
+        />
         <div>
           <CreateCovariates
             covariates={covariatesList}

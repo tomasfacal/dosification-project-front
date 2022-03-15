@@ -14,6 +14,7 @@ import { useSimulationGlobalState } from "../../context/SimulationGlobalState";
 import { Routing } from "../../constant/Routing";
 import Breadcrumbs from "../breadcrumbs/breadcrumbs";
 import { useNavigate } from "react-router-dom";
+import patientModel from "../../assets/images/patientModel.jpg";
 
 const SelectPatientModel = () => {
   const navigation = useNavigate();
@@ -133,7 +134,11 @@ const SelectPatientModel = () => {
         <Breadcrumbs values={breadcrumbs} />
       </div>
       <div className={styles.FormContainer}>
-        <h1 className={styles.Title}>Seleccionar Paciente y Modelo</h1>
+        <img
+          src={patientModel}
+          alt="ilustracion paciente"
+          className={styles.PatientModelImage}
+        />
         <div className={styles.fieldContainer}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={12}>
