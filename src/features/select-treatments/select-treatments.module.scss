@@ -2,26 +2,31 @@
 
 .Title {
   color: $brand;
-  font-size: $font-size-title;
+  font-size: $font-size-subtitle;
 }
 
 // I have to set margin as important due to materialUi styles was set as preference
 // TODO: Check a better practice to this (maybe set as inline style)
 .CreateTreatmentButton {
-  width:45%;
+  width: 45%;
+}
+
+.TreatmentImage {
+  width: 20%;
 }
 
 .FormContainer {
   margin: 2rem auto;
   display: flex;
   flex-direction: column;
+  align-items: center;
   width: 100%;
   max-width: 425px;
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 10px 20px 0 rgba(#999, 0.25);
   padding: 3rem;
-  height: 450px;
+  height: 520px;
 }
 
 .AddTreatmentIcon,
@@ -54,12 +59,12 @@
   color: $brand;
   text-align: left;
 }
-.TextButton{
+.TextButton {
   font-size: 12px !important;
 }
 .SubmitButton {
   background-color: $success !important;
-  width:45%
+  width: 45%;
 }
 
 .SubmitButton[disabled] {
