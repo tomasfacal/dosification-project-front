@@ -30,19 +30,18 @@ const NavbarMenu = () => {
     navigation(Routing.EDIT_USER_INFO);
   };
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
     setAnchorElUser(null);
     API.defaults.headers.common["Authorization"] = "Token " + authCtx.token;
 
-    API.post(API_ROUTES.SIGN_OUT)
-      .then((res) => {
-        authCtx.logout();
-        navigation("/");
-      })
-      .catch(() => {
-        authCtx.logout();
-        navigation("/");
-      });
+    try {
+      await API.post(API_ROUTES.SIGN_OUT);
+      authCtx.logout();
+      navigation(Routing.HOME);
+    } catch (error) {
+      authCtx.logout();
+      navigation(Routing.HOME);
+    }
   };
 
   return (

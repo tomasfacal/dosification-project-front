@@ -39,12 +39,34 @@ export default function SignUp() {
     job: "",
   });
 
+  const [errors, setErrors] = useState({
+    first_name: false,
+    last_name: false,
+    email: false,
+    password: false,
+    phone_number: false,
+    type: false,
+    speciality: false,
+    job: false,
+  });
+
   const handleInputChange = (event: any) => {
     if (event.target.name === "type") setType(event.target.value);
     setData({
       ...data,
       [event.target.name]: event.target.value,
     });
+    if (event.target.value === "") {
+      setErrors({
+        ...errors,
+        [event.target.name]: true,
+      });
+    } else {
+      setErrors({
+        ...errors,
+        [event.target.name]: false,
+      });
+    }
   };
 
   const validateFields = (
@@ -75,15 +97,14 @@ export default function SignUp() {
       fullWidth
       id={type === "doctor" ? "speciality" : "job"}
       label={type === "doctor" ? "Especialidad" : "Cargo"}
-      error={type === "doctor" ? data.speciality === "" : data.job === ""}
+      error={type === "doctor" ? errors.speciality : errors.job}
       name={type === "doctor" ? "speciality" : "job"}
       autoFocus
       onChange={handleInputChange}
     />
   );
 
-  const handleSubmit = (event: any) => {
-    event.preventDefault();
+  const createUser = async () => {
     const user = {
       first_name: data.first_name,
       last_name: data.last_name,
@@ -94,18 +115,20 @@ export default function SignUp() {
       speciality: data.speciality,
       job: data.job,
     };
-
-    API.post(API_ROUTES.SIGN_UP, user)
-      .then((res) => {
-        alert(
-          `Usuario ${data.first_name} creado satisfactoriamente` + res.data
-        );
-        navigation(Routing.SIGN_IN);
-      })
-      .catch(function (error) {
-        alert(error.response.data);
-      });
+    try {
+      const res = await API.post(API_ROUTES.SIGN_UP, user);
+      alert(`Usuario ${data.first_name} creado satisfactoriamente` + res.data);
+      navigation(Routing.SIGN_IN);
+    } catch (error: any) {
+      alert(error.response.data);
+    }
   };
+
+  const handleSubmit = async (event: any) => {
+    event.preventDefault();
+    await createUser();
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
@@ -137,7 +160,7 @@ export default function SignUp() {
               id="email"
               label="Email"
               name="email"
-              error={data.email === ""}
+              error={errors.email}
               autoComplete="email"
               autoFocus
               onChange={handleInputChange}
@@ -148,7 +171,7 @@ export default function SignUp() {
               fullWidth
               id="first_name"
               label="Nombre"
-              error={data.first_name === ""}
+              error={errors.first_name}
               name="first_name"
               autoFocus
               onChange={handleInputChange}
@@ -159,7 +182,7 @@ export default function SignUp() {
               fullWidth
               id="last_name"
               label="Apellido"
-              error={data.last_name === ""}
+              error={errors.last_name}
               name="last_name"
               autoFocus
               onChange={handleInputChange}
@@ -179,7 +202,7 @@ export default function SignUp() {
               fullWidth
               name="password"
               label="Contraseña"
-              error={data.password === ""}
+              error={errors.password}
               type={showPassword ? "text" : "password"}
               id="password"
               autoComplete="current-password"

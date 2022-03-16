@@ -24,7 +24,26 @@ export default function SignIn() {
   const authCtx = useContext(AuthContext);
   const [error, setError] = useState("");
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const logUser = async () => {
+    try {
+      const res = await API.post(API_ROUTES.SIGN_IN);
+      authCtx.login(
+        res.data.token,
+        res.data.role,
+        res.data.name,
+        res.data.last_name,
+        res.data.email,
+        res.data.phone_number,
+        res.data.speciality,
+        res.data.job
+      );
+      navigation(Routing.HOME);
+    } catch (error) {
+      setError("El usuario o la contraseña no son correctos.");
+    }
+  };
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
 
@@ -33,23 +52,7 @@ export default function SignIn() {
     API.defaults.headers.common["Authorization"] =
       "Basic " + base64.encode(data.get("email") + ":" + data.get("password"));
 
-    API.post(API_ROUTES.SIGN_IN)
-      .then((res) => {
-        authCtx.login(
-          res.data.token,
-          res.data.role,
-          res.data.name,
-          res.data.last_name,
-          res.data.email,
-          res.data.phone_number,
-          res.data.speciality,
-          res.data.job
-        );
-        navigation("/");
-      })
-      .catch(function (error) {
-        setError("El usuario o la contraseña no son correctos.");
-      });
+    await logUser();
   };
 
   return (

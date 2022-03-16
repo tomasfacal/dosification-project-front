@@ -55,22 +55,25 @@ const UploadObservationStep2 = (props: any) => {
     });
   };
 
-  const handleSubmit = (event: any) => {
-    event.preventDefault();
+  const updateInformation = async () => {
     const body = {
       patient_data: fieldsValues,
     };
-    API.post(
-      API_ROUTES.MODEL_DRUGS +
-        `${state.model_id}/patients/${state.document_number}/update_information`,
-      body
-    )
-      .then(() => {
-        navigation(Routing.HOME);
-      })
-      .catch(function (error) {
-        console.log("error", error);
-      });
+    try {
+      await API.post(
+        API_ROUTES.MODEL_DRUGS +
+          `${state.model_id}/patients/${state.document_number}/update_information`,
+        body
+      );
+      navigation(Routing.HOME);
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+
+  const handleSubmit = async (event: any) => {
+    event.preventDefault();
+    await updateInformation();
   };
 
   useEffect(() => {

@@ -45,20 +45,23 @@ const Patient = () => {
     },
   ];
 
-  useEffect(() => {
-    API.get(API_ROUTES.PATIENT + document_number + "/")
-      .then((res) => {
-        setData({
-          ...datos,
-          first_name: res.data.first_name,
-          last_name: res.data.last_name,
-          document_number: res.data.document_number,
-          sex: res.data.sex,
-        });
-      })
-      .catch(function (error) {
-        console.log(error);
+  const getPatient = async () => {
+    try {
+      const res = await API.get(API_ROUTES.PATIENT + document_number + "/");
+      setData({
+        ...datos,
+        first_name: res.data.first_name,
+        last_name: res.data.last_name,
+        document_number: res.data.document_number,
+        sex: res.data.sex,
       });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getPatient();
   }, []);
 
   const handleChangeInput = (name: string, value: string) => {
@@ -115,7 +118,7 @@ const Patient = () => {
       model_name: "",
     }));
     navigation(Routing.UPLOAD_OBSERVATION_STEP_1);
-};
+  };
 
   return (
     <Fragment>
@@ -128,7 +131,9 @@ const Patient = () => {
           alt="ilustracion paciente"
           className={styles.PatientImage}
         />
-        <h1 className={styles.Title}>{datos.first_name} {datos.last_name}</h1>
+        <h1 className={styles.Title}>
+          {datos.first_name} {datos.last_name}
+        </h1>
         <Grid container spacing={2}>
           <Grid item xs={12} sm={12}>
             <InputPatient

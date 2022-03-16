@@ -27,6 +27,12 @@ const SelectTreatments = () => {
     quantity: 0,
   });
 
+  const [errors, setErrors] = useState({
+    cycle_duration: false,
+    number_of_repetitions: false,
+    quantity: false,
+  });
+
   const setCardsFromContext = () => {
     if (state.treatments) return state.treatments;
     else return [] as TreatmentJSON[];
@@ -74,6 +80,17 @@ const SelectTreatments = () => {
   ];
 
   const handleInputChange = (event: any) => {
+    if (event.target.value === "") {
+      setErrors({
+        ...errors,
+        [event.target.name]: true,
+      });
+    } else {
+      setErrors({
+        ...errors,
+        [event.target.name]: false,
+      });
+    }
     setData({
       ...datos,
       [event.target.name]: event.target.value,
@@ -140,12 +157,8 @@ const SelectTreatments = () => {
                 InputProps={{ inputProps: { min: 0 } }}
                 label="Ciclo de duración"
                 name="cycle_duration"
-                error={datos.cycle_duration === 0}
-                helperText={
-                  datos.cycle_duration === 0
-                    ? "Ciclo de duración requerido"
-                    : " "
-                }
+                error={errors.cycle_duration}
+                helperText={errors.cycle_duration ? "Campo requerido" : " "}
                 onChange={handleInputChange}
               />
               <Tooltip
@@ -163,13 +176,11 @@ const SelectTreatments = () => {
               <TextField
                 type="number"
                 InputProps={{ inputProps: { min: 0 } }}
-                label="Número de repeticiones"
+                label="Repeticiones"
                 name="number_of_repetitions"
-                error={datos.number_of_repetitions === 0}
+                error={errors.number_of_repetitions}
                 helperText={
-                  datos.number_of_repetitions === 0
-                    ? "Número de repeticiones requerido"
-                    : " "
+                  errors.number_of_repetitions ? "Campo requerido" : " "
                 }
                 onChange={handleInputChange}
               />
@@ -190,8 +201,8 @@ const SelectTreatments = () => {
                 InputProps={{ inputProps: { min: 0 } }}
                 label="Cantidad"
                 name="quantity"
-                error={datos.quantity === 0}
-                helperText={datos.quantity === 0 ? "Cantidad requerido" : " "}
+                error={errors.quantity}
+                helperText={errors.quantity ? "Campo requerido" : " "}
                 onChange={handleInputChange}
               />
               <Tooltip
