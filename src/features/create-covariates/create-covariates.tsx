@@ -18,7 +18,7 @@ const CreateCovariates = (props: any) => {
             <Grid key={covariate} item xs={12} sm={6}>
               <div className={styles.fieldContainer}>
                 <TextField
-                  label={covariate}
+                  label={props.display_covariates[covariate]}
                   name={covariate}
                   error={covariate === ""}
                   defaultValue={

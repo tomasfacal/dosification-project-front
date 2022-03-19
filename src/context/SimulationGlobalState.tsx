@@ -14,6 +14,8 @@ export interface SimulationGlobalStateInterface {
   covariates: any; // Definir tipo de covariables en global.d.ts
   output: string;
   treatments: TreatmentJSON[];
+  display_covariates: any; // Definir tipo en global.d.ts -> DisplayCovariatesJSON
+  display_outputs: any;
 }
 
 const SimulationGlobalStateContext = createContext({
