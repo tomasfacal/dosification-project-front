@@ -11,7 +11,9 @@ import { useSimulationGlobalState } from "../../context/SimulationGlobalState";
 
 const ChooseOutput = (props: any) => {
   const { state, setState } = useSimulationGlobalState();
-  const [chooseOutput, setChooseOutput] = useState(state.output ? state.output : "");
+  const [chooseOutput, setChooseOutput] = useState(
+    state.output ? state.output : ""
+  );
 
   const handleChange = (event: any) => {
     setChooseOutput(event.target.value);
@@ -32,7 +34,9 @@ const ChooseOutput = (props: any) => {
             onChange={handleChange}
           >
             {props.outputs.map((output: string) => (
-              <MenuItem value={output}>{output}</MenuItem>
+              <MenuItem value={output}>
+                {props.display_outputs[output]}
+              </MenuItem>
             ))}
           </Select>
         </FormControl>

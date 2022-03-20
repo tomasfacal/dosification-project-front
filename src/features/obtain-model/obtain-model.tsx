@@ -18,6 +18,12 @@ const ObtainModelDrug = (props: any) => {
 
   const [covariatesList, setCovariatesList] = useState([] as string[]);
   const [outputsList, setOutputsList] = useState([] as string[]);
+  const [displayCovariates, setDisplayCovariates] = useState(
+    state.display_covariates ? state.display_covariates : {}
+  );
+  const [displayOutputs, setDisplayOutputs] = useState(
+    state.display_outputs ? state.display_outputs : {}
+  );
   const [covariatesValues, setCovariatesValues] = useState(
     state.covariates ? state.covariates : {}
   );
@@ -69,8 +75,14 @@ const ObtainModelDrug = (props: any) => {
       const response = await API.get(
         API_ROUTES.MODEL_DRUGS + state.model_id + "/"
       );
-      setCovariatesList(response.data.variables);
-      setOutputsList(response.data.outputs);
+      const c_hash = response.data.variables;
+      const o_hash = response.data.outputs;
+      const c_keys = Object.keys(c_hash);
+      const o_keys = Object.keys(o_hash);
+      setCovariatesList(c_keys);
+      setOutputsList(o_keys);
+      setDisplayCovariates(c_hash);
+      setDisplayOutputs(o_hash);
 
       if (covariatesValues === {}) {
         let covariates_list = {} as any;
@@ -102,6 +114,8 @@ const ObtainModelDrug = (props: any) => {
       ...prev,
       covariates: covariatesValues,
       output: outputValue,
+      display_covariates: displayCovariates,
+      display_outputs: displayOutputs,
     }));
     navigation(Routing.SIMULATION_FLOW + Routing.SELECT_TREATMENTS);
   };
@@ -127,10 +141,12 @@ const ObtainModelDrug = (props: any) => {
         />
         <div>
           <CreateCovariates
+            display_covariates={displayCovariates}
             covariates={covariatesList}
             setValues={handleChangeCovariateValues}
           />
           <ChooseOutput
+            display_outputs={displayOutputs}
             outputs={outputsList}
             setValue={handleChangeOutputValue}
           />

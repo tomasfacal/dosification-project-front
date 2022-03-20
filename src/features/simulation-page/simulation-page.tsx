@@ -86,7 +86,7 @@ const SimulationPage = () => {
           </Typography>
           <Typography className={styles.Carditem}>
             <AnalyticsIcon />
-            Output: {state.output}
+            Output: {state.display_outputs[state.output || ""]}
           </Typography>
         </div>
         <div>
@@ -99,7 +99,8 @@ const SimulationPage = () => {
                 {Object.keys(state.covariates).map((innerAttr, index) => {
                   return (
                     <Typography className={styles.covariateStyle}>
-                      {innerAttr}: {state.covariates[innerAttr]}
+                      {state.display_covariates[innerAttr]}:{" "}
+                      {state.covariates[innerAttr]}
                     </Typography>
                   );
                 })}
