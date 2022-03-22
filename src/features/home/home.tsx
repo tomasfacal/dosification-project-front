@@ -14,6 +14,7 @@ import AuthContext from "../../context/authContext";
 import FeatureCard from "../feature-card/feature-card";
 import { useSimulationGlobalState } from "../../context/SimulationGlobalState";
 import { useObservationsGlobalState } from "../../context/ObservationsGlobalState";
+import TermsAndConditions from "../terms-and-conditions/terms-and-conditions"
 
 const Home = () => {
   const authCtx = useContext(AuthContext);
@@ -71,6 +72,8 @@ const Home = () => {
           />
         </div>
       )}
+
+      <TermsAndConditions/>
       <div className={styles.TeamContainer}>
         <div className={styles.HomeSectionTitle}>Equipo de desarrollo</div>
         <div className={styles.CardContainer}>
