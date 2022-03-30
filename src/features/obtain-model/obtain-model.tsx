@@ -140,11 +140,11 @@ const ObtainModelDrug = (props: any) => {
           className={styles.SettingsImage}
         />
         <div>
-          <CreateCovariates
+          {!state.is_individual && <CreateCovariates
             display_covariates={displayCovariates}
             covariates={covariatesList}
             setValues={handleChangeCovariateValues}
-          />
+          />}
           <ChooseOutput
             display_outputs={displayOutputs}
             outputs={outputsList}

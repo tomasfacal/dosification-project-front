@@ -127,12 +127,24 @@ const SelectPatientModel = () => {
 
   const setPatientModel = async () => {
     try {
+      let isIndividual = false
       await API.get(API_ROUTES.PATIENT + data.document_number + "/");
+      try {
+        const result = await API.get(
+          API_ROUTES.MODEL_DRUGS +
+            `${data.model_id}/patients/${data.document_number}/exists_individual_parameters`,
+        );
+        isIndividual = result.data.is_individual;
+        
+      } catch (error) {
+        console.log("error", error);
+      }
       setState((prev) => ({
         ...prev,
         document_number: Number(data.document_number),
         model_id: data.model_id,
         model_name: data.model_name,
+        is_individual: isIndividual,
       }));
       navigation(Routing.SIMULATION_FLOW + Routing.MODEL_DRUG);
     } catch (error) {
