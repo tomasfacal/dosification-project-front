@@ -3,12 +3,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
 export default function FormComponent(props: any) {
-  const [formState, setFormState] = useState({
-    firstName: "",
-    lastName: "",
-    username: "",
-    email: "",
-  });
+  const [formState, setFormState] = useState(props.formsFields);
 
   const change = (event: any) => {
     setFormState({
@@ -22,44 +17,19 @@ export default function FormComponent(props: any) {
 
     props.onSubmit(formState);
     // clear form
-    setFormState({
-      firstName: "",
-      lastName: "",
-      username: "",
-      email: "",
-    });
+    setFormState(props.formsFields);
   };
 
   return (
     <form>
-      <TextField
-        name="firstName"
-        label="First name"
-        value={formState.firstName}
-        onChange={change}
-      />
-      <br />
-      <TextField
-        name="lastName"
-        label="Last Name"
-        value={formState.lastName}
-        onChange={change}
-      />
-      <br />
-      <TextField
-        name="username"
-        label="Username"
-        value={formState.username}
-        onChange={change}
-      />
-      <br />
-      <TextField
-        name="email"
-        label="Email"
-        value={formState.email}
-        onChange={change}
-      />
-      <br />
+      {Object.keys(props.formsFields).map((field: string) => (
+        <TextField
+          name={field}
+          label={field}
+          value={formState[field]}
+          onChange={change}
+        />
+      ))}
       <Button onClick={onSubmit} color="primary">
         Submit
       </Button>

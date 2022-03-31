@@ -17,8 +17,9 @@ const UploadObservationStep3 = (props: any) => {
   const { state, setState } = useObservationsGlobalState();
   const theme = createTheme();
 
-  const [fieldsList, setFiledsList] = useState([] as string[]);
-  const [fieldsValues, setFieldsValues] = useState([] as any);
+  const [variableColumns, setVariableColumns] = useState([] as string[]);
+
+  const [columnsValues, setColumnsValues] = useState({} as any);
 
   const [tableState, setTableState] = useState({
     data: [] as any,
@@ -84,41 +85,36 @@ const UploadObservationStep3 = (props: any) => {
     },
   ];
 
-  // const fetchCovariatesFields = async () => {
-  //   setFieldsValues(["ID", "ID2", "CLCr"]);
-  // };
+  const fetchObservationFields = async () => {
+    try {
+      const response = await API.get(
+        API_ROUTES.MODEL_DRUGS + state.model_id + "/"
+      );
+      // setVariableColumns(response.data.variable_columns); PEGADA AL BACK
+      setVariableColumns(["ID", "ID2", "ID3"]);
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
 
-  // const handleChangeFieldValues = (name: string, value: string) => {
-  //   setFieldsValues({
-  //     ...fieldsValues,
-  //     [name]: value,
-  //   });
-  // };
+  useEffect(() => {
+    fetchObservationFields();
+  }, []);
 
-  // const updateInformation = async () => {
-  //   const body = {
-  //     patient_data: fieldsValues,
-  //   };
-  //   try {
-  //     await API.post(
-  //       API_ROUTES.MODEL_DRUGS +
-  //         `${state.model_id}/patients/${state.document_number}/update_information`,
-  //       body
-  //     );
-  //     navigation(Routing.HOME);
-  //   } catch (error) {
-  //     console.log("error", error);
-  //   }
-  // };
+  const formFields = () => {
+    let hash = {} as any;
+    variableColumns.forEach((element) => (hash[element] = ""));
+    return hash;
+  };
 
-  // const handleSubmit = async (event: any) => {
-  //   event.preventDefault();
-  //   await updateInformation();
-  // };
-
-  // useEffect(() => {
-  //   fetchCovariatesFields();
-  // }, []);
+  const headers = () => {
+    let array = [] as any;
+    variableColumns.forEach((element) => (array.push({
+      name: element,
+      prop: element.replace(/\s/g, '').toLowerCase()
+    })));
+    return array;
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -129,6 +125,7 @@ const UploadObservationStep3 = (props: any) => {
             data: [...prev.data, submission],
           }))
         }
+        formsFields={formFields}
       />
       <TableComponent
         handleRemove={handleRemove}
