@@ -19,8 +19,6 @@ const UploadObservationStep3 = (props: any) => {
 
   const [variableColumns, setVariableColumns] = useState([] as string[]);
 
-  const [columnsValues, setColumnsValues] = useState({} as any);
-
   const [tableState, setTableState] = useState({
     data: [] as any,
     editIdx: -1,
@@ -72,13 +70,13 @@ const UploadObservationStep3 = (props: any) => {
       actual: false,
     },
     {
-      name: "Cargar Variables Fijas",
+      name: "Cargar Columnas Fijas",
       link: Routing.UPLOAD_OBSERVATION_STEP_2,
       clickable: true,
       actual: false,
     },
     {
-      name: "Cargar observaciones",
+      name: "Cargar Columnas Variables",
       link: Routing.UPLOAD_OBSERVATION_STEP_3,
       clickable: true,
       actual: true,
@@ -90,8 +88,7 @@ const UploadObservationStep3 = (props: any) => {
       const response = await API.get(
         API_ROUTES.MODEL_DRUGS + state.model_id + "/"
       );
-      // setVariableColumns(response.data.variable_columns); PEGADA AL BACK
-      setVariableColumns(["ID", "ID2", "ID3"]);
+      setVariableColumns(response.data.variable_columns);
     } catch (error) {
       console.log("error", error);
     }
@@ -109,15 +106,20 @@ const UploadObservationStep3 = (props: any) => {
 
   const headers = () => {
     let array = [] as any;
-    variableColumns.forEach((element) => (array.push({
-      name: element,
-      prop: element.replace(/\s/g, '').toLowerCase()
-    })));
+    variableColumns.forEach((element) =>
+      array.push({
+        name: element,
+        prop: element,
+      })
+    );
     return array;
   };
 
   return (
     <ThemeProvider theme={theme}>
+      <div>
+        <Breadcrumbs values={breadcrumbs} />
+      </div>
       <FormComponent
         onSubmit={(submission: any) =>
           setTableState((prev) => ({
@@ -125,7 +127,7 @@ const UploadObservationStep3 = (props: any) => {
             data: [...prev.data, submission],
           }))
         }
-        formsFields={formFields}
+        formsFields={formFields()}
       />
       <TableComponent
         handleRemove={handleRemove}
@@ -134,24 +136,7 @@ const UploadObservationStep3 = (props: any) => {
         stopEditing={stopEditing}
         handleChange={handleChange}
         data={tableState.data}
-        header={[
-          {
-            name: "First name",
-            prop: "firstName",
-          },
-          {
-            name: "Last name",
-            prop: "lastName",
-          },
-          {
-            name: "Username",
-            prop: "username",
-          },
-          {
-            name: "Email",
-            prop: "email",
-          },
-        ]}
+        header={headers()}
       />
     </ThemeProvider>
   );

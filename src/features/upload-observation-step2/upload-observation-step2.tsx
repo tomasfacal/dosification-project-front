@@ -30,7 +30,7 @@ const UploadObservationStep2 = (props: any) => {
       actual: false,
     },
     {
-      name: "Cargar observaciones",
+      name: "Cargar Columnas Fijas",
       link: Routing.UPLOAD_OBSERVATION_STEP_2,
       clickable: true,
       actual: true,
@@ -42,7 +42,7 @@ const UploadObservationStep2 = (props: any) => {
       const response = await API.get(
         API_ROUTES.MODEL_DRUGS + state.model_id + "/"
       );
-      setFiledsList(Object.values(response.data.order_csv));
+      setFiledsList(response.data.fixed_columns);
     } catch (error) {
       console.log("error", error);
     }
