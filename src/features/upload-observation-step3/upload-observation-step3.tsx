@@ -1,6 +1,6 @@
 import { Fragment, useState, useEffect } from "react";
 import { useObservationsGlobalState } from "../../context/ObservationsGlobalState";
-import styles from "./upload-observation-step2.module.scss";
+import styles from "./upload-observation-step3.module.scss";
 import { Routing } from "../../constant/Routing";
 import Breadcrumbs from "../breadcrumbs/breadcrumbs";
 import { useNavigate } from "react-router-dom";
@@ -115,11 +115,25 @@ const UploadObservationStep3 = (props: any) => {
     return array;
   };
 
+  const updateInformation = async () => {
+    setState((prev) => ({
+      ...prev,
+      variable_columns: tableState.data,
+    }));
+  };
+
+  const handleSubmit = async (event: any) => {
+    event.preventDefault();
+    await updateInformation();
+    console.log(state);
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <div>
         <Breadcrumbs values={breadcrumbs} />
       </div>
+      <h1 className={styles.Title}>Cargar columnas variables</h1>
       <FormComponent
         onSubmit={(submission: any) =>
           setTableState((prev) => ({
@@ -138,6 +152,16 @@ const UploadObservationStep3 = (props: any) => {
         data={tableState.data}
         header={headers()}
       />
+      <div className={styles.ButonContainer}>
+        <Button
+          color="primary"
+          variant="contained"
+          onClick={handleSubmit}
+          className={styles.SubmitButton}
+        >
+          Cargar observación
+        </Button>
+      </div>
     </ThemeProvider>
   );
 };
