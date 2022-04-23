@@ -122,10 +122,27 @@ const UploadObservationStep3 = (props: any) => {
     }));
   };
 
+  const sendInformation = async () => {
+    try {
+      const body = {
+        fixed_columns: state.fixed_columns,
+        variable_columns: state.variable_columns,
+      };
+      await API.post(
+        API_ROUTES.MODEL_DRUGS +
+          `${state.model_id}/patients/${state.document_number}/update_information`,
+        body
+      );
+      navigation(Routing.HOME);
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+
   const handleSubmit = async (event: any) => {
     event.preventDefault();
     await updateInformation();
-    console.log(state);
+    await sendInformation();
   };
 
   return (
