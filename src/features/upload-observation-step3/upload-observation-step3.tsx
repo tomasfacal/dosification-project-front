@@ -1,10 +1,9 @@
-import { Fragment, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useObservationsGlobalState } from "../../context/ObservationsGlobalState";
 import styles from "./upload-observation-step3.module.scss";
 import { Routing } from "../../constant/Routing";
 import Breadcrumbs from "../breadcrumbs/breadcrumbs";
 import { useNavigate } from "react-router-dom";
-import CreateObservation from "../create-observation/create-observation";
 import { API_ROUTES } from "../../networking/api-routes";
 import API from "../../networking/api-service";
 import { Button } from "@material-ui/core";
@@ -115,18 +114,11 @@ const UploadObservationStep3 = (props: any) => {
     return array;
   };
 
-  const updateInformation = async () => {
-    setState((prev) => ({
-      ...prev,
-      variable_columns: tableState.data,
-    }));
-  };
-
   const sendInformation = async () => {
     try {
       const body = {
         fixed_columns: state.fixed_columns,
-        variable_columns: state.variable_columns,
+        variable_columns: tableState.data,
       };
       await API.post(
         API_ROUTES.MODEL_DRUGS +
@@ -141,7 +133,6 @@ const UploadObservationStep3 = (props: any) => {
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
-    await updateInformation();
     await sendInformation();
   };
 
