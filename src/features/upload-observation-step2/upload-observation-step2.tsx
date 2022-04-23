@@ -89,7 +89,6 @@ const UploadObservationStep2 = (props: any) => {
             variant="contained"
             onClick={handleSubmit}
             className={styles.SubmitButton}
-            // disabled={!validateFields(data.document_number, data.model_id)}
           >
             Siguiente
           </Button>
