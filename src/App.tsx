@@ -45,15 +45,30 @@ function App() {
           />
           <Route
             path={Routing.UPLOAD_OBSERVATION_STEP_1}
-            element={<UploadObservationStep1 />}
+            element={
+              <PermissionsRoute
+                component={UploadObservationStep1}
+                genericPage={false}
+              />
+            }
           />
           <Route
             path={Routing.UPLOAD_OBSERVATION_STEP_2}
-            element={<UploadObservationStep2 />}
+            element={
+              <PermissionsRoute
+                component={UploadObservationStep2}
+                genericPage={false}
+              />
+            }
           />
           <Route
             path={Routing.UPLOAD_OBSERVATION_STEP_3}
-            element={<UploadObservationStep3 />}
+            element={
+              <PermissionsRoute
+                component={UploadObservationStep3}
+                genericPage={false}
+              />
+            }
           />
           <Route
             path={Routing.PATIENT + `/:document_number`}

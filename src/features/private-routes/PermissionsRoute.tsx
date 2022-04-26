@@ -22,7 +22,7 @@ export const PermissionsRoute: React.FC<Props> = ({
   if (!authCtx.isLoggedIn) {
     return <Navigate to={Routing.SIGN_IN} replace={true} />;
   }
-  if (genericPage || authCtx.role === "doctor") {
+  if (genericPage || authCtx.role === "pharmacist") {
     return <RouteComponent />;
   } else {
     return (

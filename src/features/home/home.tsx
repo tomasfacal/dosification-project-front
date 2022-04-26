@@ -17,7 +17,7 @@ import { useObservationsGlobalState } from "../../context/ObservationsGlobalStat
 
 const Home = () => {
   const authCtx = useContext(AuthContext);
-  const isDoctor = authCtx.role === "doctor";
+  const isPharmacist = authCtx.role === "pharmacist";
   const { state: simulation_state, setState: setSimulationState } =
     useSimulationGlobalState();
   const { state: observationState, setState: setObservationState } =
@@ -32,7 +32,7 @@ const Home = () => {
     <Fragment>
       <Hero />
       <Menubar />
-      {isDoctor && authCtx.isLoggedIn && (
+      {isPharmacist && authCtx.isLoggedIn && (
         <div className={styles.CardsFeaturesContainer}>
           <FeatureCard
             title="Simulación"
