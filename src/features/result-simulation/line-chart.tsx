@@ -2,6 +2,8 @@ import { Fragment, useEffect, useState } from "react";
 import { useTheme } from "@material-ui/core/styles";
 import ReactApexChart from "react-apexcharts";
 import { ApexOptions } from "apexcharts";
+import { StylesContext } from "@material-ui/core/node_modules/@material-ui/styles";
+import { height } from "@mui/material/node_modules/@mui/system";
 
 const SimulationGraph = (props: any) => {
   const theme = useTheme();
@@ -12,7 +14,7 @@ const SimulationGraph = (props: any) => {
     props.results.map((result: any, index: any) => {
       const number_treatment = index + 1;
       const serie = {
-        name: "Treatment " + number_treatment,
+        name: "Tratamiento " + number_treatment,
         type: "line",
         data: result.values,
       };
@@ -61,7 +63,7 @@ const SimulationGraph = (props: any) => {
   return (
     <Fragment>
       {series.length > 0 && (
-        <ReactApexChart options={chartData} series={chartData.series} />
+        <ReactApexChart height= {300} options={chartData} series={chartData.series} />
       )}
     </Fragment>
   );
