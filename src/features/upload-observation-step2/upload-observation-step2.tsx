@@ -8,10 +8,12 @@ import CreateObservation from "../create-observation/create-observation";
 import { API_ROUTES } from "../../networking/api-routes";
 import API from "../../networking/api-service";
 import { Button } from "@material-ui/core";
+import Alert from "@mui/material/Alert";
 
 const UploadObservationStep2 = (props: any) => {
   const navigation = useNavigate();
   const { state, setState } = useObservationsGlobalState();
+  const [warning, setWarning] = useState(true);
 
   const [fieldsList, setFiledsList] = useState([] as string[]);
   const [fieldsValues, setFieldsValues] = useState({} as any);
@@ -42,7 +44,12 @@ const UploadObservationStep2 = (props: any) => {
       const response = await API.get(
         API_ROUTES.MODEL_DRUGS + state.model_id + "/"
       );
-      setFiledsList(response.data.fixed_columns);
+      const field_list = response.data.fixed_columns;
+      delete field_list["OCC"];
+      setFiledsList(field_list);
+      field_list.map((key: string) => {
+        fieldsValues[key] = ".";
+      });
     } catch (error) {
       console.log("error", error);
     }
@@ -56,6 +63,9 @@ const UploadObservationStep2 = (props: any) => {
   };
 
   const updateFixedColumnsValues = async () => {
+    Object.keys(fieldsValues).forEach((key) => {
+      if (fieldsValues[key] === "") fieldsValues[key] = ".";
+    });
     setState((prev) => ({
       ...prev,
       fixed_columns: fieldsValues,
@@ -78,9 +88,20 @@ const UploadObservationStep2 = (props: any) => {
         <Breadcrumbs values={breadcrumbs} />
       </div>
       <div className={styles.FormContainer}>
+        {warning && (
+          <Alert
+            severity="warning"
+            onClose={() => {
+              setWarning(false);
+            }}
+          >
+            Advertencia! Cada campo que quede <strong>vacio</strong>, será{" "}
+            <strong>autocompletado con “.”</strong> acorde al formato requerido.
+          </Alert>
+        )}
         <h1 className={styles.Title}>Cargar columnas fijas</h1>
         <CreateObservation
-          covariates={fieldsList}
+          fieldsList={fieldsList}
           setValues={handleChangeFieldValues}
         />
         <div className={styles.ButonContainer}>

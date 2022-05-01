@@ -10,6 +10,7 @@ import { Button } from "@material-ui/core";
 import { createTheme, ThemeProvider } from "@material-ui/core/styles";
 import FormComponent from "./FormComponent";
 import TableComponent from "./TableComponent";
+import Alert from "@mui/material/Alert";
 
 const UploadObservationStep3 = (props: any) => {
   const navigation = useNavigate();
@@ -22,6 +23,8 @@ const UploadObservationStep3 = (props: any) => {
     data: [] as any,
     editIdx: -1,
   });
+
+  const [warning, setWarning] = useState(true);
 
   // Se queda con todas las filas menos
   const handleRemove = (i: number) => {
@@ -141,6 +144,17 @@ const UploadObservationStep3 = (props: any) => {
       <div>
         <Breadcrumbs values={breadcrumbs} />
       </div>
+      {warning && (
+        <Alert
+          severity="warning"
+          onClose={() => {
+            setWarning(false);
+          }}
+        >
+          Advertencia! Cada campo que quede <strong>vacio</strong>, será{" "}
+          <strong>autocompletado con “.”</strong> acorde al formato requerido.
+        </Alert>
+      )}
       <h1 className={styles.Title}>Cargar columnas variables</h1>
       <FormComponent
         onSubmit={(submission: any) =>

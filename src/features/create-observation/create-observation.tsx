@@ -11,16 +11,14 @@ const CreateObservation = (props: any) => {
     <Fragment>
       <div className={styles.FormContainer}>
         <Grid container spacing={2}>
-          {props.covariates.map((covariate: string) => (
-            <Grid key={covariate} item xs={6} sm={2}>
+          {props.fieldsList.map((field: string) => (
+            <Grid key={field} item xs={6} sm={2}>
               <div className={styles.fieldContainer}>
                 <TextField
-                  label={covariate}
-                  name={covariate}
-                  error={covariate === ""}
-                  helperText={
-                    covariate === "" ? { covariate } + "requerido" : " "
-                  }
+                  label={field}
+                  name={field}
+                  error={field === ""}
+                  helperText={field === "" ? { field } + "requerido" : " "}
                   onChange={handleInputChange}
                 />
               </div>
