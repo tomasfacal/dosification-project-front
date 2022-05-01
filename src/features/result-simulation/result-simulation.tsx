@@ -1,9 +1,8 @@
-import { Fragment, useState, useEffect, useContext } from "react";
+import { Fragment, useState, useEffect } from "react";
 import styles from "./result-simulation.module.scss";
 import API from "../../networking/api-service";
 import { API_ROUTES } from "../../networking/api-routes";
 import { useSimulationGlobalState } from "../../context/SimulationGlobalState";
-import AuthContext from "../../context/authContext";
 import SimulationGraph from "./line-chart";
 import TreatmentCardResult from "./TreatmentCardResult/treatment_result";
 import { Routing } from "../../constant/Routing";
@@ -17,7 +16,6 @@ import WarningCard from "../warning-card/warning-card";
 const ResultSimulation = (props: any) => {
   const { state, setState } = useSimulationGlobalState();
   const [results, setResults] = useState<ResponseResultJSON[]>([]);
-  const authCtx = useContext(AuthContext);
   const [error, setError] = useState<Boolean>(false);
 
   const breadcrumbs = [
@@ -91,7 +89,8 @@ const ResultSimulation = (props: any) => {
         "steady_state": true,
         "auc": parseNumber(dato.auc),
         "maximum": parseNumber(dato.maximum),
-        "minimum": parseNumber(dato.minimum)
+        "minimum": parseNumber(dato.minimum),
+        "tss": parseNumber(dato.tss),
       }))
     )
     return result

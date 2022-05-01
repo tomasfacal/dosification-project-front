@@ -15,9 +15,6 @@ const TreatmentCardResult = (props: any) => {
             Ciclo de duración: {props.cycle_duration}
           </Typography>
           <Typography className={styles.Carditem}>
-            Número de repeticiones: {props.number_of_repetitions}
-          </Typography>
-          <Typography className={styles.Carditem}>
             Cantidad: {props.quantity}
           </Typography>
         </CardContent>

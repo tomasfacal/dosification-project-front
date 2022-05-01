@@ -23,13 +23,11 @@ const SelectTreatments = () => {
 
   const [datos, setData] = useState({
     cycle_duration: 0,
-    number_of_repetitions: 0,
     quantity: 0,
   });
 
   const [errors, setErrors] = useState({
     cycle_duration: false,
-    number_of_repetitions: false,
     quantity: false,
   });
 
@@ -105,14 +103,11 @@ const SelectTreatments = () => {
 
   const validateFields = (
     cycle_duration: number,
-    number_of_repetitions: number,
     quantity: number
   ) =>
     !!cycle_duration &&
-    !!number_of_repetitions &&
     !!quantity &&
     cycle_duration > 0 &&
-    number_of_repetitions > 0 &&
     quantity > 0 &&
     cards.length < 3;
 
@@ -122,7 +117,6 @@ const SelectTreatments = () => {
       ...cards,
       {
         cycle_duration: datos.cycle_duration,
-        number_of_repetitions: datos.number_of_repetitions,
         quantity: datos.quantity,
       },
     ]);
@@ -176,29 +170,6 @@ const SelectTreatments = () => {
               <TextField
                 type="number"
                 InputProps={{ inputProps: { min: 0 } }}
-                label="Repeticiones"
-                name="number_of_repetitions"
-                error={errors.number_of_repetitions}
-                helperText={
-                  errors.number_of_repetitions ? "Campo requerido" : " "
-                }
-                onChange={handleInputChange}
-              />
-              <Tooltip
-                title="Este valor indica la cantidad de repeticiones que se van a aplicar"
-                arrow
-                placement="right"
-                classes={{ tooltip: styles.tooltip }}
-              >
-                <HelpIcon className={styles.helpIcon} />
-              </Tooltip>
-            </div>
-          </Grid>
-          <Grid item xs={12} sm={12}>
-            <div className={styles.fieldContainer}>
-              <TextField
-                type="number"
-                InputProps={{ inputProps: { min: 0 } }}
                 label="Cantidad"
                 name="quantity"
                 error={errors.quantity}
@@ -225,7 +196,6 @@ const SelectTreatments = () => {
             disabled={
               !validateFields(
                 datos.cycle_duration,
-                datos.number_of_repetitions,
                 datos.quantity
               )
             }
