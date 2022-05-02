@@ -34,13 +34,17 @@ const InputPatient = (props: any) => {
           label={props.show_name}
           value={props.value}
           disabled
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <BorderColorIcon onClick={handleClickPencil} />
-              </InputAdornment>
-            ),
-          }}
+          InputProps={
+            !props.permanentDisabled
+              ? {
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <BorderColorIcon onClick={handleClickPencil} />
+                    </InputAdornment>
+                  ),
+                }
+              : {}
+          }
           variant="standard"
         />
       )}
