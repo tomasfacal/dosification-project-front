@@ -44,8 +44,9 @@ const UploadObservationStep2 = (props: any) => {
       const response = await API.get(
         API_ROUTES.MODEL_DRUGS + state.model_id + "/"
       );
-      const field_list = response.data.fixed_columns;
-      delete field_list["OCC"];
+      const field_list = response.data.fixed_columns.filter(
+        (elem: string) => elem !== "OCC"
+      );
       setFiledsList(field_list);
       field_list.map((key: string) => {
         fieldsValues[key] = ".";
