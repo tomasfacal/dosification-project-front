@@ -82,19 +82,20 @@ const ResultSimulation = (props: any) => {
     postSimulate();
   }, []);
 
-  const metrics = [{
-    "steady_state": true,
-    "auc": 10,
-    "maximum": 12,
-    "minimum": 15
-  },
-  {
-    "steady_state": true,
-    "auc": 11,
-    "maximum": 15,
-    "minimum": 16
+  const parseNumber = (x: any) => (x > 9999) ? Math.round(x) : x.toPrecision(4)
+
+  const metrics = () => {
+    let result: Metrics[] = []
+    results.map((dato: ResponseResultJSON) => (
+      result.push({
+        "steady_state": true,
+        "auc": parseNumber(dato.auc),
+        "maximum": parseNumber(dato.maximum),
+        "minimum": parseNumber(dato.minimum)
+      }))
+    )
+    return result
   }
-  ]
 
   return (
     <Fragment>
@@ -131,7 +132,7 @@ const ResultSimulation = (props: any) => {
               </Grid>
             </div>
             <div className={styles.metricsResults}>
-              <MetricsCard metrics= {metrics}></MetricsCard>
+              <MetricsCard metrics= {metrics()}></MetricsCard>
             </div>
           </div>
         )}

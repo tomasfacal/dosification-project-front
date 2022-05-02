@@ -9,12 +9,6 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 
-interface Metrics {
-  steady_state: boolean;
-  auc: number;
-  maximum: number;
-  minimum: number;
-}
 
 interface TabPanelProps {
   children?: React.ReactNode;
