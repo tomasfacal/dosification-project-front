@@ -1,0 +1,16 @@
+@import "../../assets/stylesheets/generic-styles.scss";
+
+.CardWarning {
+  max-width: 500px;
+  margin: auto;
+}
+
+.Carditem {
+  color: $brand-dark;
+}
+
+.warningIcon {
+  color: $danger-dark;
+  width: 35px !important;
+  height: 35px !important;
+}

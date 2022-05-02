@@ -1,0 +1,25 @@
+@import "../../assets/stylesheets/generic-styles.scss";
+
+.CardMetrics {
+  max-width: 350px;
+  margin: auto;
+  padding: 10px;
+  height: 380px;
+}
+
+.CardTitle {
+  font-weight: bold !important;
+  font-size: $font-size-subtitle !important;
+}
+
+.PatientImage {
+  width: 80%;
+}
+
+.CardItem {
+  color: $brand-dark;
+  display: flex;
+  justify-content: center;
+  padding: 5px;
+}
+

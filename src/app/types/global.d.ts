@@ -23,8 +23,18 @@ declare interface ModelInfo {
 }
 
 declare interface ResponseResultJSON {
+  auc: number;
+  minimum: number;
+  maximum: number;
   cycle_duration: number;
   number_of_repetitions: number;
   quantity: number;
   values: number[][];
+}
+
+declare interface Metrics {
+  steady_state: boolean;
+  auc: number;
+  maximum: number;
+  minimum: number;
 }

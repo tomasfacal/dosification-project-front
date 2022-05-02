@@ -11,6 +11,8 @@ import Breadcrumbs from "../breadcrumbs/breadcrumbs";
 import CircularIndeterminate from "../loading/circular_indeterminate";
 import Typography from "@mui/material/Typography";
 import { Grid } from "@material-ui/core";
+import MetricsCard from "../metrics-card/metrics-card";
+import WarningCard from "../warning-card/warning-card";
 
 const ResultSimulation = (props: any) => {
   const { state, setState } = useSimulationGlobalState();
@@ -80,6 +82,21 @@ const ResultSimulation = (props: any) => {
     postSimulate();
   }, []);
 
+  const parseNumber = (x: any) => (x > 9999) ? Math.round(x) : x.toPrecision(4)
+
+  const metrics = () => {
+    let result: Metrics[] = []
+    results.map((dato: ResponseResultJSON) => (
+      result.push({
+        "steady_state": true,
+        "auc": parseNumber(dato.auc),
+        "maximum": parseNumber(dato.maximum),
+        "minimum": parseNumber(dato.minimum)
+      }))
+    )
+    return result
+  }
+
   return (
     <Fragment>
       <div>
@@ -97,24 +114,30 @@ const ResultSimulation = (props: any) => {
           </div>
         )}
         {results.length > 0 && (
-          <div>
-            <div className={styles.FormContainer}>
-              <SimulationGraph results={results}></SimulationGraph>
+          <div className={styles.results}>
+            <div className={styles.simulationResults}>
+              <div className={styles.FormContainer}>
+                <SimulationGraph results={results}></SimulationGraph>
+              </div>
+              <Grid container spacing={2}>
+                {results.map((result: any, index: number) => (
+                  <TreatmentCardResult
+                    cycle_duration={result.cycle_duration}
+                    number_of_repetitions={result.number_of_repetitions}
+                    quantity={result.quantity}
+                    index={index}
+                    name={"Tratamiento " + (index + 1)}
+                  ></TreatmentCardResult>
+                ))}
+              </Grid>
             </div>
-            <Grid container spacing={2}>
-              {results.map((result: any, index: number) => (
-                <TreatmentCardResult
-                  cycle_duration={result.cycle_duration}
-                  number_of_repetitions={result.number_of_repetitions}
-                  quantity={result.quantity}
-                  index={index}
-                  name={"Treatment " + (index + 1)}
-                ></TreatmentCardResult>
-              ))}
-            </Grid>
+            <div className={styles.metricsResults}>
+              <MetricsCard metrics= {metrics()}></MetricsCard>
+            </div>
           </div>
         )}
       </div>
+      <WarningCard warning= "Finglix es una herramienta de ayuda. La dosificación está a cargo del usuario."/>
     </Fragment>
   );
 };

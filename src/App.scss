@@ -3,9 +3,8 @@
 }
 
 .App-header {
-  // (Height of the viewport - height of the navbar)
-  // TODO: update this after include the footer
-  min-height: calc(100vh - 50px);
+  // (Height of the viewport - height of the navbar - height of the footer)
+  min-height: calc(100vh - 100px);
   display: flex;
   flex-direction: column;
   align-items: center;
