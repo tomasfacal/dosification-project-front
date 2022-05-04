@@ -18,7 +18,8 @@ import { API_ROUTES } from "../../networking/api-routes";
 import Error from "../error/error";
 import Breadcrumbs from "../breadcrumbs/breadcrumbs";
 import { Routing } from "../../constant/Routing";
-import patient from "../../assets/images/patient.png";
+import male from "../../assets/images/male.png";
+import female from "../../assets/images/female.png";
 
 const CreatePatient = () => {
   const [datos, setData] = useState({
@@ -92,8 +93,8 @@ const CreatePatient = () => {
         <Breadcrumbs values={breadcrumbs} />
       </div>
       <div className={styles.FormContainer}>
-        <img
-          src={patient}
+      <img
+          src={datos.sex === "F" ? female : male}
           alt="ilustracion paciente"
           className={styles.PatientImage}
         />
