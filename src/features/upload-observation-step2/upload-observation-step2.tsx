@@ -8,10 +8,12 @@ import CreateObservation from "../create-observation/create-observation";
 import { API_ROUTES } from "../../networking/api-routes";
 import API from "../../networking/api-service";
 import { Button } from "@material-ui/core";
+import Alert from "@mui/material/Alert";
 
 const UploadObservationStep2 = (props: any) => {
   const navigation = useNavigate();
   const { state, setState } = useObservationsGlobalState();
+  const [warning, setWarning] = useState(true);
 
   const [fieldsList, setFiledsList] = useState([] as string[]);
   const [fieldsValues, setFieldsValues] = useState({} as any);
@@ -30,7 +32,7 @@ const UploadObservationStep2 = (props: any) => {
       actual: false,
     },
     {
-      name: "Cargar observaciones",
+      name: "Cargar Columnas Fijas",
       link: Routing.UPLOAD_OBSERVATION_STEP_2,
       clickable: true,
       actual: true,
@@ -42,7 +44,13 @@ const UploadObservationStep2 = (props: any) => {
       const response = await API.get(
         API_ROUTES.MODEL_DRUGS + state.model_id + "/"
       );
-      setFiledsList(Object.values(response.data.order_csv));
+      const field_list = response.data.fixed_columns.filter(
+        (elem: string) => elem !== "OCC"
+      );
+      setFiledsList(field_list);
+      field_list.map((key: string) => {
+        fieldsValues[key] = ".";
+      });
     } catch (error) {
       console.log("error", error);
     }
@@ -55,25 +63,20 @@ const UploadObservationStep2 = (props: any) => {
     });
   };
 
-  const updateInformation = async () => {
-    const body = {
-      patient_data: fieldsValues,
-    };
-    try {
-      await API.post(
-        API_ROUTES.MODEL_DRUGS +
-          `${state.model_id}/patients/${state.document_number}/update_information`,
-        body
-      );
-      navigation(Routing.HOME);
-    } catch (error) {
-      console.log("error", error);
-    }
+  const updateFixedColumnsValues = async () => {
+    Object.keys(fieldsValues).forEach((key) => {
+      if (fieldsValues[key] === "") fieldsValues[key] = ".";
+    });
+    setState((prev) => ({
+      ...prev,
+      fixed_columns: fieldsValues,
+    }));
+    navigation(Routing.UPLOAD_OBSERVATION_STEP_3);
   };
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
-    await updateInformation();
+    await updateFixedColumnsValues();
   };
 
   useEffect(() => {
@@ -86,9 +89,20 @@ const UploadObservationStep2 = (props: any) => {
         <Breadcrumbs values={breadcrumbs} />
       </div>
       <div className={styles.FormContainer}>
-        <h1 className={styles.Title}>Cargar nueva observacion</h1>
+        {warning && (
+          <Alert
+            severity="warning"
+            onClose={() => {
+              setWarning(false);
+            }}
+          >
+            Advertencia! Cada campo que quede <strong>vacio</strong>, será{" "}
+            <strong>autocompletado con “.”</strong> acorde al formato requerido.
+          </Alert>
+        )}
+        <h1 className={styles.Title}>Cargar columnas fijas</h1>
         <CreateObservation
-          covariates={fieldsList}
+          fieldsList={fieldsList}
           setValues={handleChangeFieldValues}
         />
         <div className={styles.ButonContainer}>
@@ -97,9 +111,8 @@ const UploadObservationStep2 = (props: any) => {
             variant="contained"
             onClick={handleSubmit}
             className={styles.SubmitButton}
-            // disabled={!validateFields(data.document_number, data.model_id)}
           >
-            Cargar observación
+            Siguiente
           </Button>
         </div>
       </div>

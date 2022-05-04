@@ -11,6 +11,8 @@ export interface ObservationsGlobalStateInterface {
   document_number: number;
   model_id: number;
   model_name: string;
+  fixed_columns: Object;
+  variable_columns: Object[];
 }
 
 const ObservationsGlobalStateContext = createContext({

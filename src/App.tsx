@@ -18,6 +18,7 @@ import Home from "./features/home/home";
 import { PermissionsRoute } from "./features/private-routes/PermissionsRoute";
 import UploadObservationStep1 from "./features/upload-observation-step1/upload-observation-step1";
 import UploadObservationStep2 from "./features/upload-observation-step2/upload-observation-step2";
+import UploadObservationStep3 from "./features/upload-observation-step3/upload-observation-step3";
 import EditUserInfo from "./features/edit-user-info/edit-user-info";
 
 function App() {
@@ -44,11 +45,30 @@ function App() {
           />
           <Route
             path={Routing.UPLOAD_OBSERVATION_STEP_1}
-            element={<UploadObservationStep1 />}
+            element={
+              <PermissionsRoute
+                component={UploadObservationStep1}
+                genericPage={false}
+              />
+            }
           />
           <Route
             path={Routing.UPLOAD_OBSERVATION_STEP_2}
-            element={<UploadObservationStep2 />}
+            element={
+              <PermissionsRoute
+                component={UploadObservationStep2}
+                genericPage={false}
+              />
+            }
+          />
+          <Route
+            path={Routing.UPLOAD_OBSERVATION_STEP_3}
+            element={
+              <PermissionsRoute
+                component={UploadObservationStep3}
+                genericPage={false}
+              />
+            }
           />
           <Route
             path={Routing.PATIENT + `/:document_number`}

@@ -16,4 +16,5 @@ export const Routing = {
   // Observation flow routes
   UPLOAD_OBSERVATION_STEP_1: "/upload-observation-step1",
   UPLOAD_OBSERVATION_STEP_2: "/upload-observation-step2",
+  UPLOAD_OBSERVATION_STEP_3: "/upload-observation-step3",
 };
