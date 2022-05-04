@@ -55,6 +55,12 @@ const MetricsCard = (props: any) => {
         <Typography className={styles.CardTitle}>
           {metricsTitle}
         </Typography>
+        <div className={styles.CardItem}>
+          <AutoGraphIcon/>
+          <Typography>
+            TSS: {props.metrics[0].tss}
+          </Typography>
+        </div>
         <Tabs value={value} onChange={handleChange} centered aria-label="basic tabs example">
           {props.metrics.map((treatment: Metrics, index: number) => (
             <Tab label= {`Tratamiento ${index + 1}`} />
@@ -78,12 +84,6 @@ const MetricsCard = (props: any) => {
               <AutoGraphIcon/>
               <Typography>
                 Concentración mínima: {treatment.minimum}
-              </Typography>
-            </div>
-            <div className={styles.CardItem}>
-              <AutoGraphIcon/>
-              <Typography>
-                TSS: {treatment.tss}
               </Typography>
             </div>
           </TabPanel>
