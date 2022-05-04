@@ -89,7 +89,7 @@ const SimulationPage = () => {
             Output: {state.display_outputs[state.output || ""]}
           </Typography>
         </div>
-        <div>
+        {state.covariates && Object.keys(state.covariates).length > 0 && <div>
           <Typography className={styles.Treatmentsubtitle}>
             Covariables:
           </Typography>
@@ -107,7 +107,7 @@ const SimulationPage = () => {
               </CardContent>
             </Card>
           </Grid>
-        </div>
+        </div>}
         <div className={styles.CardsContainer}>
           <Typography className={styles.Treatmentsubtitle}>
             Tratamientos:

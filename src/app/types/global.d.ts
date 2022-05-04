@@ -1,6 +1,5 @@
 declare interface TreatmentJSON {
   cycle_duration: number;
-  number_of_repetitions: number;
   quantity: number;
 }
 
@@ -25,6 +24,7 @@ declare interface ModelInfo {
 declare interface ResponseResultJSON {
   auc: number;
   minimum: number;
+  tss: number;
   maximum: number;
   cycle_duration: number;
   number_of_repetitions: number;
@@ -34,6 +34,7 @@ declare interface ResponseResultJSON {
 
 declare interface Metrics {
   steady_state: boolean;
+  tss: number;
   auc: number;
   maximum: number;
   minimum: number;

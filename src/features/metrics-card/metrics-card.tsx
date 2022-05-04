@@ -50,7 +50,7 @@ const MetricsCard = (props: any) => {
         <img
             src={metricsImage}
             alt="ilustracion paciente"
-            className={styles.PatientImage}
+            className={styles.MetricImage}
         />
         <Typography className={styles.CardTitle}>
           {metricsTitle}
@@ -78,6 +78,12 @@ const MetricsCard = (props: any) => {
               <AutoGraphIcon/>
               <Typography>
                 Concentración mínima: {treatment.minimum}
+              </Typography>
+            </div>
+            <div className={styles.CardItem}>
+              <AutoGraphIcon/>
+              <Typography>
+                TSS: {treatment.tss}
               </Typography>
             </div>
           </TabPanel>

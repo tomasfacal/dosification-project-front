@@ -20,9 +20,6 @@ const TreatmentCard = (props: Treatment) => {
             Ciclo de duración: {props.treatment.cycle_duration}
           </Typography>
           <Typography className={styles.Carditem}>
-            Número de repeticiones: {props.treatment.number_of_repetitions}
-          </Typography>
-          <Typography className={styles.Carditem}>
             Cantidad: {props.treatment.quantity}
           </Typography>
         </CardContent>
