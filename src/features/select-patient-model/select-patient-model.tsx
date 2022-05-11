@@ -91,6 +91,7 @@ const SelectPatientModel = () => {
 
   useEffect(() => {
     fetchModels();
+    setState({});
   }, []);
 
   const handleInputChange = (event: any) => {
@@ -127,15 +128,14 @@ const SelectPatientModel = () => {
 
   const setPatientModel = async () => {
     try {
-      let isIndividual = false
+      let isIndividual = false;
       await API.get(API_ROUTES.PATIENT + data.document_number + "/");
       try {
         const result = await API.get(
           API_ROUTES.MODEL_DRUGS +
-            `${data.model_id}/patients/${data.document_number}/exists_individual_parameters`,
+            `${data.model_id}/patients/${data.document_number}/exists_individual_parameters`
         );
         isIndividual = result.data.is_individual;
-        
       } catch (error) {
         console.log("error", error);
       }

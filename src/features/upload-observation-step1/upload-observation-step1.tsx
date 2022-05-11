@@ -62,6 +62,7 @@ const UploadObservationStep1 = (props: any) => {
 
   useEffect(() => {
     fetchModels();
+    setState({});
   }, []);
 
   const handleInputChange = (event: any) => {
