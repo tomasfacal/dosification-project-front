@@ -13,7 +13,7 @@
 }
 
 .ButonContainer {
-  margin: auto 0;
+  margin: 10px 0;
 }
 
 .Title {
@@ -24,4 +24,36 @@
 .SubmitButton {
   margin-top: 5% !important;
   background-color: $success !important;
+}
+
+.Field {
+  background-color: white;
+  margin: 0 10px !important;
+}
+
+.Form {
+  display: flex;
+  align-items: center;
+}
+
+.Table {
+  background-color: white;
+  margin: 30px;
+  width: 95% !important;
+}
+
+.TableHeader {
+  background-color: $brand-extra-light;
+}
+
+.DeleteIcon {
+  color: $danger;
+}
+
+.CheckIcon {
+  color: $success;
+}
+
+.EditIcon {
+  color: $info;
 }

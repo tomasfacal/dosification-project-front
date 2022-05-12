@@ -9,6 +9,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import CheckIcon from "@mui/icons-material/Check";
 import TextField from "@mui/material/TextField";
+import styles from "./upload-observation-step3.module.scss";
 
 const row = (
   x: any,
@@ -38,13 +39,13 @@ const row = (
       ))}
       <TableCell>
         {currentlyEditing ? (
-          <CheckIcon onClick={() => stopEditing()} />
+          <CheckIcon className={styles.CheckIcon} onClick={() => stopEditing()} />
         ) : (
-          <EditIcon onClick={() => startEditing(i)} />
+          <EditIcon className={styles.EditIcon} onClick={() => startEditing(i)} />
         )}
       </TableCell>
       <TableCell>
-        <DeleteIcon onClick={() => handleRemove(i)} />
+        <DeleteIcon className={styles.DeleteIcon} onClick={() => handleRemove(i)} />
       </TableCell>
     </TableRow>
   );
@@ -69,8 +70,8 @@ const TableComponent: React.FC<TableProps> = ({
   handleChange,
   stopEditing,
 }) => (
-  <Table>
-    <TableHead>
+  <Table className={styles.Table}>
+    <TableHead className={styles.TableHeader}>
       <TableRow>
         {header.map((x: any, i: number) => (
           <TableCell key={`thc-${i}`}>{x.name}</TableCell>

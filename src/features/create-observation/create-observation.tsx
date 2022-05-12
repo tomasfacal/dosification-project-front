@@ -12,7 +12,7 @@ const CreateObservation = (props: any) => {
       <div className={styles.FormContainer}>
         <Grid container spacing={2}>
           {props.fieldsList.map((field: string) => (
-            <Grid key={field} item xs={6} sm={2}>
+            <Grid key={field} item xs={6} sm={6}>
               <div className={styles.fieldContainer}>
                 <TextField
                   label={field}
