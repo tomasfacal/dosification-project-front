@@ -41,6 +41,18 @@ const UploadObservationStep1 = (props: any) => {
       clickable: true,
       actual: true,
     },
+    {
+      name: "Cargar Columnas Fijas",
+      link: Routing.UPLOAD_OBSERVATION_STEP_2,
+      clickable: false,
+      actual: false,
+    },
+    {
+      name: "Cargar Columnas Variables",
+      link: Routing.UPLOAD_OBSERVATION_STEP_3,
+      clickable: false,
+      actual: false,
+    },
   ];
 
   const handleOpen = () => {
