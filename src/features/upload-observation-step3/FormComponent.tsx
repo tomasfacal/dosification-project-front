@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import { StylesContext } from "@material-ui/core/node_modules/@material-ui/styles";
+import { style } from "@mui/material/node_modules/@mui/system";
+import styles from "./upload-observation-step3.module.scss";
 
 export default function FormComponent(props: any) {
   const [formState, setFormState] = useState(props.formsFields);
@@ -21,16 +24,17 @@ export default function FormComponent(props: any) {
   };
 
   return (
-    <form>
+    <form className={styles.Form}>
       {Object.keys(props.formsFields).map((field: string) => (
         <TextField
           name={field}
           label={field}
           value={formState[field]}
           onChange={change}
+          className={styles.Field}
         />
       ))}
-      <Button onClick={onSubmit} color="primary">
+      <Button onClick={onSubmit} color="primary" variant="contained">
         Submit
       </Button>
     </form>
