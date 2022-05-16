@@ -37,6 +37,12 @@ const UploadObservationStep2 = (props: any) => {
       clickable: true,
       actual: true,
     },
+    {
+      name: "Cargar Columnas Variables",
+      link: Routing.UPLOAD_OBSERVATION_STEP_3,
+      clickable: false,
+      actual: false,
+    },
   ];
 
   const fetchObservationFields = async () => {

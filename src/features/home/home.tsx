@@ -12,21 +12,10 @@ import simulationImage from "../../assets/images/simulation.png";
 import { useContext } from "react";
 import AuthContext from "../../context/authContext";
 import FeatureCard from "../feature-card/feature-card";
-import { useSimulationGlobalState } from "../../context/SimulationGlobalState";
-import { useObservationsGlobalState } from "../../context/ObservationsGlobalState";
 
 const Home = () => {
   const authCtx = useContext(AuthContext);
   const isPharmacist = authCtx.role === "pharmacist";
-  const { state: simulation_state, setState: setSimulationState } =
-    useSimulationGlobalState();
-  const { state: observationState, setState: setObservationState } =
-    useObservationsGlobalState();
-
-  useEffect(() => {
-    setSimulationState({});
-    setObservationState({});
-  }, []);
 
   return (
     <Fragment>
