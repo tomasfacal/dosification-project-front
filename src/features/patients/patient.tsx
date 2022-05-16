@@ -18,6 +18,12 @@ import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import Typography from "@mui/material/Typography";
 import Error from "../error/error";
+import DownloadCSVModal from "../download-csv/download-csv"
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+
 
 const Patient = () => {
   const [datos, setData] = useState({
@@ -234,6 +240,20 @@ const Patient = () => {
           {success && (
             <Typography className={styles.success}>{success}</Typography>
           )}
+        </div>
+        <div className={styles.Accordion}>
+          <Accordion>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1a-content"
+              id="panel1a-header"
+            >
+              <Typography>Descargar observaciones</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <DownloadCSVModal document_number={document_number}/>
+            </AccordionDetails>
+          </Accordion>
         </div>
       </div>
     </Fragment>
