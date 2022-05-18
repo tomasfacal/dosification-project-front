@@ -9,7 +9,11 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import styles from "./download-csv.module.scss";
 
-const DownloadCSVModal = ({document_number}:any) => {
+type Props = {
+    document_number: string | undefined;
+};
+
+const DownloadCSVModal = ({document_number}:Props) => {
     const [models, setModels] = useState([] as ModelInfo[]);
     const [model, setModel] = useState(0);
     const fetchModels = async () => {
