@@ -1,6 +1,7 @@
 import { Fragment, useState, useEffect } from "react";
 import styles from "./result-simulation.module.scss";
 import API from "../../networking/api-service";
+import { Link } from "react-router-dom";
 import { API_ROUTES } from "../../networking/api-routes";
 import { useSimulationGlobalState } from "../../context/SimulationGlobalState";
 import SimulationGraph from "./line-chart";
@@ -101,6 +102,7 @@ const ResultSimulation = (props: any) => {
       <div>
         <Breadcrumbs values={breadcrumbs} />
       </div>
+      <h1 className={styles.Title}>Simulación  con parámetros { state.is_individual ? 'individuales' : 'poblacionales'} <br/> para paciente con ci: <Link to={`/patient/${state.document_number}`} className="btn btn-primary">{state.document_number}</Link></h1>
       <div>
         {results.length === 0 && !error && (
           <div className={styles.Loading}>{CircularIndeterminate()}</div>
