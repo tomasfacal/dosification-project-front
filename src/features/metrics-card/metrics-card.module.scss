@@ -1,10 +1,14 @@
 @import "../../assets/stylesheets/generic-styles.scss";
 
 .CardMetrics {
-  max-width: 400px;
-  margin: auto;
+  display: flex;
+  align-items: center;
+  max-width: 500px;
+  margin: 0 auto;
   padding: 20px 10px;
-  height: 380px;
+  height: 460px;
+  border-radius: 10px !important;
+  box-shadow: 0 10px 20px 0 rgba(#999, 0.25) !important;
 }
 
 .CardTitle {
@@ -12,8 +16,12 @@
   font-size: $font-size-subtitle !important;
 }
 
+.TreatmentTab {
+  font-size: $font-size-body !important;
+}
+
 .MetricImage {
-  width: 60%;
+  width: 70%;
 }
 
 .CardItem {
@@ -21,4 +29,7 @@
   display: flex;
   justify-content: center;
   padding: 5px;
+  p {
+    font-size: $font-size-body-big;
+  }
 }

@@ -102,8 +102,8 @@ const ResultSimulation = (props: any) => {
       <div>
         <Breadcrumbs values={breadcrumbs} />
       </div>
-      <h1 className={styles.Title}>Simulación  con parámetros { state.is_individual ? 'individuales' : 'poblacionales'} <br/> para paciente con ci: <Link to={`/patient/${state.document_number}`} className="btn btn-primary">{state.document_number}</Link></h1>
-      <div>
+      <h1 className={styles.Title}>Simulación  con parámetros { state.is_individual ? 'individuales' : 'poblacionales'} para paciente con ci: <Link to={`/patient/${state.document_number}`} className="btn btn-primary">{state.document_number}</Link></h1>
+      <div className={styles.PageContainer}>
         {results.length === 0 && !error && (
           <div className={styles.Loading}>{CircularIndeterminate()}</div>
         )}
@@ -120,7 +120,7 @@ const ResultSimulation = (props: any) => {
               <div className={styles.FormContainer}>
                 <SimulationGraph results={results}></SimulationGraph>
               </div>
-              <Grid container spacing={2}>
+              <Grid className={styles.TreatmentContainer} container spacing={2}>
                 {results.map((result: any, index: number) => (
                   <TreatmentCardResult
                     cycle_duration={result.cycle_duration}
@@ -134,11 +134,13 @@ const ResultSimulation = (props: any) => {
             </div>
             <div className={styles.metricsResults}>
               <MetricsCard metrics= {metrics()}></MetricsCard>
+              <WarningCard
+                warning= "Finglix es una herramienta de ayuda. El control de resultados brindados y la dosificación están a cargo del usuario."
+              />
             </div>
           </div>
         )}
       </div>
-      <WarningCard warning= "Finglix es una herramienta de ayuda. La dosificación está a cargo del usuario."/>
     </Fragment>
   );
 };

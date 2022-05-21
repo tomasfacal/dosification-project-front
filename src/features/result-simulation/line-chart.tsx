@@ -63,7 +63,7 @@ const SimulationGraph = (props: any) => {
   return (
     <Fragment>
       {series.length > 0 && (
-        <ReactApexChart height= {300} options={chartData} series={chartData.series} />
+        <ReactApexChart height= {400} width= {600} options={chartData} series={chartData.series} />
       )}
     </Fragment>
   );
