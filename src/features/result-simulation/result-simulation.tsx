@@ -140,7 +140,7 @@ const ResultSimulation = (props: any) => {
                 {results.map((result: any, index: number) => (
                   <TreatmentCardResult
                     cycle_duration={result.cycle_duration}
-                    number_of_repetitions={result.number_of_repetitions}
+                    measurement_unit={state.measurement_unit}
                     quantity={result.quantity}
                     index={index}
                     name={"Tratamiento " + (index + 1)}

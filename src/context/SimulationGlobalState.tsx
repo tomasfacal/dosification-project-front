@@ -13,6 +13,7 @@ export interface SimulationGlobalStateInterface {
   model_name: string;
   covariates: any; // Definir tipo de covariables en global.d.ts
   output: string;
+  measurement_unit: string;
   is_individual: boolean;
   treatments: TreatmentJSON[];
   display_covariates: any; // Definir tipo en global.d.ts -> DisplayCovariatesJSON
