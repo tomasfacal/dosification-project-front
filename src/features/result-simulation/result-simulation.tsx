@@ -87,15 +87,15 @@ const ResultSimulation = (props: any) => {
     let result: Metrics[] = [];
     results.map((dato: ResponseResultJSON) =>
       result.push({
-        steady_state: true,
-        auc: parseNumber(dato.auc),
-        maximum: parseNumber(dato.maximum),
-        minimum: parseNumber(dato.minimum),
-        tss: parseNumber(dato.tss),
-      })
-    );
-    return result;
-  };
+        "steady_state": true,
+        "auc": parseNumber(dato.auc),
+        "maximum": parseNumber(dato.maximum),
+        "minimum": parseNumber(dato.minimum),
+        "tss": parseNumber(dato.tss),
+        "measurement_unit": state.measurement_unit,
+      }))
+    return result
+  }
 
   return (
     <Fragment>

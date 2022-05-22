@@ -77,13 +77,13 @@ const MetricsCard = (props: any) => {
             <div className={styles.CardItem}>
               <AutoGraphIcon/>
               <Typography>
-                Concentración máxima: {treatment.maximum}
+                Concentración máxima: {treatment.maximum} {treatment.measurement_unit}
               </Typography>
             </div>
             <div className={styles.CardItem}>
               <AutoGraphIcon/>
               <Typography>
-                Concentración mínima: {treatment.minimum}
+                Concentración mínima: {treatment.minimum} {treatment.measurement_unit}
               </Typography>
             </div>
           </TabPanel>

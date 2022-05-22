@@ -38,4 +38,5 @@ declare interface Metrics {
   auc: number;
   maximum: number;
   minimum: number;
+  measurement_unit: string | undefined;
 }
