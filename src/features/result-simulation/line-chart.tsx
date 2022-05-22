@@ -1,12 +1,8 @@
 import { Fragment, useEffect, useState } from "react";
-import { useTheme } from "@material-ui/core/styles";
 import ReactApexChart from "react-apexcharts";
 import { ApexOptions } from "apexcharts";
-import { StylesContext } from "@material-ui/core/node_modules/@material-ui/styles";
-import { height } from "@mui/material/node_modules/@mui/system";
 
 const SimulationGraph = (props: any) => {
-  const theme = useTheme();
   const [series, setSeries] = useState([] as any);
 
   useEffect(() => {
@@ -45,6 +41,9 @@ const SimulationGraph = (props: any) => {
     },
     xaxis: {
       type: "numeric",
+      title: {
+        text: "Tiempo (Hs)",
+      },
     },
     stroke: {
       curve: "smooth",
@@ -52,9 +51,24 @@ const SimulationGraph = (props: any) => {
     },
     yaxis: {
       decimalsInFloat: 2,
+      title: {
+        text: props.output + " (mg/L)",
+      },
     },
     fill: {
       type: "solid",
+    },
+    title: {
+      text: "Resultados de la simulación",
+      align: "left",
+    },
+    subtitle: {
+      text: "Paciente: " + props.document_number,
+      align: "left",
+    },
+    legend: {
+      position: "top",
+      horizontalAlign: "right",
     },
     series: series,
   };
@@ -63,7 +77,12 @@ const SimulationGraph = (props: any) => {
   return (
     <Fragment>
       {series.length > 0 && (
-        <ReactApexChart height= {300} options={chartData} series={chartData.series} />
+        <ReactApexChart
+          height={400}
+          width={600}
+          options={chartData}
+          series={chartData.series}
+        />
       )}
     </Fragment>
   );
