@@ -1,6 +1,7 @@
 import { Fragment, useState, useEffect } from "react";
 import styles from "./result-simulation.module.scss";
 import API from "../../networking/api-service";
+import { Link } from "react-router-dom";
 import { API_ROUTES } from "../../networking/api-routes";
 import { useSimulationGlobalState } from "../../context/SimulationGlobalState";
 import SimulationGraph from "./line-chart";
@@ -80,28 +81,41 @@ const ResultSimulation = (props: any) => {
     postSimulate();
   }, []);
 
-  const parseNumber = (x: any) => (x > 9999) ? Math.round(x) : x.toPrecision(4)
+  const parseNumber = (x: any) => (x > 9999 ? Math.round(x) : x.toPrecision(4));
 
   const metrics = () => {
-    let result: Metrics[] = []
-    results.map((dato: ResponseResultJSON) => (
+    let result: Metrics[] = [];
+    results.map((dato: ResponseResultJSON) =>
       result.push({
-        "steady_state": true,
-        "auc": parseNumber(dato.auc),
-        "maximum": parseNumber(dato.maximum),
-        "minimum": parseNumber(dato.minimum),
-        "tss": parseNumber(dato.tss),
-      }))
-    )
-    return result
-  }
+        steady_state: true,
+        auc: parseNumber(dato.auc),
+        maximum: parseNumber(dato.maximum),
+        minimum: parseNumber(dato.minimum),
+        tss: parseNumber(dato.tss),
+      })
+    );
+    return result;
+  };
 
   return (
     <Fragment>
       <div>
         <Breadcrumbs values={breadcrumbs} />
       </div>
-      <div>
+      <h1 className={styles.Title}>
+        Simulación con parámetros{" "}
+        {state.is_individual ? "individuales" : "poblacionales"}
+      </h1>
+      <h2 className={styles.SubTitle}>
+        Paciente:{" "}
+        <Link
+          to={`/patient/${state.document_number}`}
+          className="btn btn-primary"
+        >
+          {state.document_number}
+        </Link>
+      </h2>
+      <div className={styles.PageContainer}>
         {results.length === 0 && !error && (
           <div className={styles.Loading}>{CircularIndeterminate()}</div>
         )}
@@ -116,9 +130,13 @@ const ResultSimulation = (props: any) => {
           <div className={styles.results}>
             <div className={styles.simulationResults}>
               <div className={styles.FormContainer}>
-                <SimulationGraph results={results}></SimulationGraph>
+                <SimulationGraph
+                  results={results}
+                  document_number={state.document_number}
+                  output={state.display_outputs[state.output || ""] || state.output}
+                ></SimulationGraph>
               </div>
-              <Grid container spacing={2}>
+              <Grid className={styles.TreatmentContainer} container spacing={2}>
                 {results.map((result: any, index: number) => (
                   <TreatmentCardResult
                     cycle_duration={result.cycle_duration}
@@ -131,12 +149,12 @@ const ResultSimulation = (props: any) => {
               </Grid>
             </div>
             <div className={styles.metricsResults}>
-              <MetricsCard metrics= {metrics()}></MetricsCard>
+              <MetricsCard metrics={metrics()}></MetricsCard>
+              <WarningCard warning="Finglix es una herramienta de ayuda. El control de resultados brindados y la dosificación están a cargo del usuario." />
             </div>
           </div>
         )}
       </div>
-      <WarningCard warning= "Finglix es una herramienta de ayuda. La dosificación está a cargo del usuario."/>
     </Fragment>
   );
 };

@@ -2,7 +2,10 @@
 
 .CardWarning {
   max-width: 500px;
-  margin: auto;
+  margin: 0 10px;
+  padding: 10px;
+  border-radius: 10px !important;
+  box-shadow: 0 10px 20px 0 rgba(#999, 0.25) !important;
 }
 
 .Carditem {
@@ -10,7 +13,7 @@
 }
 
 .warningIcon {
-  color: $danger-dark;
+  color: $warning;
   width: 35px !important;
   height: 35px !important;
 }
