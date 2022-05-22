@@ -90,12 +90,12 @@ const SimulationPage = () => {
           </Typography>
         </div>
         {state.covariates && Object.keys(state.covariates).length > 0 && <div>
-          <Typography className={styles.Treatmentsubtitle}>
-            Covariables:
-          </Typography>
           <Grid container spacing={2}>
             <Card className={styles.CardCovariates}>
               <CardContent>
+                <Typography className={styles.Treatmentsubtitle}>
+                  Covariables:
+                </Typography>
                 {Object.keys(state.covariates).map((innerAttr, index) => {
                   return (
                     <Typography className={styles.covariateStyle}>
