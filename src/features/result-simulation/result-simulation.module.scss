@@ -5,27 +5,17 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 600px;
-  height: 400px;
+  max-width: 425px;
+  height: 320px;
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 10px 20px 0 rgba(#999, 0.25);
   padding: 50px 40px;
 }
 
-.PageContainer {
-  max-width: 100%;
-  margin: 20px;
-}
-
 .Title {
+  color: $brand;
   font-size: $font-size-title;
-  margin: 0px;
-}
-
-.SubTitle {
-  font-size: $font-size-subtitle;
-  margin: 0px;
 }
 
 .Loading {
@@ -34,6 +24,11 @@
 
 .CardsContainer {
   width: 90%;
+}
+
+.CardTreatment {
+  max-width: 300px;
+  margin: auto;
 }
 
 .Carditem {
@@ -47,10 +42,7 @@
 
 .metricsResults {
   margin: 0 50px;
-  padding: 0 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  padding: 20px;
 
   button {
     font-size: 12px;
@@ -59,14 +51,7 @@
 
 .simulationResults {
   padding: 20px;
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 10px 20px 0 rgba(#999, 0.25);
   .FormContainer {
     margin: 0 auto 20px auto;
   }
-}
-
-.TreatmentContainer {
-  justify-content: center;
 }

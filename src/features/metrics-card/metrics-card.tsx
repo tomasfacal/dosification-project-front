@@ -63,7 +63,7 @@ const MetricsCard = (props: any) => {
         </div>
         <Tabs value={value} onChange={handleChange} centered aria-label="basic tabs example">
           {props.metrics.map((treatment: Metrics, index: number) => (
-            <Tab className={styles.TreatmentTab} label= {`Tratamiento ${index + 1}`} />
+            <Tab label= {`Tratamiento ${index + 1}`} />
           ))}
         </Tabs>
         {props.metrics.map((treatment: Metrics, index: number) => (
