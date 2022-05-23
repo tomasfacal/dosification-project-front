@@ -20,10 +20,10 @@ const TreatmentCardResult = (props: Props) => {
             {props.name}
           </Typography>
           <Typography className={styles.Carditem}>
-            Ciclo de duración: {props.cycle_duration} hrs
+            Intervalo de administración: {props.cycle_duration} hrs
           </Typography>
           <Typography className={styles.Carditem}>
-            Cantidad: {props.quantity} {props.measurement_unit}
+            Dosis: {props.quantity} {props.measurement_unit}
           </Typography>
         </CardContent>
       </Card>

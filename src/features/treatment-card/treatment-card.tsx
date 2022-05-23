@@ -18,10 +18,10 @@ const TreatmentCard = (props: Treatment) => {
       <Card className={styles.CardTreatment}>
         <CardContent>
           <Typography className={styles.Carditem}>
-            Ciclo de duración: {props.treatment.cycle_duration} hrs
+            Intervalo de administración: {props.treatment.cycle_duration} hrs
           </Typography>
           <Typography className={styles.Carditem}>
-            Cantidad: {props.treatment.quantity} {props.measurementUnit}
+            Dosis: {props.treatment.quantity} {props.measurementUnit}
           </Typography>
         </CardContent>
         <CardActions className={styles.DeleteAction}>
