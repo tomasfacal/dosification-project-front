@@ -128,12 +128,14 @@ const ResultSimulation = (props: any) => {
         )}
         {results.length > 0 && (
           <div className={styles.results}>
-            <div className={styles.simulationResults}>
+            <div id="chart" className={styles.simulationResults}>
               <div className={styles.FormContainer}>
                 <SimulationGraph
                   results={results}
                   document_number={state.document_number}
-                  output={state.display_outputs[state.output || ""] || state.output}
+                  output={
+                    state.display_outputs[state.output || ""] || state.output
+                  }
                 ></SimulationGraph>
               </div>
               <Grid className={styles.TreatmentContainer} container spacing={2}>
@@ -148,7 +150,7 @@ const ResultSimulation = (props: any) => {
                 ))}
               </Grid>
             </div>
-            <div className={styles.metricsResults}>
+            <div id="metrics" className={styles.metricsResults}>
               <MetricsCard metrics={metrics()}></MetricsCard>
               <WarningCard warning="Finglix es una herramienta de ayuda. El control de resultados brindados y la dosificación están a cargo del usuario." />
             </div>
