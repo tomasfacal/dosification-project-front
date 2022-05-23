@@ -149,7 +149,7 @@ const SelectTreatments = () => {
               <TextField
                 type="number"
                 InputProps={{ inputProps: { min: 0 } }}
-                label="Ciclo de duración"
+                label="Ciclo de duración (hrs)"
                 name="cycle_duration"
                 error={errors.cycle_duration}
                 helperText={errors.cycle_duration ? "Campo requerido" : " "}
@@ -170,7 +170,7 @@ const SelectTreatments = () => {
               <TextField
                 type="number"
                 InputProps={{ inputProps: { min: 0 } }}
-                label="Cantidad"
+                label={`Cantidad (${state.measurement_unit})`}
                 name="quantity"
                 error={errors.quantity}
                 helperText={errors.quantity ? "Campo requerido" : " "}
@@ -224,6 +224,7 @@ const SelectTreatments = () => {
             treatment={treatment}
             index={index}
             delete_treatment={deleteTreatment}
+            measurementUnit={state.measurement_unit}
           />
         ))}
       </Grid>

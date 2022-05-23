@@ -87,15 +87,15 @@ const ResultSimulation = (props: any) => {
     let result: Metrics[] = [];
     results.map((dato: ResponseResultJSON) =>
       result.push({
-        steady_state: true,
-        auc: parseNumber(dato.auc),
-        maximum: parseNumber(dato.maximum),
-        minimum: parseNumber(dato.minimum),
-        tss: parseNumber(dato.tss),
-      })
-    );
-    return result;
-  };
+        "steady_state": true,
+        "auc": parseNumber(dato.auc),
+        "maximum": parseNumber(dato.maximum),
+        "minimum": parseNumber(dato.minimum),
+        "tss": parseNumber(dato.tss),
+        "measurement_unit": state.measurement_unit,
+      }))
+    return result
+  }
 
   return (
     <Fragment>
@@ -140,7 +140,7 @@ const ResultSimulation = (props: any) => {
                 {results.map((result: any, index: number) => (
                   <TreatmentCardResult
                     cycle_duration={result.cycle_duration}
-                    number_of_repetitions={result.number_of_repetitions}
+                    measurement_unit={state.measurement_unit}
                     quantity={result.quantity}
                     index={index}
                     name={"Tratamiento " + (index + 1)}

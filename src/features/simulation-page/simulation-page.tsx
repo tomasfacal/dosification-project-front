@@ -118,6 +118,7 @@ const SimulationPage = () => {
                 treatment={treatment}
                 index={index}
                 delete_treatment={deleteSimulation}
+                measurementUnit={state.measurement_unit}
               />
             ))}
           </Grid>

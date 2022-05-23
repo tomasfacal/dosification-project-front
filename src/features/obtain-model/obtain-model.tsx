@@ -30,6 +30,9 @@ const ObtainModelDrug = (props: any) => {
   const [outputValue, setOutputValue] = useState(
     state.output ? state.output : ""
   );
+  const [measurementUnit, setMeasurementUnit] = useState(
+    state.measurement_unit ?  state.measurement_unit: ""
+  )
 
   const breadcrumbs = [
     {
@@ -83,6 +86,7 @@ const ObtainModelDrug = (props: any) => {
       setOutputsList(o_keys);
       setDisplayCovariates(c_hash);
       setDisplayOutputs(o_hash);
+      setMeasurementUnit(response.data.measurement_unit)
 
       if (covariatesValues === {}) {
         let covariates_list = {} as any;
@@ -116,6 +120,7 @@ const ObtainModelDrug = (props: any) => {
       output: outputValue,
       display_covariates: displayCovariates,
       display_outputs: displayOutputs,
+      measurement_unit: measurementUnit
     }));
     navigation(Routing.SIMULATION_FLOW + Routing.SELECT_TREATMENTS);
   };
