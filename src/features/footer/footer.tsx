@@ -5,11 +5,10 @@ import Typography from "@mui/material/Typography";
 import styles from "./footer.module.scss";
 import { FormControl } from "@material-ui/core";
 import logoFing from "../../assets/images/logo_FING.jpg";
-import {useState } from "react";
-import Button from '@mui/material/Button';
-import Modal from '@mui/material/Modal';
-import TermsAndConditions from '../terms-and-conditions/terms-and-conditions'
-
+import { useState } from "react";
+import Button from "@mui/material/Button";
+import Modal from "@mui/material/Modal";
+import TermsAndConditions from "../terms-and-conditions/terms-and-conditions";
 
 const Footer = () => {
   const [open, setOpen] = useState(false);
@@ -26,7 +25,7 @@ const Footer = () => {
             </Typography>
             <img src={logoFing} alt="Logo FING" className={styles.logoFing} />
             <div className={styles.legalContainer}>
-              <Button onClick={handleOpen}> 
+              <Button onClick={handleOpen}>
                 <Typography variant="h6" color="white" component="div">
                   Términos y Condiciones
                 </Typography>
@@ -37,7 +36,7 @@ const Footer = () => {
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
               >
-                <TermsAndConditions/>
+                <TermsAndConditions />
               </Modal>
             </div>
           </Toolbar>
