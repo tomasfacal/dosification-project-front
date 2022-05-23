@@ -87,15 +87,16 @@ const ResultSimulation = (props: any) => {
     let result: Metrics[] = [];
     results.map((dato: ResponseResultJSON) =>
       result.push({
-        "steady_state": true,
-        "auc": parseNumber(dato.auc),
-        "maximum": parseNumber(dato.maximum),
-        "minimum": parseNumber(dato.minimum),
-        "tss": parseNumber(dato.tss),
-        "measurement_unit": state.measurement_unit,
-      }))
-    return result
-  }
+        steady_state: true,
+        auc: parseNumber(dato.auc),
+        maximum: parseNumber(dato.maximum),
+        minimum: parseNumber(dato.minimum),
+        tss: parseNumber(dato.tss),
+        measurement_unit: state.measurement_unit,
+      })
+    );
+    return result;
+  };
 
   return (
     <Fragment>
@@ -136,6 +137,7 @@ const ResultSimulation = (props: any) => {
                   output={
                     state.display_outputs[state.output || ""] || state.output
                   }
+                  measurement_unit={state.measurement_unit}
                 ></SimulationGraph>
               </div>
               <Grid className={styles.TreatmentContainer} container spacing={2}>
@@ -151,7 +153,10 @@ const ResultSimulation = (props: any) => {
               </Grid>
             </div>
             <div id="metrics" className={styles.metricsResults}>
-              <MetricsCard metrics={metrics()}></MetricsCard>
+              <MetricsCard
+                metrics={metrics()}
+                document_number={state.document_number}
+              ></MetricsCard>
               <WarningCard warning="Finglix es una herramienta de ayuda. El control de resultados brindados y la dosificación están a cargo del usuario." />
             </div>
           </div>

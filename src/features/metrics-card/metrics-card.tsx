@@ -69,18 +69,25 @@ const MetricsCard = (props: any) => {
         "\n" +
         "AUC: " +
         treatment.auc +
+        " (h *" +
+        treatment.measurement_unit +
+        ")" +
         "\n" +
         "Concentración maxima: " +
         treatment.maximum +
+        " (" +
         treatment.measurement_unit +
+        ")" +
         "\n" +
         "Concentración minima: " +
         treatment.minimum +
+        " (" +
         treatment.measurement_unit +
+        ")" +
         "\n" +
         "Estado estacionario: " +
         treatment.tss +
-        "mg * h/l" +
+        " (hs)" +
         "\n"
       );
     });
@@ -90,7 +97,7 @@ const MetricsCard = (props: any) => {
     pdf.text(metrics, 10, 20, {
       maxWidth: 100,
     });
-    pdf.save("Reporte.pdf");
+    pdf.save(`Reporte_${props.document_number}.pdf`);
     setIsLoading(false);
   };
 
@@ -105,7 +112,7 @@ const MetricsCard = (props: any) => {
         <Typography className={styles.CardTitle}>{metricsTitle}</Typography>
         <div className={styles.CardItem}>
           <AutoGraphIcon />
-          <Typography>TSS: {props.metrics[0].tss}</Typography>
+          <Typography>TSS: {props.metrics[0].tss} hs</Typography>
         </div>
         <Tabs
           value={value}
@@ -124,7 +131,9 @@ const MetricsCard = (props: any) => {
           <TabPanel value={value} index={index}>
             <div className={styles.CardItem}>
               <AutoGraphIcon />
-              <Typography>AUC: {treatment.auc} mg * h/l</Typography>
+              <Typography>
+                AUC: {treatment.auc} h * {treatment.measurement_unit}
+              </Typography>
             </div>
             <div className={styles.CardItem}>
               <AutoGraphIcon />
