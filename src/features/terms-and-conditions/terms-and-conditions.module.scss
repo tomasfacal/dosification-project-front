@@ -1,0 +1,27 @@
+@import "../../assets/stylesheets/generic-styles.scss";
+
+.TermsContainer{
+    display: flex;
+    background-color: #FFFF;
+    font-size: 20px;
+    flex-direction:column;
+    text-align: left;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 10%;
+
+    p {
+        margin: 5px 0;
+    }
+}
+.Title{
+    color: $brand;
+    margin:1%;
+    font-size: 24px;
+
+}
+.Text{
+    padding-right: 2%;
+    padding-left: 2%;
+    padding-bottom: 2%;
+}
