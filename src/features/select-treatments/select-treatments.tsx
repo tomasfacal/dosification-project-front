@@ -149,14 +149,15 @@ const SelectTreatments = () => {
               <TextField
                 type="number"
                 InputProps={{ inputProps: { min: 0 } }}
-                label="Ciclo de duración (hrs)"
+                label="Intervalo de administración (hrs)"
                 name="cycle_duration"
                 error={errors.cycle_duration}
                 helperText={errors.cycle_duration ? "Campo requerido" : " "}
                 onChange={handleInputChange}
+                className={styles.IntervalTextField}
               />
               <Tooltip
-                title="Este valor indica cada cuanto tiempo se van a aplicar las dosis"
+                title="Representa el tiempo (en horas) que hay entre cada dosis administrada"
                 arrow
                 placement="right"
                 classes={{ tooltip: styles.tooltip }}
@@ -170,14 +171,14 @@ const SelectTreatments = () => {
               <TextField
                 type="number"
                 InputProps={{ inputProps: { min: 0 } }}
-                label={`Cantidad (${state.measurement_unit})`}
+                label={`Dosis (${state.measurement_unit})`}
                 name="quantity"
                 error={errors.quantity}
                 helperText={errors.quantity ? "Campo requerido" : " "}
                 onChange={handleInputChange}
               />
               <Tooltip
-                title="Este valor indica la cantidad de droga por dosis"
+                title={`Cantidad de fármaco administrado (en ${state.measurement_unit}) en cada tiempo de administración`}
                 arrow
                 placement="right"
                 classes={{ tooltip: styles.tooltip }}

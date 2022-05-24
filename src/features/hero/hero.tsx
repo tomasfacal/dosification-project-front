@@ -13,11 +13,11 @@ const Hero = () => {
       <div className={styles.HeroContainer}>
         <div className={styles.Heroinner}>
           <h1 className={styles.HeroTitle}>
-            Sitio para dosificación de fármacos
+            Dosificación de precisión informada por modelos
           </h1>
           <h2 className={styles.HeroSubTitle}>
-            Utiliza esta herramienta para dosificar de manera mas precisa a tus
-            pacientes.
+            Esta herramienta permite utilizar modelos farmacocinéticos poblacionales (popPK) <br/>
+            en forma automatizada para optimizar tratamientos farmacológicos a nivel individual
           </h2>
           {authCtx.isLoggedIn && (
             <>

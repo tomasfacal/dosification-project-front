@@ -7,18 +7,17 @@ const Menubar = () => {
     <Fragment>
       <div className={styles.CardContainer}>
         <MenuHomeCard
-          text="Dosifica de una manera más precisa a tus pacientes
-                en tiempo real"
-          class="Card1"
+          text="Integra características del paciente y su tratamiento para 
+            generar predicciones farmacocinéticas individualizadas en tiempo real"
+          class="Card3"
         />
         <MenuHomeCard
-          text="La monitorización de los pacientes es más sencilla"
+          text="Automatiza la aplicación de modelos popPK disponibles para la dosificación de presición"
           class="Card2"
         />
         <MenuHomeCard
-          text="Ayuda a farmaceuticos/doctores a encontrar las dosis
-                correctas según cada paciente"
-          class="Card3"
+          text="Aporta insumos basados en evidencia para seleccionar posologías en forma racional"
+          class="Card1"
         />
       </div>
     </Fragment>
