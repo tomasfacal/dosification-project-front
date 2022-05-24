@@ -42,7 +42,7 @@ const SimulationGraph = (props: any) => {
     xaxis: {
       type: "numeric",
       title: {
-        text: "Tiempo (Hs)",
+        text: "Tiempo (hs)",
       },
     },
     stroke: {
@@ -52,7 +52,7 @@ const SimulationGraph = (props: any) => {
     yaxis: {
       decimalsInFloat: 2,
       title: {
-        text: props.output + " (mg/L)",
+        text: props.output + " (" + props.measurement_unit + ")",
       },
     },
     fill: {
