@@ -10,12 +10,14 @@
   align-items: center;
   display: flex;
   flex-direction: column;
-  width: 100%;
-  max-width: 1000px;
+  width: 40%;
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 10px 20px 0 rgba(#999, 0.25);
-  padding: 3rem;
+  padding: 20px;
+  background-image: url("../../assets/images/simulation-metrics.jpg");
+  background-size: cover;
+  background-position: center;
 }
 
 .CardSimulation {
@@ -37,7 +39,7 @@
 
 .SimulationContainer {
   background-color: aliceblue;
-  width: 30%;
+  width: 40%;
   margin: 25px 0;
   border: 2px solid $brand-dark;
   padding: 10px;
@@ -72,8 +74,11 @@
 }
 
 .CardCovariates{
+  background-color: aliceblue !important;
   width: 250px;
   margin: auto;
+  border-radius: 10px !important;
+  box-shadow: 0 10px 20px 0 rgba(#999, 0.25) !important;
 }
 
 .covariateStyle {
@@ -82,4 +87,8 @@
 
 .CardsContainer {
   margin-top:5%;
+  background-color: aliceblue;
+  padding: 20px;
+  border-radius: 10px !important;
+  box-shadow: 0 10px 20px 0 rgba(#999, 0.25) !important;
 }
