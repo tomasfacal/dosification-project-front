@@ -21,7 +21,7 @@ const DownloadCSVModal = ({ document_number }: Props) => {
 
   const fetchModels = async () => {
     try {
-      const response = await API.get(API_ROUTES.MODEL_DRUGS);
+      const response = await API.get(API_ROUTES.MODEL_DRUGS +`${document_number}/models_for_patient`)
       setModels(response.data);
       setModel(response.data[0]);
     } catch (error) {
