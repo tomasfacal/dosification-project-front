@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import { API_ROUTES } from "../../networking/api-routes";
 import { useSimulationGlobalState } from "../../context/SimulationGlobalState";
 import SimulationGraph from "./line-chart";
-import TreatmentCardResult from "./TreatmentCardResult/treatment_result";
 import { Routing } from "../../constant/Routing";
 import Breadcrumbs from "../breadcrumbs/breadcrumbs";
 import CircularIndeterminate from "../loading/circular_indeterminate";
@@ -13,11 +12,21 @@ import Typography from "@mui/material/Typography";
 import { Grid } from "@material-ui/core";
 import MetricsCard from "../metrics-card/metrics-card";
 import WarningCard from "../warning-card/warning-card";
+import TreatmentCard from "../treatment-card/treatment-card";
 
 const ResultSimulation = (props: any) => {
   const { state, setState } = useSimulationGlobalState();
   const [results, setResults] = useState<ResponseResultJSON[]>([]);
   const [error, setError] = useState<Boolean>(false);
+
+  const setCardsFromContext = () => {
+    if (state.treatments) return state.treatments;
+    else return [] as TreatmentJSON[];
+  };
+
+  const [treatments] = useState<TreatmentJSON[]>(
+    setCardsFromContext()
+  );
 
   const breadcrumbs = [
     {
@@ -141,14 +150,12 @@ const ResultSimulation = (props: any) => {
                 ></SimulationGraph>
               </div>
               <Grid className={styles.TreatmentContainer} container spacing={2}>
-                {results.map((result: any, index: number) => (
-                  <TreatmentCardResult
-                    cycle_duration={result.cycle_duration}
-                    measurement_unit={state.measurement_unit}
-                    quantity={result.quantity}
+                {treatments.map((treatment: TreatmentJSON, index: number) => (
+                  <TreatmentCard
+                    treatment={treatment}
                     index={index}
                     name={"Tratamiento " + (index + 1)}
-                  ></TreatmentCardResult>
+                  ></TreatmentCard>
                 ))}
               </Grid>
             </div>

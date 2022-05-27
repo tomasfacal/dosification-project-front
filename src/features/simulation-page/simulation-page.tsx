@@ -57,12 +57,6 @@ const SimulationPage = () => {
     },
   ];
 
-  const deleteSimulation = (index: number) => {
-    let newstate = [...cards];
-    newstate.splice(index, 1);
-    setCards(newstate);
-  };
-
   const handleSimulate = (event: any) => {
     console.log(state);
     navigation(Routing.SIMULATION_FLOW + Routing.RESULT_PAGE);
@@ -89,25 +83,27 @@ const SimulationPage = () => {
             Output: {state.display_outputs[state.output || ""]}
           </Typography>
         </div>
-        {state.covariates && Object.keys(state.covariates).length > 0 && <div>
-          <Grid container spacing={2}>
-            <Card className={styles.CardCovariates}>
-              <CardContent>
-                <Typography className={styles.Treatmentsubtitle}>
-                  Covariables:
-                </Typography>
-                {Object.keys(state.covariates).map((innerAttr, index) => {
-                  return (
-                    <Typography className={styles.covariateStyle}>
-                      {state.display_covariates[innerAttr]}:{" "}
-                      {state.covariates[innerAttr]}
-                    </Typography>
-                  );
-                })}
-              </CardContent>
-            </Card>
-          </Grid>
-        </div>}
+        {state.covariates && Object.keys(state.covariates).length > 0 && (
+          <div>
+            <Grid container spacing={2}>
+              <Card className={styles.CardCovariates}>
+                <CardContent>
+                  <Typography className={styles.Treatmentsubtitle}>
+                    Covariables:
+                  </Typography>
+                  {Object.keys(state.covariates).map((innerAttr, index) => {
+                    return (
+                      <Typography className={styles.covariateStyle}>
+                        {state.display_covariates[innerAttr]}:{" "}
+                        {state.covariates[innerAttr]}
+                      </Typography>
+                    );
+                  })}
+                </CardContent>
+              </Card>
+            </Grid>
+          </div>
+        )}
         <div className={styles.CardsContainer}>
           <Typography className={styles.Treatmentsubtitle}>
             Tratamientos:
@@ -117,8 +113,7 @@ const SimulationPage = () => {
               <TreatmentCard
                 treatment={treatment}
                 index={index}
-                delete_treatment={deleteSimulation}
-                measurementUnit={state.measurement_unit}
+                name={"Tratamiento " + (index + 1)}
               />
             ))}
           </Grid>
