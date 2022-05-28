@@ -1,8 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import { StylesContext } from "@material-ui/core/node_modules/@material-ui/styles";
-import { style } from "@mui/material/node_modules/@mui/system";
 import styles from "./upload-observation-step3.module.scss";
 
 export default function FormComponent(props: any) {
@@ -35,7 +33,7 @@ export default function FormComponent(props: any) {
         />
       ))}
       <Button onClick={onSubmit} color="primary" variant="contained">
-        Submit
+        Agregar
       </Button>
     </form>
   );

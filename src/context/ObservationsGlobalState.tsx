@@ -11,8 +11,12 @@ export interface ObservationsGlobalStateInterface {
   document_number: number;
   model_id: number;
   model_name: string;
-  fixed_columns: Object;
-  variable_columns: Object[];
+  patient_info_columns: string[] | undefined;
+  treatment_columns: string[] | undefined;
+  observation_columns: string[] | undefined;
+  patient_info_values: Object;
+  treatment_values: Object;
+  observation_values: Object[];
 }
 
 const ObservationsGlobalStateContext = createContext({
