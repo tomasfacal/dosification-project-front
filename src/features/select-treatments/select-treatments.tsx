@@ -101,10 +101,7 @@ const SelectTreatments = () => {
     setCards(newstate);
   };
 
-  const validateFields = (
-    cycle_duration: number,
-    quantity: number
-  ) =>
+  const validateFields = (cycle_duration: number, quantity: number) =>
     !!cycle_duration &&
     !!quantity &&
     cycle_duration > 0 &&
@@ -171,14 +168,14 @@ const SelectTreatments = () => {
               <TextField
                 type="number"
                 InputProps={{ inputProps: { min: 0 } }}
-                label={`Dosis (${state.measurement_unit})`}
+                label={`Dosis (mg)`}
                 name="quantity"
                 error={errors.quantity}
                 helperText={errors.quantity ? "Campo requerido" : " "}
                 onChange={handleInputChange}
               />
               <Tooltip
-                title={`Cantidad de fármaco administrado (en ${state.measurement_unit}) en cada tiempo de administración`}
+                title={`Cantidad de fármaco administrado (en mg) en cada tiempo de administración`}
                 arrow
                 placement="right"
                 classes={{ tooltip: styles.tooltip }}
@@ -194,12 +191,7 @@ const SelectTreatments = () => {
             variant="contained"
             onClick={createTreatment}
             className={styles.CreateTreatmentButton}
-            disabled={
-              !validateFields(
-                datos.cycle_duration,
-                datos.quantity
-              )
-            }
+            disabled={!validateFields(datos.cycle_duration, datos.quantity)}
           >
             <AddCircleIcon className={styles.AddTreatmentIcon} />
             <div className={styles.TextButton}>Crear Tratamiento</div>
@@ -225,7 +217,7 @@ const SelectTreatments = () => {
             treatment={treatment}
             index={index}
             delete_treatment={deleteTreatment}
-            measurementUnit={state.measurement_unit}
+            name={"Tratamiento " + (index + 1)}
           />
         ))}
       </Grid>

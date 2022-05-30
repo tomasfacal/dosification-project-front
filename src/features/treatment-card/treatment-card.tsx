@@ -8,8 +8,8 @@ import DeleteIcon from "@mui/icons-material/Delete";
 interface Treatment {
   treatment: TreatmentJSON;
   index: number;
-  delete_treatment: (index: number) => void;
-  measurementUnit: string  | undefined;
+  name: string;
+  delete_treatment?: (index: number) => void;
 }
 
 const TreatmentCard = (props: Treatment) => {
@@ -17,23 +17,32 @@ const TreatmentCard = (props: Treatment) => {
     <Grid key={props.index} item>
       <Card className={styles.CardTreatment}>
         <CardContent>
+          <Typography className={styles.CardTitle} component="div">
+            {props.name}
+          </Typography>
           <Typography className={styles.Carditem}>
             Intervalo de administración: {props.treatment.cycle_duration} hrs
           </Typography>
           <Typography className={styles.Carditem}>
-            Dosis: {props.treatment.quantity} {props.measurementUnit}
+            Dosis: {props.treatment.quantity} mg
           </Typography>
         </CardContent>
-        <CardActions className={styles.DeleteAction}>
-          <Button
-            size="small"
-            className={styles.DeleteButton}
-            onClick={() => props.delete_treatment(props.index)}
-          >
-            <DeleteIcon />
-            Eliminar
-          </Button>
-        </CardActions>
+        {props?.delete_treatment && (
+          <CardActions className={styles.DeleteAction}>
+            <Button
+              size="small"
+              className={styles.DeleteButton}
+              onClick={() => {
+                if (props.delete_treatment) {
+                  props.delete_treatment(props.index);
+                }
+              }}
+            >
+              <DeleteIcon />
+              Eliminar
+            </Button>
+          </CardActions>
+        )}
       </Card>
     </Grid>
   );
