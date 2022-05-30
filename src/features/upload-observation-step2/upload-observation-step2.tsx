@@ -15,8 +15,8 @@ const UploadObservationStep2 = (props: any) => {
   const { state, setState } = useObservationsGlobalState();
   const [warning, setWarning] = useState(true);
 
-  const [fieldsList, setFiledsList] = useState([] as string[]);
-  const [fieldsValues, setFieldsValues] = useState({} as any);
+  const [patientInfoValues, setPatientInfoValues] = useState({} as any);
+  const [patientInfoColumns, setPatientInfoColumns] = useState([] as String[]);
 
   const breadcrumbs = [
     {
@@ -32,61 +32,70 @@ const UploadObservationStep2 = (props: any) => {
       actual: false,
     },
     {
-      name: "Cargar Columnas Fijas",
+      name: "Cargar datos del paciente",
       link: Routing.UPLOAD_OBSERVATION_STEP_2,
       clickable: true,
       actual: true,
     },
     {
-      name: "Cargar Columnas Variables",
+      name: "Cargar tratamiento y observaciones",
       link: Routing.UPLOAD_OBSERVATION_STEP_3,
       clickable: false,
       actual: false,
     },
   ];
 
-  const fetchObservationFields = async () => {
+  const fetchColumns = async () => {
     try {
       const response = await API.get(
         API_ROUTES.MODEL_DRUGS + state.model_id + "/"
       );
-      const field_list = response.data.fixed_columns.filter(
-        (elem: string) => elem !== "OCC"
-      );
-      setFiledsList(field_list);
-      field_list.map((key: string) => {
-        fieldsValues[key] = ".";
+      const patient_info_columns = response.data.patient_info_columns;
+      const treatment_columns = response.data.treatment_columns;
+      const observation_columns = response.data.observation_columns;
+
+      setState((prev) => ({
+        ...prev,
+        treatment_columns: treatment_columns,
+        observation_columns: observation_columns,
+        patient_info_columns: patient_info_columns,
+      }));
+
+      setPatientInfoColumns(patient_info_columns);
+
+      const patient_info_values = {} as any;
+
+      patient_info_columns.map((key: string) => {
+        patient_info_values[key] = ".";
       });
+      setPatientInfoValues(patient_info_values);
     } catch (error) {
       console.log("error", error);
     }
   };
 
   const handleChangeFieldValues = (name: string, value: string) => {
-    setFieldsValues({
-      ...fieldsValues,
+    setPatientInfoValues({
+      ...patientInfoValues,
       [name]: value,
     });
   };
 
-  const updateFixedColumnsValues = async () => {
-    Object.keys(fieldsValues).forEach((key) => {
-      if (fieldsValues[key] === "") fieldsValues[key] = ".";
-    });
+  const updatePatientInfoValues = async () => {
     setState((prev) => ({
       ...prev,
-      fixed_columns: fieldsValues,
+      patient_info_values: patientInfoValues,
     }));
     navigation(Routing.UPLOAD_OBSERVATION_STEP_3);
   };
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
-    await updateFixedColumnsValues();
+    await updatePatientInfoValues();
   };
 
   useEffect(() => {
-    fetchObservationFields();
+    fetchColumns();
   }, []);
 
   return (
@@ -106,9 +115,9 @@ const UploadObservationStep2 = (props: any) => {
             <strong>autocompletado con “.”</strong> acorde al formato requerido.
           </Alert>
         )}
-        <h1 className={styles.Title}>Cargar columnas fijas</h1>
+        <h1 className={styles.Title}>Cargar datos del paciente</h1>
         <CreateObservation
-          fieldsList={fieldsList}
+          fieldsList={patientInfoColumns}
           setValues={handleChangeFieldValues}
         />
         <div className={styles.ButonContainer}>

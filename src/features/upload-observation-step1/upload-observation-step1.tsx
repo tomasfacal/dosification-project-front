@@ -42,13 +42,13 @@ const UploadObservationStep1 = (props: any) => {
       actual: true,
     },
     {
-      name: "Cargar Columnas Fijas",
+      name: "Cargar datos del paciente",
       link: Routing.UPLOAD_OBSERVATION_STEP_2,
       clickable: false,
       actual: false,
     },
     {
-      name: "Cargar Columnas Variables",
+      name: "Cargar tratamiento y observaciones",
       link: Routing.UPLOAD_OBSERVATION_STEP_3,
       clickable: false,
       actual: false,

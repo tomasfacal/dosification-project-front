@@ -6,18 +6,36 @@ import Breadcrumbs from "../breadcrumbs/breadcrumbs";
 import { useNavigate } from "react-router-dom";
 import { API_ROUTES } from "../../networking/api-routes";
 import API from "../../networking/api-service";
-import { Button } from "@material-ui/core";
+import Button from "@mui/material/Button";
 import { createTheme, ThemeProvider } from "@material-ui/core/styles";
 import FormComponent from "./FormComponent";
 import TableComponent from "./TableComponent";
 import Alert from "@mui/material/Alert";
+import TextField from "@mui/material/TextField";
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogActions from "@mui/material/DialogActions";
 
 const UploadObservationStep3 = (props: any) => {
   const navigation = useNavigate();
   const { state, setState } = useObservationsGlobalState();
   const theme = createTheme();
 
-  const [variableColumns, setVariableColumns] = useState([] as string[]);
+  const [ObservationColumns, setObservationColumns] = useState([] as string[]);
+  const [TreatmentColumns, setTreatmentColumns] = useState([] as string[]);
+  const [TreatmentValues, setTreatmentValues] = useState({} as any);
+  const [disabled, setDisabled] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const [tableState, setTableState] = useState({
     data: [] as any,
@@ -72,13 +90,13 @@ const UploadObservationStep3 = (props: any) => {
       actual: false,
     },
     {
-      name: "Cargar Columnas Fijas",
+      name: "Cargar datos del paciente",
       link: Routing.UPLOAD_OBSERVATION_STEP_2,
       clickable: true,
       actual: false,
     },
     {
-      name: "Cargar Columnas Variables",
+      name: "Cargar tratamiento y observaciones",
       link: Routing.UPLOAD_OBSERVATION_STEP_3,
       clickable: true,
       actual: true,
@@ -86,14 +104,10 @@ const UploadObservationStep3 = (props: any) => {
   ];
 
   const fetchObservationFields = async () => {
-    try {
-      const response = await API.get(
-        API_ROUTES.MODEL_DRUGS + state.model_id + "/"
-      );
-      setVariableColumns(response.data.variable_columns);
-    } catch (error) {
-      console.log("error", error);
-    }
+    const treatment_columns = state.treatment_columns;
+    const observation_columns = state.observation_columns;
+    setTreatmentColumns(treatment_columns || []);
+    setObservationColumns(observation_columns || []);
   };
 
   useEffect(() => {
@@ -102,13 +116,13 @@ const UploadObservationStep3 = (props: any) => {
 
   const formFields = () => {
     let hash = {} as any;
-    variableColumns.forEach((element) => (hash[element] = ""));
+    ObservationColumns.forEach((element: any) => (hash[element] = ""));
     return hash;
   };
 
   const headers = () => {
     let array = [] as any;
-    variableColumns.forEach((element) =>
+    ObservationColumns.forEach((element: any) =>
       array.push({
         name: element,
         prop: element,
@@ -120,8 +134,9 @@ const UploadObservationStep3 = (props: any) => {
   const sendInformation = async () => {
     try {
       const body = {
-        fixed_columns: state.fixed_columns,
-        variable_columns: tableState.data,
+        patient_info_values: state.patient_info_values,
+        treatment_values: TreatmentValues,
+        observation_values: tableState.data,
       };
       await API.post(
         API_ROUTES.MODEL_DRUGS +
@@ -134,10 +149,23 @@ const UploadObservationStep3 = (props: any) => {
     }
   };
 
+  const onSubmitTreatment = (e: any) => {
+    disabled ? setDisabled(false) : setDisabled(true);
+  };
+
+  const onChange = (event: any) => {
+    setTreatmentValues({
+      ...TreatmentValues,
+      [event.target.name]: event.target.value,
+    });
+  };
+
   const handleSubmit = async (event: any) => {
-    event.preventDefault();
+    setOpen(false);
     await sendInformation();
   };
+
+  const submitText = disabled ? "Editar" : "Listo";
 
   return (
     <ThemeProvider theme={theme}>
@@ -155,7 +183,28 @@ const UploadObservationStep3 = (props: any) => {
           <strong>autocompletado con “.”</strong> acorde al formato requerido.
         </Alert>
       )}
-      <h1 className={styles.Title}>Cargar columnas variables</h1>
+      <h1 className={styles.Title}>Cargar tratamiento utilizado</h1>
+      <form className={styles.Form}>
+        {Object.values(TreatmentColumns).map((field: string) => (
+          <TextField
+            name={field}
+            label={field}
+            onChange={onChange}
+            className={styles.Field}
+            disabled={disabled}
+          />
+        ))}
+        <div className={styles.ButonContainer}>
+          <Button
+            onClick={onSubmitTreatment}
+            color="primary"
+            variant="contained"
+          >
+            {submitText}
+          </Button>
+        </div>
+      </form>
+      <h1 className={styles.Title}>Cargar observaciones</h1>
       <FormComponent
         onSubmit={(submission: any) =>
           setTableState((prev) => ({
@@ -178,11 +227,35 @@ const UploadObservationStep3 = (props: any) => {
         <Button
           color="primary"
           variant="contained"
-          onClick={handleSubmit}
+          onClick={handleClickOpen}
           className={styles.SubmitButton}
         >
-          Cargar observación
+          Guardar
         </Button>
+        <Dialog
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title">
+            {
+              "Estas seguro que quiere finalizar el proceso de cargar una observación?"
+            }
+          </DialogTitle>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description">
+              Una vez guardado los datos, se registrará la observación para el
+              paciente y no tendrá la posibilidad de volver a editarla.
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose}>Cancelar</Button>
+            <Button onClick={handleSubmit} autoFocus variant="contained">
+              Guardar y Finalizar
+            </Button>
+          </DialogActions>
+        </Dialog>
       </div>
     </ThemeProvider>
   );
