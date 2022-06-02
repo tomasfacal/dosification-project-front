@@ -106,6 +106,12 @@ const UploadObservationStep3 = (props: any) => {
   const fetchObservationFields = async () => {
     const treatment_columns = state.treatment_columns;
     const observation_columns = state.observation_columns;
+    const treatment_values = {} as any;
+
+    treatment_columns?.map((key: string) => {
+      treatment_values[key] = "";
+    });
+    setTreatmentValues(treatment_values);
     setTreatmentColumns(treatment_columns || []);
     setObservationColumns(observation_columns || []);
   };
@@ -165,6 +171,13 @@ const UploadObservationStep3 = (props: any) => {
     await sendInformation();
   };
 
+  const invalidateFields = () => {
+    return (
+      Object.values(TreatmentValues).some((item) => item == "") ||
+      tableState.data.length === 0
+    );
+  };
+
   const submitText = disabled ? "Editar" : "Listo";
 
   return (
@@ -179,8 +192,7 @@ const UploadObservationStep3 = (props: any) => {
             setWarning(false);
           }}
         >
-          Advertencia! Cada campo que quede <strong>vacio</strong>, será{" "}
-          <strong>autocompletado con “.”</strong> acorde al formato requerido.
+          Advertencia! Deben completarse todos los campos.
         </Alert>
       )}
       <h1 className={styles.Title}>Cargar tratamiento utilizado</h1>
@@ -229,6 +241,7 @@ const UploadObservationStep3 = (props: any) => {
           variant="contained"
           onClick={handleClickOpen}
           className={styles.SubmitButton}
+          disabled={invalidateFields()}
         >
           Guardar
         </Button>

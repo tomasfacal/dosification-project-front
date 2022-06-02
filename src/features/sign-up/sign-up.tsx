@@ -260,7 +260,7 @@ export default function SignUp() {
                 )
               }
             >
-              Sign Up
+              Registrarse
             </Button>
           </Box>
         </Box>

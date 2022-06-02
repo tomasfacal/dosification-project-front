@@ -9,6 +9,7 @@ import { API_ROUTES } from "../../networking/api-routes";
 import API from "../../networking/api-service";
 import { Button } from "@material-ui/core";
 import Alert from "@mui/material/Alert";
+import { Forward } from "@mui/icons-material";
 
 const UploadObservationStep2 = (props: any) => {
   const navigation = useNavigate();
@@ -74,6 +75,9 @@ const UploadObservationStep2 = (props: any) => {
     }
   };
 
+  const invalidateFields = () =>
+    Object.values(patientInfoValues).some((item) => item == "" || item == ".");
+
   const handleChangeFieldValues = (name: string, value: string) => {
     setPatientInfoValues({
       ...patientInfoValues,
@@ -111,8 +115,7 @@ const UploadObservationStep2 = (props: any) => {
               setWarning(false);
             }}
           >
-            Advertencia! Cada campo que quede <strong>vacio</strong>, será{" "}
-            <strong>autocompletado con “.”</strong> acorde al formato requerido.
+            Advertencia! Deben completarse todos los campos.
           </Alert>
         )}
         <h1 className={styles.Title}>Cargar datos del paciente</h1>
@@ -126,7 +129,9 @@ const UploadObservationStep2 = (props: any) => {
             variant="contained"
             onClick={handleSubmit}
             className={styles.SubmitButton}
+            disabled={invalidateFields()}
           >
+            <Forward />
             Siguiente
           </Button>
         </div>
