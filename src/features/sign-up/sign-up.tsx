@@ -22,11 +22,17 @@ import { API_ROUTES } from "../../networking/api-routes";
 import { useNavigate } from "react-router-dom";
 import { Routing } from "../../constant/Routing";
 import API from "../../networking/api-service";
+import Error from "../error/error";
+import styles from "./sign-up.module.scss";
 
 const theme = createTheme();
 
 export default function SignUp() {
   const navigation = useNavigate();
+
+  const [success, setSuccess] = useState("");
+
+  const [error, setError] = useState("");
 
   const [data, setData] = useState({
     first_name: "",
@@ -117,10 +123,18 @@ export default function SignUp() {
     };
     try {
       const res = await API.post(API_ROUTES.SIGN_UP, user);
-      alert(`Usuario ${data.first_name} creado satisfactoriamente` + res.data);
-      navigation(Routing.SIGN_IN);
+      setError("");
+      console.log(
+        `Usuario ${data.first_name} creado satisfactoriamente`,
+        res.data
+      );
+      setSuccess(`Usuario ${data.first_name} creado satisfactoriamente`);
+      setTimeout(() => {
+        navigation(Routing.SIGN_IN);
+      }, 2000);
     } catch (error: any) {
-      alert(error.response.data);
+      setSuccess("");
+      setError(error.response.data);
     }
   };
 
@@ -262,6 +276,10 @@ export default function SignUp() {
             >
               Registrarse
             </Button>
+            {error && <Error error={error} />}
+            {success && (
+              <Typography className={styles.success}>{success}</Typography>
+            )}
           </Box>
         </Box>
       </Container>

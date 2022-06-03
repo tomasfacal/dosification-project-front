@@ -20,8 +20,10 @@ import Breadcrumbs from "../breadcrumbs/breadcrumbs";
 import { Routing } from "../../constant/Routing";
 import male from "../../assets/images/male.png";
 import female from "../../assets/images/female.png";
+import { useNavigate } from "react-router-dom";
 
 const CreatePatient = () => {
+  const navigation = useNavigate();
   const [datos, setData] = useState({
     name: "",
     document_number: "",
@@ -76,7 +78,11 @@ const CreatePatient = () => {
       setError("");
       console.log(`Paciente ${datos.name} creado satisfactoriamente`, res.data);
       setSuccess(`Paciente ${datos.name} creado satisfactoriamente`);
+      setTimeout(() => {
+        navigation(Routing.HOME);
+      }, 2000);
     } catch (error: any) {
+      debugger;
       setSuccess("");
       let completeError = "";
       console.log(error);
@@ -93,7 +99,7 @@ const CreatePatient = () => {
         <Breadcrumbs values={breadcrumbs} />
       </div>
       <div className={styles.FormContainer}>
-      <img
+        <img
           src={datos.sex === "F" ? female : male}
           alt="ilustracion paciente"
           className={styles.PatientImage}
