@@ -82,7 +82,6 @@ const CreatePatient = () => {
         navigation(Routing.HOME);
       }, 2000);
     } catch (error: any) {
-      debugger;
       setSuccess("");
       let completeError = "";
       console.log(error);
