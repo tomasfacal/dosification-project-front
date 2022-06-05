@@ -14,9 +14,9 @@ export interface ObservationsGlobalStateInterface {
   patient_info_columns: string[] | undefined;
   treatment_columns: string[] | undefined;
   observation_columns: string[] | undefined;
-  patient_info_values: Object;
-  treatment_values: Object;
-  observation_values: Object[];
+  patient_info_values: any;
+  treatment_values: any;
+  observation_values: any;
 }
 
 const ObservationsGlobalStateContext = createContext({

@@ -1,35 +1,37 @@
 import React, { useState } from "react";
 import { useCookies } from "react-cookie";
 
-const AuthContext = React.createContext({
-  token: "",
-  isLoggedIn: false,
-  role: "",
-  name: "",
-  lastname: "",
-  email: "",
-  phonenumber: "",
-  speciality: "",
-  job: "",
+interface AuthContextType {
+  token: string;
+  isLoggedIn: boolean;
+  role: string;
+  name: string;
+  lastname: string;
+  email: string;
+  phonenumber: string;
+  speciality: string;
+  job: string;
   login: (
-    _token: string,
-    _role: string,
-    _name: string,
-    _lastname: string,
-    _email: string,
-    _phonenumber: string,
-    _speciality: string,
-    _job: string
-  ) => {},
-  logout: () => {},
+    token: string,
+    role: string,
+    name: string,
+    lastname: string,
+    email: string,
+    phonenumber: string,
+    speciality: string,
+    job: string
+  ) => void;
+  logout: () => void;
   setUserInfo: (
-    _name: string,
-    _lastname: string,
-    _phonenumber: string,
-    _speciality: string,
-    _job: string
-  ) => {},
-});
+    name: string,
+    lastname: string,
+    phonenumber: string,
+    speciality: string,
+    job: string
+  ) => void;
+}
+
+const AuthContext = React.createContext<AuthContextType>({} as AuthContextType);
 
 export const AuthContextProvider = (props: any) => {
   const [cookies, setCookie, removeCookie] = useCookies(["token", "role"]);
