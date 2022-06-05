@@ -33,11 +33,16 @@ const ObservationsGlobalStateProvider = ({
   children: React.ReactNode;
   value?: Partial<ObservationsGlobalStateInterface>;
 }) => {
-  const [state, setState] = useState(
-    JSON.parse(localStorage.getItem("observation")!)
-      ? JSON.parse(localStorage.getItem("observation")!)
-      : value
-  ); // Cuando se hace un reload, si habia algo en el localStorage, se carga el state
+  const [state, setState] = useState(value);
+
+  useEffect(() => {
+    const dataState = JSON.parse(localStorage.getItem("observation") || "");
+
+    if (dataState) {
+      setState(dataState);
+    }
+  }, []);
+  // Cuando se hace un reload, si habia algo en el localStorage, se carga el state
 
   useEffect(() => {
     //Actualizo el localstorage cuando se detectan cambios

@@ -34,11 +34,16 @@ const SimulationGlobalStateProvider = ({
   children: React.ReactNode;
   value?: Partial<SimulationGlobalStateInterface>;
 }) => {
-  const [state, setState] = useState(
-    JSON.parse(localStorage.getItem("state")!)
-      ? JSON.parse(localStorage.getItem("state")!)
-      : value
-  ); // Cuando se hace un reload, si habia algo en el localStorage, se carga el state
+  const [state, setState] = useState(value);
+
+  useEffect(() => {
+    const dataState = JSON.parse(localStorage.getItem("state") || "");
+
+    if (dataState) {
+      setState(dataState);
+    }
+  }, []);
+  // Cuando se hace un reload, si habia algo en el localStorage, se carga el state
 
   useEffect(() => {
     //Actualizo el localstorage cuando se detectan cambios

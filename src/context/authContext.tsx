@@ -36,36 +36,26 @@ const AuthContext = React.createContext<AuthContextType>({} as AuthContextType);
 export const AuthContextProvider = (props: any) => {
   const [cookies, setCookie, removeCookie] = useCookies(["token", "role"]);
 
-  const [token, setToken] = useState(cookies.token! ? cookies.token! : "");
-  const [role, setRole] = useState(cookies.role! ? cookies.role! : "");
+  const [token, setToken] = useState(cookies.token || "");
+  const [role, setRole] = useState(cookies.role || "");
 
-  const [name, setName] = useState(
-    localStorage.getItem("name")! ? localStorage.getItem("name")! : ""
-  );
+  const [name, setName] = useState(localStorage.getItem("name") || "");
 
   const [lastname, setLastName] = useState(
-    localStorage.getItem("lastname")! ? localStorage.getItem("lastname")! : ""
+    localStorage.getItem("lastname") || ""
   );
 
-  const [email, setEmail] = useState(
-    localStorage.getItem("email")! ? localStorage.getItem("email")! : ""
-  );
+  const [email, setEmail] = useState(localStorage.getItem("email") || "");
 
   const [phonenumber, setPhoneNumber] = useState(
-    localStorage.getItem("phonenumber")!
-      ? localStorage.getItem("phonenumber")!
-      : ""
+    localStorage.getItem("phonenumber") || ""
   );
 
   const [speciality, setSpeciality] = useState(
-    localStorage.getItem("speciality")!
-      ? localStorage.getItem("speciality")!
-      : ""
+    localStorage.getItem("speciality") || ""
   );
 
-  const [job, setJob] = useState(
-    localStorage.getItem("job")! ? localStorage.getItem("job")! : ""
-  );
+  const [job, setJob] = useState(localStorage.getItem("job") || "");
 
   const userIsLoggedIn = !!token;
 
