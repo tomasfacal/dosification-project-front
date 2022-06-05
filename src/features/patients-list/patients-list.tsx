@@ -117,7 +117,7 @@ const PatientsList = () => {
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead className={styles.TableHeader}>
             <TableRow className={styles.TableTitle}>
-              <TableCell align="center"> Documento </TableCell>
+              <TableCell align="center"> Cédula de Identidad</TableCell>
               <TableCell align="center">Nombre</TableCell>
               <TableCell align="center">Apellido</TableCell>
               <TableCell align="center">Sexo</TableCell>
