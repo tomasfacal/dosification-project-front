@@ -1,10 +1,10 @@
 import styles from "./input_patient.module.scss";
-import { TextField, Grid } from "@material-ui/core";
+import { TextField } from "@material-ui/core";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import InputAdornment from "@mui/material/InputAdornment";
 
 const InputPatient = (props: any) => {
-  const handleClickPencil = (event: any) => {
+  const handleClickPencil = () => {
     props.parentCallbackEditable(props.name);
   };
 

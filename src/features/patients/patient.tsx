@@ -18,12 +18,11 @@ import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import Typography from "@mui/material/Typography";
 import Error from "../error/error";
-import DownloadCSVModal from "../download-csv/download-csv"
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-
+import DownloadCSVModal from "../download-csv/download-csv";
+import Accordion from "@mui/material/Accordion";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 const Patient = () => {
   const [datos, setData] = useState({
@@ -43,7 +42,7 @@ const Patient = () => {
 
   const { document_number } = useParams();
   const navigation = useNavigate();
-  const { state, setState } = useObservationsGlobalState();
+  const { setState } = useObservationsGlobalState();
 
   const breadcrumbs = [
     {
@@ -108,18 +107,15 @@ const Patient = () => {
     });
   };
 
-  const handleSubmit = async (event: any) => {
-    let data_json = {
+  const handleSubmit = async () => {
+    const data_json = {
       first_name: datos.first_name,
       document_number: datos.document_number,
       sex: datos.sex,
       last_name: datos.last_name,
     };
     try {
-      await API.put(
-        API_ROUTES.PATIENT + document_number + "/",
-        data_json
-      );
+      await API.put(API_ROUTES.PATIENT + document_number + "/", data_json);
       setError("");
       setSuccess(
         `Paciente ${datos.first_name} ${datos.last_name} actualizado satisfactoriamente`
@@ -128,7 +124,7 @@ const Patient = () => {
       setSuccess("");
       let completeError = "";
       console.log(error);
-      for (var i in error.response.data) {
+      for (const i in error.response.data) {
         completeError = completeError.concat(`${i}: ${error.response.data[i]}`);
       }
       setError(completeError);
@@ -251,7 +247,7 @@ const Patient = () => {
               <Typography>Descargar observaciones</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <DownloadCSVModal document_number={document_number}/>
+              <DownloadCSVModal document_number={document_number} />
             </AccordionDetails>
           </Accordion>
         </div>

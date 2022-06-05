@@ -10,7 +10,7 @@ interface BasicModalProps {
 }
 
 const style = {
-  position: "absolute" as "absolute",
+  position: "absolute" as any,
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
@@ -21,7 +21,7 @@ const style = {
   p: 4,
 };
 
-const ChildModal: React.FC<BasicModalProps> = ( props: BasicModalProps) => {
+const ChildModal: React.FC<BasicModalProps> = (props: BasicModalProps) => {
   return (
     <div>
       <Modal

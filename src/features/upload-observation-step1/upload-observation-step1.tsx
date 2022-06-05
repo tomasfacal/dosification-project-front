@@ -15,7 +15,7 @@ import { Routing } from "../../constant/Routing";
 import Breadcrumbs from "../breadcrumbs/breadcrumbs";
 import { useNavigate } from "react-router-dom";
 
-const UploadObservationStep1 = (props: any) => {
+const UploadObservationStep1 = () => {
   const navigation = useNavigate();
   const { state, setState } = useObservationsGlobalState();
   const [data, setData] = useState({
