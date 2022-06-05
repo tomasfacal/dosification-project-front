@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import styles from "./create-observation.module.scss";
 import { TextField, Grid } from "@material-ui/core";
 
-const CreateObservation = (props: any) => {
+const CreateObservation: React.FC<any> = (props: any) => {
   const handleInputChange = (event: any) => {
     props.setValues(event.target.name, event.target.value);
   };

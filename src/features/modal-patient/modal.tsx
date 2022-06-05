@@ -21,7 +21,7 @@ const style = {
   p: 4,
 };
 
-const ChildModal = (props: BasicModalProps) => {
+const ChildModal: React.FC<BasicModalProps> = ( props: BasicModalProps) => {
   return (
     <div>
       <Modal

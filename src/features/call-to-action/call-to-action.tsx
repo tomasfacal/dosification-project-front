@@ -8,15 +8,13 @@ interface CalltoActionProps {
   urlText: string;
 }
 
-const CallToAction = (props: CalltoActionProps) => {
-  return (
-    <Typography className={styles.CallToAction}>
-      {props.text}
-      <Link href={props.url}>
-        {props.urlText} <LinkIcon />
-      </Link>
-    </Typography>
-  );
-};
+const CallToAction: React.FC<CalltoActionProps> = (props: CalltoActionProps) => (
+  <Typography className={styles.CallToAction}>
+    {props.text}
+    <Link href={props.url}>
+      {props.urlText} <LinkIcon />
+    </Link>
+  </Typography>
+);
 
 export default CallToAction;

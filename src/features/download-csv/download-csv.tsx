@@ -14,7 +14,7 @@ type Props = {
   document_number: string | undefined;
 };
 
-const DownloadCSVModal = ({ document_number }: Props) => {
+const DownloadCSVModal: React.FC<Props> = ({ document_number }: Props) => {
   const [models, setModels] = useState([] as ModelInfo[]);
   const [model, setModel] = useState(0);
   const [error, setError] = useState("");
@@ -37,7 +37,7 @@ const DownloadCSVModal = ({ document_number }: Props) => {
     setModel(event.target.value);
   };
 
-  const handleSubmit = async (event: any) => {
+  const handleSubmit = async () => {
     try {
       const currentModel = models.find((m) => m.id === model);
       const csv = await API.get(

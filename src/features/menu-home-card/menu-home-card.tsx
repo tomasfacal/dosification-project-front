@@ -14,7 +14,7 @@ const getClass = (className: string) => {
   else return styles.Card3;
 };
 
-const MenuHomeCard = (props: CardMenu) => {
+const MenuHomeCard: React.FC<CardMenu> = ( props: CardMenu) => {
   return (
     <Fragment>
       <div className={getClass(props.class)}>

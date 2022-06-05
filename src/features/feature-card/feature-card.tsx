@@ -3,11 +3,6 @@ import styles from "./feature-card.module.scss";
 import { Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
 
-interface Buttons {
-  buttonText: string;
-  buttonLink: string;
-}
-
 interface Feature {
   title: string;
   subtitle: string;
@@ -19,7 +14,7 @@ interface Feature {
   }[];
 }
 
-const FeatureCard = (props: Feature) => {
+const FeatureCard: React.FC<Feature> = (props: Feature) => {
   return (
     <Fragment>
       <div className={styles.PatientsContainer}>

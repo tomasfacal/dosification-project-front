@@ -12,7 +12,7 @@ import Breadcrumbs from "../breadcrumbs/breadcrumbs";
 import { useSimulationGlobalState } from "../../context/SimulationGlobalState";
 import settings from "../../assets/images/settings.gif";
 
-const ObtainModelDrug = (props: any) => {
+const ObtainModelDrug = () => {
   const { state, setState } = useSimulationGlobalState();
   const navigation = useNavigate();
 
@@ -89,7 +89,7 @@ const ObtainModelDrug = (props: any) => {
       setMeasurementUnit(response.data.measurement_unit)
 
       if (covariatesValues === {}) {
-        let covariates_list = {} as any;
+        const covariates_list = {} as any;
         {
           covariatesList.map(
             (covariate: string) => (covariates_list[covariate] = "")
@@ -113,7 +113,7 @@ const ObtainModelDrug = (props: any) => {
     setOutputValue(value);
   };
 
-  const handleNext = (event: any) => {
+  const handleNext = () => {
     setState((prev) => ({
       ...prev,
       covariates: covariatesValues,

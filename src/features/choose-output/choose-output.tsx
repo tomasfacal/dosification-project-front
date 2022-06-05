@@ -9,8 +9,8 @@ import { useState, Fragment } from "react";
 import styles from "./choose-output.module.scss";
 import { useSimulationGlobalState } from "../../context/SimulationGlobalState";
 
-const ChooseOutput = (props: any) => {
-  const { state, setState } = useSimulationGlobalState();
+const ChooseOutput: React.FC<any> = (props: any) => {
+  const { state } = useSimulationGlobalState();
   const [chooseOutput, setChooseOutput] = useState(
     state.output ? state.output : ""
   );

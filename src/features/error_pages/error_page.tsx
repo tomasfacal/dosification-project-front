@@ -7,7 +7,7 @@ interface ErrorInterface {
   error_text: string;
 }
 
-const ErrorPage = (props: ErrorInterface) => {
+const ErrorPage: React.FC<ErrorInterface> = (props: ErrorInterface) => {
   return (
     <section className={styles.ErrorContainer}>
       <span>
