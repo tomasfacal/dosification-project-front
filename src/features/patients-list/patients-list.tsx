@@ -61,7 +61,7 @@ const PatientsList = () => {
     getPatientsSearch();
   }, [search]);
 
-  const handleChangePage = (event: any, newPage: number) => {
+  const handleChangePage = (_event: any, newPage: number) => {
     setPage(newPage);
   };
 
@@ -69,11 +69,11 @@ const PatientsList = () => {
     setSearchField(event.target.value);
   };
 
-  const handleSubmit = (event: any) => {
+  const handleSubmit = () => {
     setSearch(searchField);
   };
 
-  const handleCancel = (event: any) => {
+  const handleCancel = () => {
     setSearch("");
     setPage(0);
   };

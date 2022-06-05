@@ -10,13 +10,13 @@ import API from "../../networking/api-service";
 import { Button } from "@material-ui/core";
 import Alert from "@mui/material/Alert";
 
-const UploadObservationStep2 = (props: any) => {
+const UploadObservationStep2 = () => {
   const navigation = useNavigate();
   const { state, setState } = useObservationsGlobalState();
   const [warning, setWarning] = useState(true);
 
   const [patientInfoValues, setPatientInfoValues] = useState({} as any);
-  const [patientInfoColumns, setPatientInfoColumns] = useState([] as String[]);
+  const [patientInfoColumns, setPatientInfoColumns] = useState([] as string[]);
 
   const breadcrumbs = [
     {

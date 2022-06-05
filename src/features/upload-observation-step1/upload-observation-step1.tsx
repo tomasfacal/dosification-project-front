@@ -79,7 +79,7 @@ const UploadObservationStep1 = (props: any) => {
 
   const handleInputChange = (event: any) => {
     if (event.target.name === "model_id") {
-      let model = models.find(
+      const model = models.find(
         (model: ModelInfo) => model.id === event.target.value
       );
       setData({
