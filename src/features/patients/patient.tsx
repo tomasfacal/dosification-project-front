@@ -18,12 +18,11 @@ import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import Typography from "@mui/material/Typography";
 import Error from "../error/error";
-import DownloadCSVModal from "../download-csv/download-csv"
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-
+import DownloadCSVModal from "../download-csv/download-csv";
+import Accordion from "@mui/material/Accordion";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 const Patient = () => {
   const [datos, setData] = useState({
@@ -116,14 +115,14 @@ const Patient = () => {
       last_name: datos.last_name,
     };
     try {
-      await API.put(
-        API_ROUTES.PATIENT + document_number + "/",
-        data_json
-      );
+      await API.put(API_ROUTES.PATIENT + document_number + "/", data_json);
       setError("");
       setSuccess(
         `Paciente ${datos.first_name} ${datos.last_name} actualizado satisfactoriamente`
       );
+      setTimeout(() => {
+        navigation(Routing.HOME);
+      }, 2000);
     } catch (error: any) {
       setSuccess("");
       let completeError = "";
@@ -198,9 +197,9 @@ const Patient = () => {
           </Grid>
           <Grid item xs={12} sm={12}>
             <FormControl component="fieldset">
-              <FormLabel component="legend">Género</FormLabel>
+              <FormLabel component="legend">Sexo</FormLabel>
               <RadioGroup
-                aria-label="gender"
+                aria-label="sex"
                 value={datos.sex}
                 name="sex"
                 onChange={handleRadioButtonChange}
@@ -251,7 +250,7 @@ const Patient = () => {
               <Typography>Descargar observaciones</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <DownloadCSVModal document_number={document_number}/>
+              <DownloadCSVModal document_number={document_number} />
             </AccordionDetails>
           </Accordion>
         </div>
