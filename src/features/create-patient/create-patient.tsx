@@ -149,9 +149,9 @@ const CreatePatient = () => {
         </div>
         <div className={styles.fieldContainer}>
           <FormControl component="fieldset">
-            <FormLabel component="legend">Género</FormLabel>
+            <FormLabel component="legend">Sexo</FormLabel>
             <RadioGroup
-              aria-label="gender"
+              aria-label="sex"
               defaultValue="F"
               name="sex"
               onChange={handleInputChange}
