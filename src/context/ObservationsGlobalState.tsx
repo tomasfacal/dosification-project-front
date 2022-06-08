@@ -14,9 +14,9 @@ export interface ObservationsGlobalStateInterface {
   patient_info_columns: string[] | undefined;
   treatment_columns: string[] | undefined;
   observation_columns: string[] | undefined;
-  patient_info_values: Object;
-  treatment_values: Object;
-  observation_values: Object[];
+  patient_info_values: any;
+  treatment_values: any;
+  observation_values: any;
 }
 
 const ObservationsGlobalStateContext = createContext({
@@ -33,11 +33,16 @@ const ObservationsGlobalStateProvider = ({
   children: React.ReactNode;
   value?: Partial<ObservationsGlobalStateInterface>;
 }) => {
-  const [state, setState] = useState(
-    JSON.parse(localStorage.getItem("observation")!)
-      ? JSON.parse(localStorage.getItem("observation")!)
-      : value
-  ); // Cuando se hace un reload, si habia algo en el localStorage, se carga el state
+  const [state, setState] = useState(value);
+
+  useEffect(() => {
+    const dataState = JSON.parse(localStorage.getItem("observation") || "");
+
+    if (dataState) {
+      setState(dataState);
+    }
+  }, []);
+  // Cuando se hace un reload, si habia algo en el localStorage, se carga el state
 
   useEffect(() => {
     //Actualizo el localstorage cuando se detectan cambios

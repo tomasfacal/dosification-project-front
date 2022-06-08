@@ -35,7 +35,7 @@ function TabPanel(props: TabPanelProps) {
   );
 }
 
-const MetricsCard = (props: any) => {
+const MetricsCard: React.FC<any> = ( props: any) => {
   const metricsTitle =
     props.metrics[0].steady_state === true
       ? "Métricas de simulación en estado estacionario"

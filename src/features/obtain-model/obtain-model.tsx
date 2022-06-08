@@ -12,7 +12,7 @@ import Breadcrumbs from "../breadcrumbs/breadcrumbs";
 import { useSimulationGlobalState } from "../../context/SimulationGlobalState";
 import settings from "../../assets/images/settings.gif";
 
-const ObtainModelDrug = (props: any) => {
+const ObtainModelDrug = () => {
   const { state, setState } = useSimulationGlobalState();
   const navigation = useNavigate();
 
@@ -31,8 +31,8 @@ const ObtainModelDrug = (props: any) => {
     state.output ? state.output : ""
   );
   const [measurementUnit, setMeasurementUnit] = useState(
-    state.measurement_unit ?  state.measurement_unit: ""
-  )
+    state.measurement_unit ? state.measurement_unit : ""
+  );
 
   const breadcrumbs = [
     {
@@ -86,10 +86,10 @@ const ObtainModelDrug = (props: any) => {
       setOutputsList(o_keys);
       setDisplayCovariates(c_hash);
       setDisplayOutputs(o_hash);
-      setMeasurementUnit(response.data.measurement_unit)
+      setMeasurementUnit(response.data.measurement_unit);
 
       if (covariatesValues === {}) {
-        let covariates_list = {} as any;
+        const covariates_list = {} as any;
         {
           covariatesList.map(
             (covariate: string) => (covariates_list[covariate] = "")
@@ -113,19 +113,19 @@ const ObtainModelDrug = (props: any) => {
     setOutputValue(value);
   };
 
-  const handleNext = (event: any) => {
+  const handleNext = () => {
     setState((prev) => ({
       ...prev,
       covariates: covariatesValues,
       output: outputValue,
       display_covariates: displayCovariates,
       display_outputs: displayOutputs,
-      measurement_unit: measurementUnit
+      measurement_unit: measurementUnit,
     }));
     navigation(Routing.SIMULATION_FLOW + Routing.SELECT_TREATMENTS);
   };
 
-  const validateFields = (outputValue: string, covariatesValues: Object) => {
+  const validateFields = (outputValue: string, covariatesValues: any) => {
     return !!outputValue && !!covariatesValues;
   };
 
@@ -145,11 +145,13 @@ const ObtainModelDrug = (props: any) => {
           className={styles.SettingsImage}
         />
         <div>
-          {!state.is_individual && <CreateCovariates
-            display_covariates={displayCovariates}
-            covariates={covariatesList}
-            setValues={handleChangeCovariateValues}
-          />}
+          {!state.is_individual && (
+            <CreateCovariates
+              display_covariates={displayCovariates}
+              covariates={covariatesList}
+              setValues={handleChangeCovariateValues}
+            />
+          )}
           <ChooseOutput
             display_outputs={displayOutputs}
             outputs={outputsList}

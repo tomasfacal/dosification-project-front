@@ -18,9 +18,9 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogActions from "@mui/material/DialogActions";
 
-const UploadObservationStep3 = (props: any) => {
+const UploadObservationStep3 = () => {
   const navigation = useNavigate();
-  const { state, setState } = useObservationsGlobalState();
+  const { state } = useObservationsGlobalState();
   const theme = createTheme();
 
   const [ObservationColumns, setObservationColumns] = useState([] as string[]);
@@ -121,13 +121,13 @@ const UploadObservationStep3 = (props: any) => {
   }, []);
 
   const formFields = () => {
-    let hash = {} as any;
+    const hash = {} as any;
     ObservationColumns.forEach((element: any) => (hash[element] = ""));
     return hash;
   };
 
   const headers = () => {
-    let array = [] as any;
+    const array = [] as any;
     ObservationColumns.forEach((element: any) =>
       array.push({
         name: element,
@@ -155,7 +155,7 @@ const UploadObservationStep3 = (props: any) => {
     }
   };
 
-  const onSubmitTreatment = (e: any) => {
+  const onSubmitTreatment = () => {
     disabled ? setDisabled(false) : setDisabled(true);
   };
 
@@ -166,7 +166,7 @@ const UploadObservationStep3 = (props: any) => {
     });
   };
 
-  const handleSubmit = async (event: any) => {
+  const handleSubmit = async () => {
     setOpen(false);
     await sendInformation();
   };

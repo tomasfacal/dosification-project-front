@@ -96,7 +96,7 @@ const SelectTreatments = () => {
   };
 
   const deleteTreatment = (index: number) => {
-    let newstate = [...cards];
+    const newstate = [...cards];
     newstate.splice(index, 1);
     setCards(newstate);
   };

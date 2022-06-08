@@ -85,7 +85,7 @@ const CreatePatient = () => {
       setSuccess("");
       let completeError = "";
       console.log(error);
-      for (var i in error.response.data) {
+      for (const i in error.response.data) {
         completeError = completeError.concat(`${i}: ${error.response.data[i]}`);
       }
       setError(completeError);

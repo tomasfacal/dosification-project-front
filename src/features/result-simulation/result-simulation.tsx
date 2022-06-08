@@ -14,19 +14,17 @@ import MetricsCard from "../metrics-card/metrics-card";
 import WarningCard from "../warning-card/warning-card";
 import TreatmentCard from "../treatment-card/treatment-card";
 
-const ResultSimulation = (props: any) => {
-  const { state, setState } = useSimulationGlobalState();
+const ResultSimulation = () => {
+  const { state } = useSimulationGlobalState();
   const [results, setResults] = useState<ResponseResultJSON[]>([]);
-  const [error, setError] = useState<Boolean>(false);
+  const [error, setError] = useState<boolean>(false);
 
   const setCardsFromContext = () => {
     if (state.treatments) return state.treatments;
     else return [] as TreatmentJSON[];
   };
 
-  const [treatments] = useState<TreatmentJSON[]>(
-    setCardsFromContext()
-  );
+  const [treatments] = useState<TreatmentJSON[]>(setCardsFromContext());
 
   const breadcrumbs = [
     {
@@ -93,7 +91,7 @@ const ResultSimulation = (props: any) => {
   const parseNumber = (x: any) => (x > 9999 ? Math.round(x) : x.toPrecision(4));
 
   const metrics = () => {
-    let result: Metrics[] = [];
+    const result: Metrics[] = [];
     results.map((dato: ResponseResultJSON) =>
       result.push({
         steady_state: true,

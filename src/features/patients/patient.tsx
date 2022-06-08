@@ -42,7 +42,7 @@ const Patient = () => {
 
   const { document_number } = useParams();
   const navigation = useNavigate();
-  const { state, setState } = useObservationsGlobalState();
+  const { setState } = useObservationsGlobalState();
 
   const breadcrumbs = [
     {
@@ -107,8 +107,8 @@ const Patient = () => {
     });
   };
 
-  const handleSubmit = async (event: any) => {
-    let data_json = {
+  const handleSubmit = async () => {
+    const data_json = {
       first_name: datos.first_name,
       document_number: datos.document_number,
       sex: datos.sex,
@@ -127,7 +127,7 @@ const Patient = () => {
       setSuccess("");
       let completeError = "";
       console.log(error);
-      for (var i in error.response.data) {
+      for (const i in error.response.data) {
         completeError = completeError.concat(`${i}: ${error.response.data[i]}`);
       }
       setError(completeError);

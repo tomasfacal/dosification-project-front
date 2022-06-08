@@ -1,4 +1,4 @@
-import { Fragment, useEffect } from "react";
+import { Fragment } from "react";
 import styles from "./home.module.scss";
 import Hero from "../hero/hero";
 import Menubar from "../menubar/menubar";

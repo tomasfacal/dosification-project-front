@@ -3,8 +3,8 @@ import styles from "./create-covariates.module.scss";
 import { TextField, Grid } from "@material-ui/core";
 import { useSimulationGlobalState } from "../../context/SimulationGlobalState";
 
-const CreateCovariates = (props: any) => {
-  const { state, setState } = useSimulationGlobalState();
+const CreateCovariates: React.FC<any> = (props: any) => {
+  const { state } = useSimulationGlobalState();
   const handleInputChange = (event: any) => {
     props.setValues(event.target.name, event.target.value);
   };

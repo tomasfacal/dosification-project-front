@@ -1,69 +1,61 @@
 import React, { useState } from "react";
 import { useCookies } from "react-cookie";
 
-const AuthContext = React.createContext({
-  token: "",
-  isLoggedIn: false,
-  role: "",
-  name: "",
-  lastname: "",
-  email: "",
-  phonenumber: "",
-  speciality: "",
-  job: "",
+interface AuthContextType {
+  token: string;
+  isLoggedIn: boolean;
+  role: string;
+  name: string;
+  lastname: string;
+  email: string;
+  phonenumber: string;
+  speciality: string;
+  job: string;
   login: (
-    _token: string,
-    _role: string,
-    _name: string,
-    _lastname: string,
-    _email: string,
-    _phonenumber: string,
-    _speciality: string,
-    _job: string
-  ) => {},
-  logout: () => {},
+    token: string,
+    role: string,
+    name: string,
+    lastname: string,
+    email: string,
+    phonenumber: string,
+    speciality: string,
+    job: string
+  ) => void;
+  logout: () => void;
   setUserInfo: (
-    _name: string,
-    _lastname: string,
-    _phonenumber: string,
-    _speciality: string,
-    _job: string
-  ) => {},
-});
+    name: string,
+    lastname: string,
+    phonenumber: string,
+    speciality: string,
+    job: string
+  ) => void;
+}
+
+const AuthContext = React.createContext<AuthContextType>({} as AuthContextType);
 
 export const AuthContextProvider = (props: any) => {
   const [cookies, setCookie, removeCookie] = useCookies(["token", "role"]);
 
-  const [token, setToken] = useState(cookies.token! ? cookies.token! : "");
-  const [role, setRole] = useState(cookies.role! ? cookies.role! : "");
+  const [token, setToken] = useState(cookies.token || "");
+  const [role, setRole] = useState(cookies.role || "");
 
-  const [name, setName] = useState(
-    localStorage.getItem("name")! ? localStorage.getItem("name")! : ""
-  );
+  const [name, setName] = useState(localStorage.getItem("name") || "");
 
   const [lastname, setLastName] = useState(
-    localStorage.getItem("lastname")! ? localStorage.getItem("lastname")! : ""
+    localStorage.getItem("lastname") || ""
   );
 
-  const [email, setEmail] = useState(
-    localStorage.getItem("email")! ? localStorage.getItem("email")! : ""
-  );
+  const [email, setEmail] = useState(localStorage.getItem("email") || "");
 
   const [phonenumber, setPhoneNumber] = useState(
-    localStorage.getItem("phonenumber")!
-      ? localStorage.getItem("phonenumber")!
-      : ""
+    localStorage.getItem("phonenumber") || ""
   );
 
   const [speciality, setSpeciality] = useState(
-    localStorage.getItem("speciality")!
-      ? localStorage.getItem("speciality")!
-      : ""
+    localStorage.getItem("speciality") || ""
   );
 
-  const [job, setJob] = useState(
-    localStorage.getItem("job")! ? localStorage.getItem("job")! : ""
-  );
+  const [job, setJob] = useState(localStorage.getItem("job") || "");
 
   const userIsLoggedIn = !!token;
 

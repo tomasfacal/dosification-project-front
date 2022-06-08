@@ -14,9 +14,9 @@ import { useSimulationGlobalState } from "../../context/SimulationGlobalState";
 import TreatmentCard from "../treatment-card/treatment-card";
 
 const SimulationPage = () => {
-  const { state, setState } = useSimulationGlobalState();
+  const { state } = useSimulationGlobalState();
   const navigation = useNavigate();
-  const [cards, setCards] = useState<TreatmentJSON[]>(state.treatments || []);
+  const [cards] = useState<TreatmentJSON[]>(state.treatments || []);
 
   const breadcrumbs = [
     {
@@ -57,7 +57,7 @@ const SimulationPage = () => {
     },
   ];
 
-  const handleSimulate = (event: any) => {
+  const handleSimulate = () => {
     console.log(state);
     navigation(Routing.SIMULATION_FLOW + Routing.RESULT_PAGE);
   };
@@ -91,7 +91,7 @@ const SimulationPage = () => {
                   <Typography className={styles.Treatmentsubtitle}>
                     Covariables:
                   </Typography>
-                  {Object.keys(state.covariates).map((innerAttr, index) => {
+                  {Object.keys(state.covariates).map((innerAttr) => {
                     return (
                       <Typography className={styles.covariateStyle}>
                         {state.display_covariates[innerAttr]}:{" "}

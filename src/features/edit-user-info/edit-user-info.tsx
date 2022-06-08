@@ -18,7 +18,7 @@ import styles from "./edit-user-info.module.scss";
 
 const theme = createTheme();
 
-export default function EditUserInfo() {
+function EditUserInfo() {
   const authCtx = useContext(AuthContext);
   const navigation = useNavigate();
 
@@ -50,7 +50,7 @@ export default function EditUserInfo() {
     };
 
     API.post(API_ROUTES.EDIT_USER, user)
-      .then((res) => {
+      .then(() => {
         authCtx.setUserInfo(
           data.first_name,
           data.last_name,
@@ -153,3 +153,5 @@ export default function EditUserInfo() {
     </ThemeProvider>
   );
 }
+
+export default EditUserInfo;
