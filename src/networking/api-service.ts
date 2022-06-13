@@ -1,9 +1,10 @@
 import axios from "axios";
 import { Routing } from "../constant/Routing";
 import { getCookie } from "cookied";
+import env from "react-dotenv";
 
 const customAxios = axios.create({
-  baseURL: `http://localhost:8000/api/`,
+  baseURL: env.API_URL || 'http://localhost:8000/api/',
 });
 
 const requestHandler = (request: any) => {
