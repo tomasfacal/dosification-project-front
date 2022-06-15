@@ -91,7 +91,7 @@ const MetricsCard = (props: any) => {
         "\n"
       );
     });
-    pdf.text("Metricas \n", 10, 10, {
+    pdf.text("Métricas \n", 10, 10, {
       maxWidth: 100,
     });
     pdf.text(metrics, 10, 20, {
