@@ -108,7 +108,7 @@ const SimulationPage = () => {
           <Typography className={styles.Treatmentsubtitle}>
             Tratamientos:
           </Typography>
-          <Grid container spacing={2}>
+          <Grid container spacing={2} justifyContent="center">
             {cards.map((treatment: TreatmentJSON, index: number) => (
               <TreatmentCard
                 treatment={treatment}
