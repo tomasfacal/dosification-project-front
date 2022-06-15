@@ -67,7 +67,7 @@ const UploadObservationStep2 = (props: any) => {
       const patient_info_values = {} as any;
 
       patient_info_columns.map((key: string) => {
-        patient_info_values[key] = ".";
+        patient_info_values[key] = "";
       });
       setPatientInfoValues(patient_info_values);
     } catch (error) {
@@ -76,7 +76,7 @@ const UploadObservationStep2 = (props: any) => {
   };
 
   const invalidateFields = () =>
-    Object.values(patientInfoValues).some((item) => item == "" || item == ".");
+    Object.values(patientInfoValues).some((item) => item == "");
 
   const handleChangeFieldValues = (name: string, value: string) => {
     setPatientInfoValues({
